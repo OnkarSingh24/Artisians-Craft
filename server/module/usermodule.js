@@ -6,8 +6,8 @@ const userinfo = new mongoose.Schema({
     verifyOtp: {type: String ,default:''},
     verifyOtpExpire:{type: Number, default:0},
     accountVerified:{type: Boolean, default:false},
-    Resetotp: {type: String ,default:''},
-    Resetotpexpire: {type: Number ,default:0},
+    resetotp: {type: String ,default:''},
+    resetotpexpire: {type: Number ,default:0},
 })
 const usermodel = mongoose.models.user || mongoose.model('user', userinfo);
 //if it finds the user it will fetch that otherwise create new user using user info

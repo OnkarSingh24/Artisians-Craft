@@ -191,7 +191,7 @@ export const resetotp =async(req,res)=>{
     const otp = String(Math.floor(100000 + Math.random() * 900000));
     const hashedOtp = await bcrypt.hash(otp, 10);
     user.resetotp = hashedOtp;
-    user.resetotpexpire= Date.now() + 2 * 60 * 1000; // 2 minutes
+    user.resetotpexpire= Date.now() + 5 * 60 * 1000; // 2 minutes
         await user.save();
 
     const mailOptions = {
@@ -209,34 +209,43 @@ export const resetotp =async(req,res)=>{
 };
 
 //reset user password 
-export const resetpassword =async(req,res)=>{
-    const {Email, otp , newpassword }=req.body;
+export const resetpassword = async (req, res) => {
+    const { Email, otp, newpassword } = req.body;
 
-    if(!Email || !otp || !newpassword){
-        return res.json({ success:false , message:'missing credentials'});
+    
+
+    if (!Email || !otp || !newpassword) {
+        return res.json({ success: false, message: 'Missing credentials' });
     }
+
     try {
-        const user = await usermodel.findOne({Email});
-        if(!user){
-            return res.json({ success:false , message:'user not found'});
+        const user = await usermodel.findOne({ Email });
+        if (!user) {
+            return res.json({ success: false, message: 'User not found' });
         }
-        if(user.resetotp ==""|| user.resetotp != otp){
-            return res.json({ success:false , message:'Invalid otp'});
-        }
-        if(user.resetotpexpire < Date.now()){
-            return res.json({success: false , message : 'otp expired'});
-        }
-        const hashedPassword= await bcrypt.hash(newpassword,10);
-        user.Password =hashedPassword;
-        user.resetotp='';
-        user.resetotpexpire=0;
 
         
 
+        const isOtpValid = await bcrypt.compare(otp, user.resetotp);
+        if (!isOtpValid) {
+            return res.json({ success: false, message: 'Invalid OTP' });
+        }
 
+        if (user.resetotpexpire < Date.now()) {
+            return res.json({ success: false, message: 'OTP expired' });
+        }
 
-        
+        const hashedPassword = await bcrypt.hash(newpassword, 10);
+        user.Password = hashedPassword;
+        user.resetotp = '';
+        user.resetotpexpire = 0;
+        await user.save();
+
+        return res.json({ success: true, message: 'Password reset successfully' });
     } catch (error) {
-        return res.json({success:false ,message:error.message});
+        console.log("Error:", error);
+        return res.json({ success: false, message: error.message });
     }
-}
+};
+
+
