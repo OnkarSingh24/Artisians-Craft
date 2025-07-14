@@ -231,7 +231,7 @@ export const resetpassword =async(req,res)=>{
         user.resetotp='';
         user.resetotpexpire=0;
 
-        return res
+        
 
 
 
