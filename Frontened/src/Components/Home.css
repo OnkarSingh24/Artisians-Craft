@@ -829,3 +829,21 @@ body{
     padding: 0.5rem 1rem;
   }
 }
+/*  Customers Review */
+.Customer-Reviews h2 {
+  margin-top: 1rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  text-align: center;
+} 
+.Customer-Reviews .subheading {
+  text-align: center;
+  font-size: 1.125rem;
+  color: #666;
+  margin-bottom: 3rem;
+}
+.review{
+  display: flex;
+}
