@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({credentials:true}));
 import connectDB from './config/mongodb.js';
+import userrouter from "./routes/userroutes.js";
 //import { connect } from "mongoose";
 
 //API end points 
@@ -19,6 +20,8 @@ app.get('/', (req, res) => {
 });
 
 app.use ('/api/auth', authroutes);
+app.use ('/api/user', userrouter);
+
 
 
 app.listen(port, ()=> {
