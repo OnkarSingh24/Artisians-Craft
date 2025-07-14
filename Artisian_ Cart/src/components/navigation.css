@@ -2,13 +2,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  /* background-color: #fff3f3; */
+  background-color: #fff3f3;
   color: #111;
-  font-size: 1rem; /* Base = 16px */
+  font-size: 1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 .navigation {
@@ -37,11 +39,11 @@ body {
   gap: 0.6rem;
 }
 
-.logo-circle {
+.logo-square {
   background-color: #ea572a;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 50%;
+  width: 2.05rem;
+  height: 2.05rem;
+  border-radius: 25%;
   color: white;
   font-weight: bold;
   font-size: 0.875rem;
@@ -228,11 +230,4 @@ body {
     width: 100%;
     justify-content: center;
   }
-}
-.carousel-wrapper {
-  width: 360px;
-  max-width: 100%;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }

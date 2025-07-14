@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Heart, ShoppingCart, User, Menu, X } from 'lucide-react';
 import './navigation.css';
+import { useNavigate } from 'react-router-dom';
 
 const Navigation = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -20,7 +21,7 @@ const Navigation = () => {
 
         {/* Logo */}
         <div className="logo-section">
-          <div className="logo-circle"><span className="logo-text">AC</span></div>
+          <div className="logo-square"><span className="logo-text">AC</span></div>
           <h1 className="brand-name">ARTISIAN'S CRAFT</h1>
         </div>
 
