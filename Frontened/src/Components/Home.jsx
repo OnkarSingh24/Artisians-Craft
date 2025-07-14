@@ -16,6 +16,8 @@ import {
   ShoppingBag,
   ShoppingCart,
   DollarSign,
+  StarIcon,
+  QuoteIcon,
 } from 'lucide-react';
 
 const ImageCarousel = () => {
@@ -140,6 +142,29 @@ const products = [
  
   
 ];
+const customers =[
+  {
+    desc : '"The quality of craftsmanship here is unmatched. Every piece tells a story and you can feel the love that went into making it."',
+    name : 'Sarah Mitchell',
+    location : 'New York,NY',
+    rating : '5',
+    photo : '',
+  },
+  {
+    desc : '"The quality of craftsmanship here is unmatched. Every piece tells a story and you can feel the love that went into making it."',
+    name : 'Sarah Mitchell',
+    location : 'New York,NY',
+    rating : '5',
+    photo : '',
+  },
+  {
+    desc : '"The quality of craftsmanship here is unmatched. Every piece tells a story and you can feel the love that went into making it."',
+    name : 'Sarah Mitchell',
+    location : 'New York,NY',
+    rating : '5',
+    photo : '',
+  },
+];
 const ProductCard = ({ product }) => (
   <div className="product-card">
     <div className="card-img-wrapper2">
@@ -157,6 +182,34 @@ const ProductCard = ({ product }) => (
       </div>
   </div>
 );
+
+const Customers = ({ customer }) => (
+  <div className="customer-card">
+    <div className="inverted-commas">< QuoteIcon size={30}/></div>
+   <div className="rating"><StarIcon size = {18} /> {customer.rating}</div>
+   <p>{customer.desc}</p>
+   <div className="customer-info">
+    <div className="photo">{customer.photo}</div>
+    <div className="customer-name">{customer.name}</div>
+    <div className="location"> {customer.location}
+    </div>
+   </div>
+  </div>
+);
+
+const CustomerReviews = () => {
+  return (
+    <section className="Customer-Reviews">
+      <h2>What Our Customers Say</h2>
+      <p className="subheading">Real stories from real people who found their perfect handmade treasures</p>
+      <div className="review">
+        {customers.map((customer, index) => (
+          <Customers key={index} customer={customer} />
+        ))}
+      </div>
+    </section>
+  );
+};
 
 const TrendingProducts = () => {
   return (
@@ -186,6 +239,8 @@ const FeaturedArtisans = () => {
     </section>
   );
 };
+
+
 
 const Categories = ({ category }) => {
   return (
@@ -298,6 +353,7 @@ const Home = () => {
       </div>
       <FeaturedArtisans/>
       <TrendingProducts/>
+      <CustomerReviews/>
     </div>
   );
 };
