@@ -5,7 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 import { FaGem, FaPaintBrush } from "react-icons/fa";
 import { GiAmphora, GiWoodPile, GiYarn, GiGlassBall } from "react-icons/gi";
 import {
-  MapPin, Star, Heart ,Gem,
+  MapPin, Star, Heart, Gem,
   Scissors,
   Hammer,
   FlaskConical,
@@ -115,54 +115,54 @@ const products = [
     name: 'Handcrafted Ceramic Vase',
     maker: 'by Priya Sharma',
     rating: '5(23)',
-    price : '89',
+    price: '89',
     img: 'https://www.whisperinghomes.com/media/catalog/product/cache/4ca60b19ecf2bea5af936fc7882cfff5/Vases/VA-79-12-S/Cloud-Terracotta-Vase-Main-Lifestyle.jpg',
   },
   {
     name: 'Handcrafted Ceramic Vase',
     maker: 'by Priya Sharma',
     rating: '5(23)',
-    price : '89',
+    price: '89',
     img: 'https://www.whisperinghomes.com/media/catalog/product/cache/4ca60b19ecf2bea5af936fc7882cfff5/Vases/VA-79-12-S/Cloud-Terracotta-Vase-Main-Lifestyle.jpg',
   },
   {
     name: 'Handcrafted Ceramic Vase',
     maker: 'by Priya Sharma',
     rating: '5(23)',
-    price : '89',
+    price: '89',
     img: 'https://www.whisperinghomes.com/media/catalog/product/cache/4ca60b19ecf2bea5af936fc7882cfff5/Vases/VA-79-12-S/Cloud-Terracotta-Vase-Main-Lifestyle.jpg',
   },
   {
     name: 'Handcrafted Ceramic Vase',
     maker: 'by Priya Sharma',
     rating: '5(23)',
-    price : '89',
+    price: '89',
     img: 'https://www.whisperinghomes.com/media/catalog/product/cache/4ca60b19ecf2bea5af936fc7882cfff5/Vases/VA-79-12-S/Cloud-Terracotta-Vase-Main-Lifestyle.jpg',
   },
- 
-  
+
+
 ];
-const customers =[
+const customers = [
   {
-    desc : '"The quality of craftsmanship here is unmatched. Every piece tells a story and you can feel the love that went into making it."',
-    name : 'Sarah Mitchell',
-    location : 'New York,NY',
-    rating : '5',
-    photo : '',
+    desc: '"The quality of craftsmanship here is unmatched. Every piece tells a story and you can feel the love that went into making it."',
+    name: 'Sarah Mitchell',
+    location: 'New York,NY',
+    rating: '5',
+    photo: '',
   },
   {
-    desc : '"The quality of craftsmanship here is unmatched. Every piece tells a story and you can feel the love that went into making it."',
-    name : 'Sarah Mitchell',
-    location : 'New York,NY',
-    rating : '5',
-    photo : '',
+    desc: '"The quality of craftsmanship here is unmatched. Every piece tells a story and you can feel the love that went into making it."',
+    name: 'Sarah Mitchell',
+    location: 'New York,NY',
+    rating: '5',
+    photo: '',
   },
   {
-    desc : '"The quality of craftsmanship here is unmatched. Every piece tells a story and you can feel the love that went into making it."',
-    name : 'Sarah Mitchell',
-    location : 'New York,NY',
-    rating : '5',
-    photo : '',
+    desc: '"The quality of craftsmanship here is unmatched. Every piece tells a story and you can feel the love that went into making it."',
+    name: 'Sarah Mitchell',
+    location: 'New York,NY',
+    rating: '5',
+    photo: '',
   },
 ];
 const ProductCard = ({ product }) => (
@@ -176,24 +176,27 @@ const ProductCard = ({ product }) => (
       <p className="maker">{product.maker}</p>
       <span className="rating"><Star color="#fbbf24" fill="#fbbf24" size={16} /> {product.rating}</span>
       <div className="last-line">
-      <span className="price"><DollarSign size={18}/> {product.price}</span>
-      <button className='cart'>< ShoppingCart size={18} />Add</button>
+        <span className="price"><DollarSign size={18} /> {product.price}</span>
+        <button className='cart'>< ShoppingCart size={18} />Add</button>
       </div>
-      </div>
+    </div>
   </div>
 );
 
 const Customers = ({ customer }) => (
   <div className="customer-card">
-    <div className="inverted-commas">< QuoteIcon size={30}/></div>
-   <div className="rating"><StarIcon size = {18} /> {customer.rating}</div>
-   <p>{customer.desc}</p>
-   <div className="customer-info">
-    <div className="photo">{customer.photo}</div>
-    <div className="customer-name">{customer.name}</div>
-    <div className="location"> {customer.location}
+    <div className="upper">
+      <div className="inverted-commas">< QuoteIcon size={30} /></div>
+      <div className="rating">{customer.rating}<StarIcon size={18} className='star'/> </div>
+      <p>{customer.desc}</p>
     </div>
-   </div>
+    <div className="customer-info">
+      <div className="photo">{customer.photo}</div>
+      <div className="name-location"><div className="customer-name">{customer.name}</div>
+      <div className="location"> {customer.location}</div>
+      
+      </div>
+    </div>
   </div>
 );
 
@@ -351,9 +354,78 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <FeaturedArtisans/>
-      <TrendingProducts/>
-      <CustomerReviews/>
+      <FeaturedArtisans />
+      <TrendingProducts />
+      <CustomerReviews />
+       <footer className="footer">
+      <div className="footer-top">
+        <h2>Ready to Start Your Journey?</h2>
+        <p>
+          Whether you're looking for unique handmade pieces or want to share
+          your own creations, join our community of art lovers and talented artisans.
+        </p>
+        <div className="footer-buttons">
+          <button2 className="btn_primary">
+            Start Shopping <span role="img" aria-label="cart">🛒</span>
+          </button2>
+          <button1 className="btn_secondary">
+            Join as Artisan <span role="img" aria-label="user">👤</span>
+          </button1>
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        <div className="footer-brand">
+          <div className="logo">CA</div>
+          <h3>CraftedArt</h3>
+          <p>
+            Connecting artisans with art lovers worldwide through authentic,
+            handcrafted treasures.
+          </p>
+          <button className="community-btn">🌱 Growing Community</button>
+        </div>
+
+        <div className="footer-links">
+          <div className="column">
+            <h4>Shop</h4>
+            <ul>
+              <li>All Products</li>
+              <li>Pottery</li>
+              <li>Jewelry</li>
+              <li>Textiles</li>
+            </ul>
+          </div>
+
+          <div className="column">
+            <h4>Support</h4>
+            <ul>
+              <li>Help Center</li>
+              <li>Shipping Info</li>
+              <li>Returns</li>
+              <li>Contact Us</li>
+            </ul>
+          </div>
+
+          <div className="column">
+            <h4>Company</h4>
+            <ul>
+              <li>About Us</li>
+              <li>Our Artisans</li>
+              <li>Blog</li>
+              <li>Careers</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div className="footer-legal">
+        <p>© 2024 CraftedArt. All rights reserved.</p>
+        <div>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
     </div>
   );
 };
