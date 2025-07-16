@@ -1,0 +1,203 @@
+body{
+    padding-top: 64px;
+    width:100%;
+}
+.Shop{
+    padding: 20px 40px;
+    background-color: hsl(60, 14%, 99%);
+}
+.header h2{
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.header p{
+    color:hsl(25 10% 55%);
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+    
+}
+.search-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* Search input with icon */
+  .search {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 8px 14px;
+    flex: 1;
+    min-width: 250px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  
+  .search input {
+    border: none;
+    outline: none;
+    margin-left: 10px;
+    font-size: 14px;
+    width: 100%;
+    background-color: transparent;
+  }
+  
+  /* Dropdown styling */
+  select {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    min-width: 160px;
+  }
+  
+  /* Grid/List icon toggle */
+  .grid-line {
+    display: flex;
+    
+    align-items: center;
+  }
+  
+  .icon-button {
+    padding: 6px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition:  ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    border: 1px solid transparent;
+  }
+  
+  .icon-button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Highlight selected icon */
+  .icon-button.active {
+    background-color: #e65b2c;
+    color: white;
+    box-shadow: 0 0 8px rgba(230, 91, 44, 0.6);
+    border-color: #e65b2c;
+  }
+
+  /* Category */
+  .Category-line {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: hsl(35deg 15% 92% / 50%);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    border-radius: 30px;
+  }
+  
+  .Category-line::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .Category-button {
+    flex: 1 1 0;
+    background-color: hsl(35deg 15% 92% / 50%);
+    border-radius: 30px;
+    border-radius: 0; /* we'll round inner button instead */
+    transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .Category-button.active {
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .Category-btn {
+    border: none;
+    background: transparent;
+    padding: 10px 0;
+    border-radius: 9999px;
+    font-size: 12px;
+    color: #333;
+    font-family: "Segoe UI", sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    width: 100%;
+  }
+  
+  /* Mobile Adjustments */
+  @media screen and (max-width: 600px) {
+    .Category-btn {
+      padding: 10px 0;
+      font-size: 13px;
+    }
+  }
+
+
+  /* Filter  */
+  .filter-box {
+    background-color: white;
+    padding: 20px;
+    padding-top: 20px;
+    border-radius: 16px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.06);
+    width: 240px;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 14px;
+  }
+  
+  .filter-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .filter-section {
+    margin-bottom: 24px;
+  }
+  
+  .section-title {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  
+  .price-range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+  }
+  
+  .checkbox-label,
+  .radio-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 6px 0;
+    cursor: pointer;
+  }
+  
+  
