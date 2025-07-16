@@ -1,0 +1,357 @@
+/* Base styles */
+.artisan-directory-container {
+  font-family: 'Inter', sans-serif;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .artisan-directory-container {
+    padding: 2rem;
+  }
+}
+@media (min-width: 1024px) {
+  .artisan-directory-container {
+    padding: 2.5rem;
+  }
+}
+
+.main-title {
+  font-size: 2.1rem;
+  font-weight: 800;
+  text-align: center;
+  color: #1a202c;
+  margin-bottom: 0.5;
+  letter-spacing: -0.025em;
+  padding-bottom: 1px;
+  padding-top: 50px; 
+  text-shadow: 2px 2px 4px #a0a0a0; 
+}
+
+@media (min-width: 640px) {
+  .main-title {
+    font-size: 3.2rem;
+    margin-bottom: 3rem;
+  }
+}
+@media (min-width: 1024px) {
+  .main-title {
+    font-size: 3.8rem;
+  }
+}
+
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 1024px) {
+  .content-wrapper {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.artisan-list-section {
+  flex-shrink: 0;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  padding: 1.2rem;
+  overflow-y: auto;
+  max-height: calc(100vh - 11.25rem);
+}
+
+@media (min-width: 1024px) {
+  .artisan-list-section {
+    width: 26%;
+    max-height: calc(100vh - 7.5rem);
+  }
+}
+
+.list-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 1rem;
+  position: relative;
+  top: 0;
+  background-color: #ffffff;
+  padding-bottom: 0.75rem;
+  z-index: 10;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.artisan-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.artisan-list-card {
+  display: flex;
+  align-items: center;
+  padding: 0.85rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid transparent;
+}
+
+.artisan-list-card:hover {
+  background-color: #f5f5f5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.artisan-list-card.selected {
+  background-color: #fff0d9;
+  box-shadow: 0 0 0 2px #f97316;
+  border-color: #f97316;
+  transform: translateY(-1px);
+}
+
+.artisan-list-card-image {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 0.8rem;
+  border: 2px solid #e2e8f0;
+}
+
+.artisan-list-card-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.artisan-list-card-craft {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-top: 0.1rem;
+}
+
+.artisan-detail-section {
+  flex-grow: 1;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28rem;
+}
+
+.artisan-detail-section .detail-content-wrapper {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.artisan-detail-section .detail-content-wrapper.detail-card-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.artisan-detail-section .no-selection-message {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.artisan-detail-section .no-selection-message.detail-card-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+@media (min-width: 1024px) {
+  .artisan-detail-section {
+    max-height: calc(100vh - 7.5rem);
+  }
+}
+
+.detail-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .detail-content-wrapper {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.detail-image-wrapper {
+  flex-shrink: 0;
+}
+
+.detail-image {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  border: 4px solid #fbd38d;
+}
+
+@media (min-width: 640px) {
+  .detail-image {
+    width: 14rem;
+    height: 14rem;
+  }
+}
+
+.detail-info-text {
+  flex-grow: 1;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .detail-info-text {
+    text-align: left;
+  }
+}
+
+.detail-name {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a202c;
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+
+@media (min-width: 640px) {
+  .detail-name {
+    font-size: 2.5rem;
+  }
+}
+
+.detail-craft {
+  font-size: 1.1rem;
+  color: #dd6b20;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.detail-location {
+  color: #4a5568;
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+@media (min-width: 768px) {
+  .detail-location {
+    justify-content: flex-start;
+  }
+}
+
+.location-icon {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.3rem;
+  color: #718096;
+}
+
+.detail-bio {
+  color: #4a5568;
+  font-size: 0.85rem;
+  margin-bottom: 1.2rem;
+  line-height: 1.6;
+}
+
+.detail-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: #4a5568;
+  margin-top: 0.8rem;
+}
+
+@media (min-width: 640px) {
+  .detail-stats-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.stat-item span {
+  font-size: 1em;
+}
+
+.star-icon { color: #f6ad55; }
+.package-icon { color: #63b3ed; }
+.users-icon { color: #a78bfa; }
+.award-icon { color: #48bb78; }
+.hourglass-icon { color: #ecc94b; }
+
+.verified-status {
+  font-weight: 700;
+}
+
+.verified-status.true {
+  color: #38a169;
+}
+
+.verified-status.false {
+  color: #e53e3e;
+}
+
+.portfolio-button {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #f97316;
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: background-color 300ms ease-in-out, transform 200ms ease-out;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.portfolio-button:hover {
+  background-color: #ea580c;
+  transform: translateY(-2px);
+}
+
+.no-selection-message {
+  text-align: center;
+  color: #718096;
+}
+
+.no-selection-message p:first-child {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.no-selection-message p:last-child {
+  font-size: 0.85rem;
+}
