@@ -9,7 +9,10 @@ import {
   Star,
   MapPin,
   Search,
-  Filter
+  Filter,
+  CircleDollarSign,
+  LineChart,
+  Users as UsersIcon
 } from 'lucide-react';
 
 const artisans = [
@@ -113,11 +116,13 @@ const artisans = [
 
 const Artisians = () => {
   const [activeTab, setActiveTab] = useState("All");
+  const [showAll, setShowAll] = useState(false);
+
   const filters = ["All", "Featured", "Verified", "Newest", "Top Rated", "Most Products"];
+  const visibleArtisans = showAll ? artisans : artisans.slice(0, 4);
 
   const handleViewProfile = (artisan) => {
     console.log(`View profile for: ${artisan.name}`);
-    // You can add routing to detailed profile page later
   };
 
   return (
@@ -143,6 +148,11 @@ const Artisians = () => {
           <div className="icon-box"><Users color="#ea572a" size={24} /></div>
           <h2>1,200+</h2>
           <p>Active Artisans</p>
+        </div>
+        <div className='stat-box'>
+          <div className='icon-box'><Globe color="#ea572a" size={24} /></div>
+          <h2>45+</h2>
+          <p>Countries</p>
         </div>
         <div className='stat-box'>
           <div className='icon-box'><Globe color="#ea572a" size={24} /></div>
@@ -213,7 +223,7 @@ const Artisians = () => {
         </div>
 
         <div className='cards'>
-          {artisans.map((a, i) => (
+          {visibleArtisans.map((a, i) => (
             <div className='artisan-card' key={i}>
               <div className='image-placeholder'>
                 <span>No Image</span>
@@ -238,6 +248,48 @@ const Artisians = () => {
             </div>
           ))}
         </div>
+        <div className="artisan-buttons-container">
+          {!showAll && (
+            <button className="view-more-btn" onClick={() => setShowAll(true)}>View More Artisans</button>
+          )}
+          {/* This links to your ArtisanDirectory page */}
+          <Link to="/artisans"> 
+            <button className="view-more-btn">All Artisans</button>
+          </Link>
+        </div>
+      </div>
+
+      <div className="why-choose-craftedart-section">
+        <h2>Why Artisans Choose CraftedArt</h2>
+        <p className="why-choose-subtitle">
+          Join a community that values your craft and helps you reach customers worldwide
+        </p>
+        <div className="features-grid">
+          <div className="feature-box">
+            <div className="feature-icon-wrapper green-icon">
+              <Globe size={32} />
+            </div>
+            <h3>Global Reach</h3>
+            <p>Showcase your work to customers in over 45 countries</p>
+          </div>
+          <div className="feature-box">
+            <div className="feature-icon-wrapper blue-icon">
+              <LineChart size={32} />
+            </div>
+            <h3>Grow Your Business</h3>
+            <p>Access tools and resources to scale your craft business</p>
+          </div>
+          <div className="feature-box">
+            <div className="feature-icon-wrapper purple-icon">
+              <UsersIcon size={32} />
+            </div>
+            <h3>Supportive Community</h3>
+            <p>Connect with fellow artisans and share knowledge</p>
+          </div>
+        </div>
+        <button className="cta-btn start-journey-btn">
+          Start Your Journey →
+        </button>
       </div>
     </div>
   );
