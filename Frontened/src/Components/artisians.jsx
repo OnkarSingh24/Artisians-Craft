@@ -234,7 +234,7 @@ const Artisians = () => {
                 <h5>{a.name}</h5>
                 <p className='craft'>{a.craft}</p>
                 <p className='location'><MapPin size={14} /> {a.location}</p>
-                <p className='bio'>{a.name} has practiced {a.craft.toLowerCase()} for {a.years} years.</p>
+                
                 <div className='stats'>
                   <span><Star size={14} color="#E26132" /> {a.rating} ({a.products} products)</span>
                   <span>{a.followers.toLocaleString()} followers</span>
