@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Heart, ShoppingCart, User, Menu, X } from 'lucide-react';
 import './navigation.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navigation = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -11,12 +11,18 @@ const Navigation = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
+
   const handleSignIn = () => {
     navigate('/signin');
+    closeSidebar();
   };
 
   const handleBecomeSeller = () => {
-    navigate('/registerasseller'); // Ensure this path matches your route setup
+    navigate('/registerasseller');
+    closeSidebar();
   };
 
   return (
@@ -32,10 +38,10 @@ const Navigation = () => {
         </div>
 
         <div className="nav-links desktop-only">
-          <a href="#" className="nav-link active">Home</a>
-          <a href="#" className="nav-link">Shop</a>
-          <a href="#" className="nav-link">Artisans</a>
-          <a href="#" className="nav-link">About</a>
+          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/shop" className="nav-link">Shop</Link> {/* Create this route if needed */}
+          <Link to="/artisans" className="nav-link">Artisans</Link>
+          <Link to="/about" className="nav-link">About</Link> {/* Create this route if needed */}
         </div>
 
         <div className="search-container desktop-only">
@@ -56,18 +62,18 @@ const Navigation = () => {
       </div>
 
       <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
-        <a href="#" className="nav-link">Home</a>
-        <a href="#" className="nav-link">Shop</a>
-        <a href="#" className="nav-link">Artisans</a>
-        <a href="#" className="nav-link">Order History</a>
-        <a href="#" className="nav-link">About</a>
+        <Link to="/" className="nav-link" onClick={closeSidebar}>Home</Link>
+        <Link to="/shop" className="nav-link" onClick={closeSidebar}>Shop</Link>
+        <Link to="/artisians" className="nav-link" onClick={closeSidebar}>Artisians</Link>
+        <Link to="/orders" className="nav-link" onClick={closeSidebar}>Order History</Link>
+        <Link to="/about" className="nav-link" onClick={closeSidebar}>About</Link>
         <button className="sign-in-btn mobile-only" onClick={handleSignIn}>
           <User size={18} /> <span>Sign In</span>
         </button>
         <button className="seller-btn mobile-only" onClick={handleBecomeSeller}>Become a Seller</button>
       </div>
 
-      {isSidebarOpen && <div className="overlay" onClick={toggleSidebar}></div>}
+      {isSidebarOpen && <div className="overlay" onClick={closeSidebar}></div>}
     </nav>
   );
 };
