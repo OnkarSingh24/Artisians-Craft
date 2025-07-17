@@ -45,7 +45,9 @@ const Navigation = () => {
         <div className="actions">
           <button className="icon-btn"><Heart size={20} /></button>
           <button className="icon-btn"><ShoppingCart size={20} /></button>
+          <Link to="/signin">
           <button className="sign-in-btn desktop-only"><User size={18} /><span>Sign In</span></button>
+          </Link>
           <button className="seller-btn desktop-only">Become a Seller</button>
         </div>
       </div>
