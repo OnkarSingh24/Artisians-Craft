@@ -35,7 +35,7 @@ export const register = async (req, res) => {
             subject: 'Welcome to Desi Etsy!',
             text: `Welcome ${Name} to Desi Etsy! Your account has been created with email ID: ${Email}.
             
-Thank you for joining Desi Etsy – your one-stop shop for authentic handmade treasures from local artisans.
+Thank you for joining Desi Etsy , your one-stop shop for authentic handmade treasures from local artisans.
 We are excited to have you with us. Start exploring and support creativity that is truly desi.
 
 Happy shopping!

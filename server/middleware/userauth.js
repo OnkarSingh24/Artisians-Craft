@@ -1,4 +1,6 @@
 import jwt from "jsonwebtoken";
+import user from '../module/usermodule.js';
+
 
 const userauth =async(req ,res ,next)=>{
     const{token} =req.cookies;
@@ -16,14 +18,13 @@ const userauth =async(req ,res ,next)=>{
        else{
         return res.json({success:false , message:'Not Authorised, login again'})
        }
-      
-
-
-
         
-    } catch (error) {
+    }
+    
+    catch (error) {
         return res.json({success :false , message:error.message})
     }
-}
+};
+
 
 export default userauth;

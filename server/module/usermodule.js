@@ -8,6 +8,11 @@ const userinfo = new mongoose.Schema({
     accountVerified:{type: Boolean, default:false},
     resetotp: {type: String ,default:''},
     resetotpexpire: {type: Number ,default:0},
+    role: {
+    type: String,
+    enum: ['user', 'seller', 'admin'],
+    default: 'user'  // All new users are buyers by default
+  }
 })
 const usermodel = mongoose.models.user || mongoose.model('user', userinfo);
 //if it finds the user it will fetch that otherwise create new user using user info

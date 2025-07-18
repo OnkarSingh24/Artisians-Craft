@@ -5,11 +5,13 @@ export const createproduct =async(req , res)=>{
    
     try {
         
-    const product = new productmodel(req.body);
+    const product = new productmodel({ ...req.body, approved: false })
     await product.save();
+    
 
     return res.json({success: true , message:'product added successfully !'})
-    } catch (error) {
+    } 
+    catch (error) {
     return res.json({success:false , message:error.message}) 
  
     }

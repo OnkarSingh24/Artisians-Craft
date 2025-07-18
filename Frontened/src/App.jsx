@@ -4,7 +4,7 @@ import Navigation from './components/navigation';
 import './App.css';
 import Home from './components/Home';
 import Artisians from './components/artisians';
-import SignIn from './components/login';
+import SignIn from '../../client/src/pages/Login';
 import RegisterAsSeller from './components/Registerasseller';
 import ResetPassword from './components/resetpassword';
 

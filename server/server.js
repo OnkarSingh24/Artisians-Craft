@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import authroutes from './routes/authroutes.js'
 import productroutes from './routes/productroutes.js';
 import userrouter from "./routes/userroutes.js";
+import adminroutes from "./routes/adminroutes.js";
 import connectDB from './config/mongodb.js';
 
 const app = express();
@@ -27,7 +28,7 @@ app.get('/', (req, res) => {
 app.use ('/api/auth', authroutes);
 app.use ('/api/user', userrouter);
 app.use('/api/products', productroutes);
-
+app.use('/api/admin', adminroutes );
 
 
 app.listen(port, ()=> {
