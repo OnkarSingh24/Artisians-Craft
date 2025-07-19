@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-import Navigation from './components/navigation';
-import Home from './components/Home';
-import Artisians from './components/artisians';
-import SignIn from './components/Login'; // This is your Login component
-import RegisterAsSeller from './components/Registerasseller';
-import ResetPassword from './components/resetpassword';
-import ArtisanDirectory from './components/ArtisanDirectory';
-import Register from './components/Register'; // This is your Register component
+import Navigation from './Components/navigation';
+import Home from './Components/Home';
+import Artisians from './Components/artisians';
+import SignIn from './Components/Login'; // This is your Login component
+import RegisterAsSeller from './Components/Registerasseller';
+import ResetPassword from './Components/resetpassword';
+import ArtisanDirectory from './Components/ArtisanDirectory';
+import Register from './Components/Register';
 
 import './App.css';
 
@@ -36,7 +36,7 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/artisans" element={<Artisians />} />
-        <Route path="/signin" element={<SignIn />} /> {/* This route is correct for Login.jsx */}
+        <Route path="/signin" element={<SignIn />} /> 
         <Route path="/registerasseller" element={<RegisterAsSeller />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/artisandirectory" element={<ArtisanDirectory />} />
