@@ -6,9 +6,9 @@ import axios from 'axios';
 
 const Register = () => {
  const{backendurl , setisregister} = useContext(content);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [Name, setName] = useState('');
+  const [Email, setEmail] = useState('');
+  const [Password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
@@ -32,17 +32,15 @@ const Register = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
+    if (Password !== confirmPassword) {
       setError('Passwords do not match');
       return;
     }
-    const formData = { name, email, password, accountVerified: false };
-    console.log('User Registration Data:', formData);
-    alert('User registered (data shown in console)');
+    const formData = { Name, Email, Password, accountVerified: false };
     try {
       e.preventDefault();
       axios.defaults.withCredentials = true;
-      const { data } = await axios.post(backendurl + '/api/auth/register', { name ,email, password });
+      const { data } = await axios.post(backendurl + '/api/auth/register', { Name ,Email, Password });
       if (data.succes) {
         setisregister(true);
         Navigate('/Home');
@@ -69,7 +67,7 @@ const Register = () => {
             <input
               type="text"
               placeholder="Enter your name"
-              value={name}
+              value={Name}
               onChange={(e) => setName(e.target.value)}
               required
             />
@@ -83,7 +81,7 @@ const Register = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              value={email}
+              value={Email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
@@ -97,7 +95,7 @@ const Register = () => {
             <input
               type="password"
               placeholder="Create a password"
-              value={password}
+              value={Password}
               onChange={handlePasswordChange}
               required
             />
