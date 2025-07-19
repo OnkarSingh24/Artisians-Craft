@@ -23,7 +23,7 @@ const Register = () => {
 
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
-    if (password !== e.target.value) {
+    if (Password !== e.target.value) {
       setError('Passwords do not match');
     } else {
       setError('');
