@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 2.8rem;
+  padding-top: 2rem;
   min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
