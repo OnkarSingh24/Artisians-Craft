@@ -176,7 +176,7 @@ export const isauthenticated =async(req,res)=>{
 };
 
 //send password reset otp
-export const resetotp =async(req,res)=>{
+ export const resetotp =async(req,res)=>{
     const {Email} =req.body;
 
     if(!Email){
@@ -245,6 +245,64 @@ export const resetpassword = async (req, res) => {
     } catch (error) {
         console.log("Error:", error);
         return res.json({ success: false, message: error.message });
+    }
+};
+export const  registerasseller = async(req,res)=>{
+    const{Name,Email,Password, Buissness ,category,description, role , Gstin,Pan} =req.body;
+
+    if(!Name||!Email ||!Password ||!Buissness||!category ||!description ){
+        return res.json({success:false ,message:"All fields required"});
+    }
+
+    try {
+       const existingUser =await usermodel.findOne({Email,Gstin,Pan }) 
+       if(existingUser){
+        return res.json({success:false,message:"User already exist"});
+       }
+       const hashedPassword =await bcrypt.hash(Password,10);
+
+       const role = (Gstin && Pan) ? 'admin' : 'seller';
+
+       const newuser = new  usermodel({
+           Name,
+           Email,
+           Password: hashedPassword,
+           Buissness,
+           category,
+           description,
+           Gstin,
+           Pan,
+           role
+       });
+       await newuser.save();
+
+    const token = jwt.sign({ id: newuser._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+
+    res.cookie('token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+        });
+    const mailOptions ={
+        from: process.env.SENDER_EMAIL,
+        to: Email,
+        subject: 'Welcome to Desi Etsy! as seller',
+        text: `Welcome ${Name} to Desi Etsy! Your seller account has been created with email ID: ${Email}.
+            
+Thank you for joining Desi Etsy as a seller , your one-stop place to sell all your  authentic handmade treasures.
+We are excited to have you with us. Start exploring and sell creativity that is truly desi.
+
+Happy selling!
+Team Desi Etsy`
+    };
+    await transporter.sendMail(mailOptions);    
+return res.json({success:true , message:"Seller registred successfully"})
+
+
+    } catch (error) {
+     console.error("Registration error:", error);
+    res.json({ success: false, message: error.message });   
     }
 };
 

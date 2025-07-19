@@ -12,10 +12,10 @@ const app = express();
 const port =process.env.PORT|| 4000 ;
 
 connectDB();
-
+const allowedorigin =['http://localhost:5173'];
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({credentials:true}));
+app.use(cors({ origin: allowedorigin ,credentials:true}));
 
 
 //import { connect } from "mongoose";

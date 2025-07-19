@@ -1,5 +1,5 @@
 import express from 'express';
-import { isauthenticated, login, logout, register,resetotp,resetpassword,sendotp,verifyotp } from '../controller/authcontroller.js';
+import { isauthenticated, login, logout, register,registerasseller,resetotp,resetpassword,sendotp,verifyotp } from '../controller/authcontroller.js';
 const authroutes =express.Router();
 import userauth from '../middleware/userauth.js';
 
@@ -11,6 +11,7 @@ authroutes.post('/verifyaccount', userauth, verifyotp);
 authroutes.post('/isauth', userauth, isauthenticated);
 authroutes.post('/send-reset-otp', resetotp);
 authroutes.post('/resetpassword', resetpassword);
+authroutes.post('/registerasseller' ,registerasseller);
 
 
 export default authroutes;

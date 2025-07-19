@@ -8,6 +8,11 @@ const userinfo = new mongoose.Schema({
     accountVerified:{type: Boolean, default:false},
     resetotp: {type: String ,default:''},
     resetotpexpire: {type: Number ,default:0},
+    Buissness:{type:String , required:true},
+    category:{type:String , required:true},
+    description:{type:String , required:true},
+    Gstin:{type:Number ,required:true , unique:true},
+    Pan:{type:Number ,required:true , unique:true},
     role: {
     type: String,
     enum: ['user', 'seller', 'admin'],

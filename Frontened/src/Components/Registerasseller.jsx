@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react'; // Added useEffect
+import React, { useState, useEffect ,useContext } from 'react'; // Added useEffect
 import { Link } from 'react-router-dom';
 import { User, Store, Mail, Phone, Lock, Tags } from 'lucide-react';
 import './SellerRegister.css';
+import axios from 'axios';
+import { content } from '../../context';
 
 const SellerRegister = () => {
+  const{backendurl , setisregisterasseller} = useContext(content);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -40,7 +43,7 @@ const SellerRegister = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setError('Passwords do not match');
@@ -58,6 +61,22 @@ const SellerRegister = () => {
     });
     // IMPORTANT: Avoid alert() in production/Canvas environments. Use a custom modal or message display.
     alert('Seller Registration Data (shown in console)');
+
+    try {
+      e.preventDefault();
+      axios.defaults.withCredentials = true;
+      const { data } = await axios.post(backendurl + '/api/auth/registerasseller', { name ,email, password ,category,description,businessName });
+      if (data.succes) {
+        setisregisterasseller(true);
+        Navigate('/Home');//artisans dashboard
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+
+
   };
 
   return (

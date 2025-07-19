@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext ,createContext, useState} from 'react';
 import { Link } from 'react-router-dom';
 import './Register.css';
+import { content } from '../../context';
+import axios from 'axios';
 
 const Register = () => {
+ const{backendurl , setisregister} = useContext(content);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,7 +30,7 @@ const Register = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setError('Passwords do not match');
@@ -36,6 +39,21 @@ const Register = () => {
     const formData = { name, email, password, accountVerified: false };
     console.log('User Registration Data:', formData);
     alert('User registered (data shown in console)');
+    try {
+      e.preventDefault();
+      axios.defaults.withCredentials = true;
+      const { data } = await axios.post(backendurl + '/api/auth/register', { name ,email, password });
+      if (data.succes) {
+        setisregister(true);
+        Navigate('/Home');
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+
+
   };
 
   return (

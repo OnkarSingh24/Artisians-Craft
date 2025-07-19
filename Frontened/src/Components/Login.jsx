@@ -1,17 +1,33 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Lock } from 'lucide-react';
 import './Login.css';
+import { content } from '../../context';
+import axios from 'axios';
+
 
 const Login = () => {
+
+  const{backendurl , setisloggedin} = useContext(content)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log({ email, password, rememberMe });
-  };
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      axios.defaults.withCredentials = true;
+      const { data } = await axios.post(backendurl + '/api/auth/login', { email, password });
+      if (data.succes) {
+        setisloggedin(true);
+        Navigate('/Home');
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  }
 
   return (
     <div className="login-container">
@@ -69,7 +85,7 @@ const Login = () => {
             <span>or continue with</span>
           </div>
 
-          <button className="btn-google">
+          <button className="btn-google" >
             <i className="fab fa-google"></i> Google
           </button>
 
