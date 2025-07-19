@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // Added useEffect
 import { Link } from 'react-router-dom';
 import { User, Store, Mail, Phone, Lock, Tags } from 'lucide-react';
 import './SellerRegister.css';
@@ -13,6 +13,14 @@ const SellerRegister = () => {
   const [phone, setPhone] = useState('');
   const [businessName, setBusinessName] = useState('');
   const [description, setDescription] = useState('');
+
+  // Effect to manage body scroll for this page
+  useEffect(() => {
+    document.body.classList.add('no-scroll');
+    return () => {
+      document.body.classList.remove('no-scroll');
+    };
+  }, []);
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -48,6 +56,8 @@ const SellerRegister = () => {
       businessName,
       description,
     });
+    // IMPORTANT: Avoid alert() in production/Canvas environments. Use a custom modal or message display.
+    alert('Seller Registration Data (shown in console)');
   };
 
   return (
@@ -59,43 +69,72 @@ const SellerRegister = () => {
 
       <form onSubmit={handleSubmit} className="register-form">
         <div className="input-group">
-          <label>Full Name</label>
+          <label htmlFor="fullName">Full Name</label> {/* Added htmlFor */}
           <div className="input-field">
             <User className="icon" />
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter your name" required />
+            <input 
+              type="text" 
+              id="fullName" // Added id
+              value={name} 
+              onChange={(e) => setName(e.target.value)} 
+              placeholder="Enter your name" 
+              required 
+            />
           </div>
         </div>
 
         <div className="input-group">
-          <label>Business/Brand Name</label>
+          <label htmlFor="businessName">Business/Brand Name</label> {/* Added htmlFor */}
           <div className="input-field">
             <Store className="icon" />
-            <input type="text" value={businessName} onChange={(e) => setBusinessName(e.target.value)} placeholder="E.g. Artisans-Craft" required />
+            <input 
+              type="text" 
+              id="businessName" // Added id
+              value={businessName} 
+              onChange={(e) => setBusinessName(e.target.value)} 
+              placeholder="E.g. Artisans-Craft" 
+              required 
+            />
           </div>
         </div>
 
         <div className="input-group">
-          <label>Email</label>
+          <label htmlFor="email">Email</label> {/* Added htmlFor */}
           <div className="input-field">
             <Mail className="icon" />
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" required />
+            <input 
+              type="email" 
+              id="email" // Added id
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              placeholder="Enter your email" 
+              required 
+            />
           </div>
         </div>
 
         <div className="input-group">
-          <label>Phone Number</label>
+          <label htmlFor="phone">Phone Number</label> {/* Added htmlFor */}
           <div className="input-field">
             <Phone className="icon" />
-            <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Enter your phone number" required />
+            <input 
+              type="tel" 
+              id="phone" // Added id
+              value={phone} 
+              onChange={(e) => setPhone(e.target.value)} 
+              placeholder="Enter your phone number" 
+              required 
+            />
           </div>
         </div>
 
         <div className="input-group">
-          <label>Product Category</label>
+          <label htmlFor="category">Product Category</label> {/* Added htmlFor */}
           <div className="input-field">
             <Tags className="icon" />
             <select
               className="full-width-select"
+              id="category" // Added id
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               required
@@ -113,31 +152,51 @@ const SellerRegister = () => {
         </div>
 
         <div className="input-group">
-          <label>Password</label>
+          <label htmlFor="password">Password</label> {/* Added htmlFor */}
           <div className="input-field">
             <Lock className="icon" />
-            <input type="password" value={password} onChange={handlePasswordChange} placeholder="Create a password" required />
+            <input 
+              type="password" 
+              id="password" // Added id
+              value={password} 
+              onChange={handlePasswordChange} 
+              placeholder="Create a password" 
+              required 
+            />
           </div>
         </div>
 
         <div className="input-group">
-          <label>Confirm Password</label>
+          <label htmlFor="confirmPassword">Confirm Password</label> {/* Added htmlFor */}
           <div className="input-field">
             <Lock className="icon" />
-            <input type="password" value={confirmPassword} onChange={handleConfirmPasswordChange} placeholder="Verify password" required />
+            <input 
+              type="password" 
+              id="confirmPassword" // Added id
+              value={confirmPassword} 
+              onChange={handleConfirmPasswordChange} 
+              placeholder="Verify password" 
+              required 
+            />
           </div>
           {error && <p className="error-text">{error}</p>}
         </div>
 
         <div className="input-group">
-          <label>Short Description</label>
-          <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={3} placeholder="Tell us a little about your work..." />
+          <label htmlFor="description">Short Description</label> {/* Added htmlFor */}
+          <textarea 
+            id="description" // Added id
+            value={description} 
+            onChange={(e) => setDescription(e.target.value)} 
+            rows={3} 
+            placeholder="Tell us a little about your work..." 
+          />
         </div>
 
         <button type="submit" className="submit-button">Register as Seller</button>
 
         <p className="redirect-login">
-          Already have an account? <Link to="/login" className="login-link">Login</Link>
+          Already have an account? <Link to="/signin" className="login-link">Login</Link> {/* CORRECTED LINE */}
         </p>
       </form>
     </div>
