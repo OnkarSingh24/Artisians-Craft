@@ -1,9 +1,8 @@
-/* Base styles */
 .artisan-directory-container {
   font-family: 'Inter', sans-serif;
   background-color: #f0f2f5;
   min-height: 100vh;
-  padding: 1.5rem;
+  padding: 0.5rem;
 }
 
 @media (min-width: 640px) {
@@ -18,14 +17,14 @@
 }
 
 .main-title {
-  font-size: 2.1rem;
-  font-weight: 800;
+  font-size: 2rem;
+  font-weight: 750;
   text-align: center;
   color: #1a202c;
   margin-bottom: 0.5;
   letter-spacing: -0.025em;
   padding-bottom: 1px;
-  padding-top: 50px; 
+  padding-top: 10px; 
   text-shadow: 2px 2px 4px #a0a0a0; 
 }
 
