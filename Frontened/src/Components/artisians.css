@@ -10,7 +10,7 @@
 .intro-section {
   background: linear-gradient(to bottom, hsl(25deg 100% 95%), rgb(245, 248, 252));
   background-color: hsl(25.26deg 33.33% 88.82%);
-  padding: 3rem 2rem 1rem;
+  padding: 2rem 2rem 1rem;
 }
 
 .top-button {
@@ -300,6 +300,10 @@
   font-size: 1.25rem;
   color: #333;
   margin-bottom: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-content:space-between;
+
 }
 
 .craft {
@@ -309,7 +313,6 @@
 }
 
 .location,
-.bio,
 .stats,
 .tags {
   font-size: 0.9rem;
