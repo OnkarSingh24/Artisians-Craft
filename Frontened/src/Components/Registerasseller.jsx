@@ -7,11 +7,11 @@ import { content } from '../../context';
 
 const SellerRegister = () => {
   const{backendurl , setisregisterasseller} = useContext(content);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [Name, setName] = useState('');
+  const [Email, setEmail] = useState('');
+  const [Password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+  const [Error, setError] = useState('');
   const [category, setCategory] = useState('');
   const [phone, setPhone] = useState('');
   const [businessName, setBusinessName] = useState('');

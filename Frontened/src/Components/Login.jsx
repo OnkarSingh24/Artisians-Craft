@@ -4,23 +4,25 @@ import { Mail, Lock } from 'lucide-react';
 import './Login.css';
 import { content } from '../../context';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const Login = () => {
-
+ const navigate = useNavigate();
   const{backendurl , setisloggedin} = useContext(content)
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [Email, setEmail] = useState('');
+  const [Password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
       axios.defaults.withCredentials = true;
-      const { data } = await axios.post(backendurl + '/api/auth/login', { email, password });
-      if (data.succes) {
+      const { data } = await axios.post(backendurl + '/api/auth/login', { Email, Password });
+      if (data.success) {
         setisloggedin(true);
-        Navigate('/Home');
+        navigate('/');
       } else {
         alert(data.message);
       }
@@ -45,7 +47,7 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="you@example.com"
-                value={email}
+                value={Email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
@@ -63,7 +65,7 @@ const Login = () => {
               <input
                 type="password"
                 placeholder="Your secure password"
-                value={password}
+                value={Password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />

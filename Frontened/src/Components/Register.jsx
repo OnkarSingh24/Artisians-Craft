@@ -1,8 +1,9 @@
-import React, { useContext ,createContext, useState} from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext ,createContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Register.css';
 import { content } from '../../context';
 import axios from 'axios';
+//import Home from "./Home.jsx";
 
 const Register = () => {
  const{backendurl , setisregister} = useContext(content);
