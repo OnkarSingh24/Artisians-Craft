@@ -101,7 +101,7 @@ body{
     overflow-x: auto;
     width: 100%;
     padding: 0;
-    margin: 0;
+    margin-bottom: 10px;
     box-sizing: border-box;
     background-color: hsl(35deg 15% 92% / 50%);
     scrollbar-width: none;
@@ -200,4 +200,207 @@ body{
     cursor: pointer;
   }
   
+
+  .Trending-Products {
+    text-align: center;
+    /* padding: 4rem 2rem; */
+    background-color: #f6f6f3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .Trending-Products h2 {
+    margin-top: 1rem;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+  } */
+  
+  .Trending-Products p {
+    font-size: 1.125rem;
+    color: #666;
+    margin-bottom: 3rem;
+  }
+  
+  .product-card {
+    display: flex;
+    gap: 2rem;
+    padding: 1.5rem;
+    text-align: left;
+    height : 200px;
+    width : 406px;
+    justify-content: space-evenly;
+    
+    align-content: center;
+  }
+  .product-list {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap; /* <- THIS LINE is crucial */
+    width: 100%;
+    padding-top: 4rem;
+    gap: 2rem; /* Optional: adds spacing between rows and columns */
+  }
+  
+  .product-card {
+    height: 380px;
+    width: 320px;
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    transition : transform 0.3s ease;
+    
+  }
+  .product-card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .product-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .card-img-wrapper2 {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .likebtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    padding: 6px;
+    cursor: pointer;
+    display: none;
+    z-index: 2;
+    transition: all 0.3s ease;
+  }
+  
+  .cart-float-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+    background: #ea572a;
+    border: 1px solid #ea572a;
+    border-radius: 16px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: none;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+  
+  .card-img-wrapper2:hover .likebtn,
+  .card-img-wrapper2:hover .cart-float-btn {
+    display: flex;
+  }
+  
+  
+  /* .artisan-card-body {
+    padding: 1.5rem;
+    text-align: left;
+  } */
+  
+  .name {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 0.25rem;
+    text-align: start;
+  }
+  
+  .maker {
+    color: #888;
+    margin-bottom: 1rem;
+  }
+  
+  .rating {
+    font-size: 0.875rem;
+    color: #555;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  
+  .last-line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: #444;
+    margin-top: 1rem;
+  }
+  .price{
+    display: flex;
+    /* The `-ms-flex-align: center;` property is a vendor-specific CSS property that was used for older
+    versions of Internet Explorer to align flex items along the cross-axis in a flex container. In
+    this case, it was used to align items vertically in a flex container. */
+    /* -ms-flex-align: center; */
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+ 
+  .rating {
+    display: flex;
+    align-items: center;
+    color: #f59e0b;
+    font-weight: bold;
+    gap: 0.25rem;
+  }
+  
+  
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  
+  .page-btn {
+    padding: 6px 12px;
+    border: none;
+    background-color: #eee;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+    transition: all 0.2s ease;
+  }
+  
+  .page-btn:hover:not(:disabled) {
+    background-color: #ccc;
+  }
+  
+  .page-btn.active {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .page-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
   
