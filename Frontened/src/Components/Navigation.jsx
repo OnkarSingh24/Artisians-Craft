@@ -39,9 +39,9 @@ const Navigation = () => {
 
         <div className="nav-links desktop-only">
           <Link to="/" className="nav-link">Home</Link>
-          <Link to="/shop" className="nav-link">Shop</Link> {/* Create this route if needed */}
+          <Link to="/shop" className="nav-link">Shop</Link> 
           <Link to="/artisans" className="nav-link">Artisans</Link>
-          <Link to="/about" className="nav-link">About</Link> {/* Create this route if needed */}
+          <Link to="/Dashboard" className="nav-link">About</Link> 
         </div>
 
         <div className="search-container desktop-only">
