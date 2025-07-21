@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import usermodel from '../module/usermodule.js';
 import transporter from '../config/nodemailer.js';
-
+//to register
 export const register = async (req, res) => {
     const { Name, Email, Password } = req.body;
     if (!Name || !Email || !Password) {
@@ -49,7 +49,7 @@ Team Desi Etsy`
         res.json({ success: false, message: error.message });
     }
 };
-
+//to login
 export const login = async (req, res) => {
     const { Email, Password } = req.body;
 
@@ -82,7 +82,7 @@ export const login = async (req, res) => {
         return res.json({ success: false, message: "Wrong credentials entered!" });
     }
 };
-
+//to logout
 export const logout = async (req, res) => {
     try {
         res.clearCookie('token', {
@@ -96,7 +96,7 @@ export const logout = async (req, res) => {
         return res.json({ success: false, message: "Error while logging out!" });
     }
 };
-
+//to send otp
 export const sendotp = async (req, res) => {
     try {
         const {userID} = req.body;
@@ -131,7 +131,7 @@ export const sendotp = async (req, res) => {
         return res.json({ success: false, message: error.message });
     }
 };
-
+//to verify the sent otp
 export const verifyotp = async (req, res) => {
     const { userID, otp } = req.body;
 
@@ -165,7 +165,7 @@ export const verifyotp = async (req, res) => {
         return res.status(500).json({ success: false, message: "Internal Server Error" });
     }
 };
-
+//to authenticate the account 
 export const isauthenticated =async(req,res)=>{
     try {
      return res.json({success:true}) ;       
@@ -247,8 +247,19 @@ export const resetpassword = async (req, res) => {
         return res.json({ success: false, message: error.message });
     }
 };
+//to register as seller
 export const  registerasseller = async(req,res)=>{
-    const{Name,Email,Password, Buissness ,category,description, role , Gstin,Pan} =req.body;
+    const{Name,Email,Password, Buissness ,category,description,  Gstin,Pan} =req.body;
+
+const isValidPAN = (pan) => {
+  const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+  return panRegex.test(pan);
+};
+const isValidGSTIN = (gstin) => {
+  const gstinRegex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
+  return gstinRegex.test(gstin);
+};
+
 
     if(!Name||!Email ||!Password ||!Buissness||!category ||!description ){
         return res.json({success:false ,message:"All fields required"});
@@ -261,7 +272,7 @@ export const  registerasseller = async(req,res)=>{
        }
        const hashedPassword =await bcrypt.hash(Password,10);
 
-       const role = (Gstin && Pan) ? 'admin' : 'seller';
+       //const role = (Gstin && Pan) ? 'admin' : 'seller';
 
        const newuser = new  usermodel({
            Name,
@@ -272,7 +283,7 @@ export const  registerasseller = async(req,res)=>{
            description,
            Gstin,
            Pan,
-           role
+           verifiedseller: isValidGSTIN && isValidPAN
        });
        await newuser.save();
 
