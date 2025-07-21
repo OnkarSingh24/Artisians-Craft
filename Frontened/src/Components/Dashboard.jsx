@@ -33,8 +33,8 @@ const Dashboard = () => {
     { label: 'Profile', icon: <FaUser /> },
     { label: 'Orders', icon: <FaBoxOpen /> },
     { label: 'Wishlist', icon: <FaHeart /> },
-    { label: 'hi', icon: <FaEnvelope /> },
-    { label: 'hello', icon: <FaCogs /> },
+    { label: 'Messages', icon: <FaEnvelope /> },
+    { label: 'Settings', icon: <FaCogs /> },
     { label: 'Notifications', icon: <FaBell /> }
   ];
 
