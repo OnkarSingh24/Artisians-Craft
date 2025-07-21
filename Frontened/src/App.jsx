@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom'; // ✅ removed BrowserRouter
 import Navigation from './Components/navigation';
 import Home from './Components/Home';
 import Artisians from './Components/artisians';
@@ -8,7 +8,8 @@ import RegisterAsSeller from './Components/Registerasseller';
 import ResetPassword from './Components/resetpassword';
 import ArtisanDirectory from './Components/ArtisanDirectory';
 import Register from './Components/Register';
-import Shop from './Components/Shop'; 
+import Shop from './Components/Shop';
+import Dashboard from './Components/Dashboard';
 
 import './App.css';
 
@@ -19,7 +20,6 @@ function AppContent() {
   const showNavbar = !hideNavbarPaths.includes(location.pathname);
 
   useEffect(() => {
-   
     const navHeight = 64;
 
     if (showNavbar) {
@@ -31,7 +31,7 @@ function AppContent() {
     return () => {
       document.body.style.paddingTop = '0';
     };
-  }, [showNavbar]); 
+  }, [showNavbar]);
 
   return (
     <div className="app">
@@ -39,23 +39,20 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/artisans" element={<Artisians />} />
-        <Route path="/shop" element={<Shop />} /> 
+        <Route path="/shop" element={<Shop />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/registerasseller" element={<RegisterAsSeller />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/artisandirectory" element={<ArtisanDirectory />} />
         <Route path="/Register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </div>
   );
 }
 
 function App() {
-  return (
-    
-      <AppContent />
-    
-  );
+  return <AppContent />;
 }
 
 export default App;
