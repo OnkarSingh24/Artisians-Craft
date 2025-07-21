@@ -1,5 +1,5 @@
 import express from 'express';
-import productmodel from '../module/productmodule.js';
+import productmodel from '../module/productmodules.js';
 
 const incartroutes = express.Router();
 

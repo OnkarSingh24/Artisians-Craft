@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import user from '../module/usermodule.js';
+//import user from '../module/usermodule.js';
 
 
 const userauth =async(req ,res ,next)=>{
@@ -30,7 +30,7 @@ const userauth =async(req ,res ,next)=>{
 
 export default userauth;
 
-import jwt from 'jsonwebtoken';
+
 
 export const verifyAdmin = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];

@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
  const navigate = useNavigate();
-  const{backendurl , setisloggedin} = useContext(content)
+  const{backendurl , setisloggedin} = useContext(content);
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);

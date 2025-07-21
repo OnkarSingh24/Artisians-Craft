@@ -1,28 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState , useContext} from 'react';
 import { Lock, Mail, User, Phone, MapPin, Briefcase, FileText } from 'lucide-react';
 import "./SellerRegister.css";
+import { content } from '../../context';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterAsSeller = () => {
+
+  const navigate = useNavigate();
+  const{backendurl , setisregisterasseller} = useContext(content);
   const [formData, setFormData] = useState({
     Name: '',
     Email: '',
     Phone: '',
     Password: '',
     ConfirmPassword: '',
-    BusinessName: '',
+    
+    Business: '',
     Address: '',
     Gstin: '',
-    PanId: '',
-    ShortDescription: '',
+    Pan:'',
+    description: '',
   });
 
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.id.charAt(0).toUpperCase() + e.target.id.slice(1)]: e.target.value }));
+
+
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     if (formData.Password !== formData.ConfirmPassword) {
       setError('Passwords do not match');
@@ -30,6 +39,21 @@ const RegisterAsSeller = () => {
     }
     setError('');
     console.log(formData);
+
+
+       try {
+      
+      axios.defaults.withCredentials = true;
+      const { data } = await axios.post(backendurl + '/api/auth/registerasseller', { formData});
+      if (data.success) {
+        setisregisterasseller(true);
+        navigate('/artisandirectory');
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (
@@ -121,7 +145,7 @@ const RegisterAsSeller = () => {
             <input
               type="text"
               id="businessName"
-              value={formData.BusinessName}
+              value={formData.Business}
               onChange={handleChange}
               placeholder="Your business name"
               required
@@ -166,7 +190,7 @@ const RegisterAsSeller = () => {
             <input
               type="text"
               id="panId"
-              value={formData.PanId}
+              value={formData.Pan}
               onChange={handleChange}
               placeholder="Your PAN ID"
               required
@@ -178,7 +202,7 @@ const RegisterAsSeller = () => {
           <label htmlFor="shortDescription">Short Description</label>
           <textarea
             id="shortDescription"
-            value={formData.ShortDescription}
+            value={formData.description}
             onChange={handleChange}
             rows="3"
             placeholder="Tell us about your business"
