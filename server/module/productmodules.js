@@ -6,7 +6,11 @@ category: {type: String, required: true },
 image: {type: String  },
 description: {type: String , required: true },
 sellerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-approved: { type: Boolean, default: false }
+status: {
+    type: String,
+    enum: ['pending', 'approved', 'rejected'],
+    default: 'pending'
+  }
 });
 const productmodel = mongoose.models.product || mongoose.model('product', productinfo);
  export  default productmodel ;

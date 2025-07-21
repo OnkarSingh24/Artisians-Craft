@@ -1,4 +1,18 @@
 import product from '../module/productmodules.js'
+import jwt from 'jsonwebtoken';
+
+const adminemail = "sharmakshita42@gmail.com";
+const adminpassword ="akshita";
+
+//adminlogin
+export const adminlogin = (req, res) => {
+  const { email, password } = req.body;
+  if (email === adminemail && password === adminpassword) {
+    const token = jwt.sign({ role: 'admin' }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    return res.json({ success: true, token });
+  }
+  return res.status(401).json({ success: false, message: 'Invalid admin credentials' });
+};
 
 //get pending  product
  export const pendingproducts =async(req , res)=>{

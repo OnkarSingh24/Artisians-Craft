@@ -1,12 +1,15 @@
 import express, { Router } from 'express';
-import { approveproduct, pendingproducts, rejectProduct } from '../controller/admincontroller.js';
+import { approveproduct, pendingproducts, rejectProduct , adminlogin } from '../controller/admincontroller.js';
 
-import userauth  from '../middleware/userauth.js';
+
+import { verifyAdmin }  from '../middleware/userauth.js';
+
+
 const adminroutes =express.Router();
-
-adminroutes.get('/pendingproducts' ,userauth, pendingproducts);
-adminroutes.put('/approveproducts',userauth , approveproduct);
-adminroutes.delete('/rejectproduct' ,userauth, rejectProduct);
+adminroutes.post('/adminlogin' , adminlogin);   
+adminroutes.get('/pendingproducts' ,verifyAdmin, pendingproducts);
+adminroutes.put('/approveproducts',verifyAdmin , approveproduct);
+adminroutes.delete('/rejectproduct' ,verifyAdmin, rejectProduct);
 
 export default adminroutes;
  

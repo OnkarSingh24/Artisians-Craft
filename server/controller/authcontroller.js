@@ -272,7 +272,7 @@ const isValidGSTIN = (gstin) => {
        }
        const hashedPassword =await bcrypt.hash(Password,10);
 
-       //const role = (Gstin && Pan) ? 'admin' : 'seller';
+       const role = (Gstin && Pan) ? 'seller' : 'seller';
 
        const newuser = new  usermodel({
            Name,

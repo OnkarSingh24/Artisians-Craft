@@ -26,7 +26,7 @@ const products = [
     rating: "5(23)",
     price: "89",
     category: "Pottery & Ceramics",
-    img: "https://m.media-amazon.com/images/I/71wWqZoDpYL._AC_UF1000,1000_QL80_.jpg",
+    img: "",
   },
   {
     name: "Boho Clay Wall Hanging",
@@ -178,7 +178,7 @@ const products = [
     rating: "4.8(16)",
     price: "58",
     category: "Woodworking",
-    img: "https://m.media-amazon.com/images/I/71KMdpvGqvL._AC_SL1500_.jpg",
+    img: "",
   },
 ];
 
@@ -317,6 +317,7 @@ function FilterSidebar({ selectedCategories, setSelectedCategories, selectedRati
       </div>
 
       <div className="filter-section">
+      
         <label className="section-title">Categories</label>
         {categories.map((category) => (
           <label key={category} className="checkbox-label">
@@ -343,7 +344,17 @@ function FilterSidebar({ selectedCategories, setSelectedCategories, selectedRati
             />
             {"⭐".repeat(r)} & up
           </label>
-        ))}
+          
+        ))}<label className="radio-label">
+        <input
+          type="radio"
+          name="rating"
+          value=""
+          checked={selectedRating === null}
+          onChange={() => setSelectedRating(null)}
+        />
+        None
+      </label>
       </div>
     </div>
   );
@@ -360,12 +371,15 @@ const Shop = () => {
   const [priceRange, setPriceRange] = useState(500);
   const [viewType, setViewType] = useState("grid");
   const [Category, setCategory] = useState("All");
-  const filteredProducts = products.filter(p => {
-    const matchCategory = Category === 'All' || p.category === Category;
+  const filteredProducts = products.filter((p) => {
+    const matchCategoryLine = Category === 'All' || p.category.includes(Category);
+    const matchSidebarCategory = selectedCategories.length === 0 || selectedCategories.includes(p.category);
     const matchRating = !selectedRating || parseInt(p.rating[0]) >= selectedRating;
     const matchPrice = parseInt(p.price) <= priceRange;
-    return matchCategory && matchRating && matchPrice;
+  
+    return matchCategoryLine && matchSidebarCategory && matchRating && matchPrice;
   });
+  
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -383,7 +397,7 @@ const Shop = () => {
       <div className="search-line">
         <div className="search"><Search /><input type="search" placeholder='search products , artisans and categories...' id="search-bar" /></div>
         <Dropdown />
-        <div className="grid-line">
+        {/* <div className="grid-line">
           <div
             className={`icon-button ${viewType === "grid" ? "active" : ""}`}
             onClick={() => setViewType("grid")}
@@ -396,7 +410,7 @@ const Shop = () => {
           >
             <List />
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="Category-line">
         <div
@@ -406,8 +420,9 @@ const Shop = () => {
           <button className='Category-btn'>All</button>
         </div>
         <div
-          className={`Category-button ${Category === "Pottery" ? "active" : ""}`}
-          onClick={() => setCategory("Pottery")}
+          className={`Category-button ${Category === "Pottery & Ceramics" ? "active" : ""}`}
+          onClick={() => setCategory("Pottery & Ceramics")}
+
         >
           <button className='Category-btn'>Pottery</button>
         </div>
@@ -430,8 +445,8 @@ const Shop = () => {
           <button className='Category-btn'>Woodworking</button>
         </div>
         <div
-          className={`Category-button ${Category === "Glasswares" ? "active" : ""}`}
-          onClick={() => setCategory("Glasswares")}
+          className={`Category-button ${Category === "Glassware" ? "active" : ""}`}
+          onClick={() => setCategory("Glassware")}
         >
           <button className='Category-btn'>Glasswares</button>
         </div>

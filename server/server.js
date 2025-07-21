@@ -6,6 +6,8 @@ import authroutes from './routes/authroutes.js'
 import productroutes from './routes/productroutes.js';
 import userrouter from "./routes/userroutes.js";
 import adminroutes from "./routes/adminroutes.js";
+import incartroutes from "./routes/incart.js";
+import orderroutes from "./routes/orderroutes.js";
 import connectDB from './config/mongodb.js';
 
 const app = express();
@@ -27,8 +29,11 @@ app.get('/', (req, res) => {
 
 app.use ('/api/auth', authroutes);
 app.use ('/api/user', userrouter);
-app.use('/api/products', productroutes);
+app.use('/api/crud', productroutes);
 app.use('/api/admin', adminroutes );
+app.use('/api/products' , incartroutes);
+app.use ('/api/order', orderroutes);
+
 
 
 app.listen(port, ()=> {
