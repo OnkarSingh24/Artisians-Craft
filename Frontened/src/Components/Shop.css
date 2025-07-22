@@ -405,3 +405,35 @@ select {
   background-color: #ccc;
   cursor: not-allowed;
 }
+/* Add these new styles to your Cart.css file */
+
+.loading-container, .error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  gap: 1rem;
+}
+
+.error-container {
+    color: #ef4444; /* red-500 */
+    background-color: #fee2e2; /* red-100 */
+    border: 1px solid #fca5a5; /* red-300 */
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner-icon {
+  animation: spin 1s linear infinite;
+}
