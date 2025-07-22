@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-
 import Navigation from './Components/navigation';
 import Home from './Components/Home';
 import Artisians from './Components/artisians';
@@ -10,7 +9,9 @@ import ResetPassword from './Components/resetpassword';
 import ArtisanDirectory from './Components/ArtisanDirectory';
 import Register from './Components/Register';
 import Shop from './Components/Shop';
-import AdminDashboard from './Components/AdminDashboard';
+import Cart from './Components/Cart';
+import AdminDashboard from './Components/AdminDashboard'; 
+import ArtisanDashboard from "./Components/ArtisanDashboard";
 
 import './App.css';
 
@@ -21,14 +22,19 @@ function AppContent() {
     '/signin',
     '/registerasseller',
     '/resetpassword',
-    '/register'
+    '/Register'
   ];
 
-  const showNavbar = !hideNavbarPaths.includes(location.pathname.toLowerCase());
+  const showNavbar = !hideNavbarPaths.includes(location.pathname);
 
   useEffect(() => {
     const navHeight = 64;
-    document.body.style.paddingTop = showNavbar ? `${navHeight}px` : '0';
+
+    if (showNavbar) {
+      document.body.style.paddingTop = `${navHeight}px`;
+    } else {
+      document.body.style.paddingTop = '0';
+    }
 
     return () => {
       document.body.style.paddingTop = '0';
@@ -46,9 +52,10 @@ function AppContent() {
         <Route path="/registerasseller" element={<RegisterAsSeller />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/artisandirectory" element={<ArtisanDirectory />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<AdminDashboard />} />
-        
+        <Route path="/Register" element={<Register />} />
+        <Route path="/dashboard" element={<AdminDashboard />} /> {/* ✅ Changed */}
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/artisanDashboard" element={<ArtisanDashboard />} />
       </Routes>
     </div>
   );

@@ -25,6 +25,11 @@ const Navigation = () => {
     closeSidebar();
   };
 
+  const handleCartClick = () => {
+    navigate('/cart');
+    closeSidebar();
+  };
+
   return (
     <nav className="navigation">
       <div className="nav-container">
@@ -41,7 +46,7 @@ const Navigation = () => {
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/shop" className="nav-link">Shop</Link> 
           <Link to="/artisans" className="nav-link">Artisans</Link>
-          <Link to="/Dashboard" className="nav-link">Dashboard</Link> 
+          <Link to="/dashboard" className="nav-link">Dashboard</Link> 
         </div>
 
         <div className="search-container desktop-only">
@@ -53,24 +58,36 @@ const Navigation = () => {
 
         <div className="actions">
           <button className="icon-btn"><Heart size={20} /></button>
-          <button className="icon-btn"><ShoppingCart size={20} /></button>
+
+          {/* ✅ Cart Button Now Navigates */}
+          <button className="icon-btn" onClick={handleCartClick}>
+            <ShoppingCart size={20} />
+          </button>
+
           <button className="sign-in-btn desktop-only" onClick={handleSignIn}>
             <User size={18} /><span>Sign In</span>
           </button>
-          <button className="seller-btn desktop-only" onClick={handleBecomeSeller}>Become a Seller</button>
+
+          <button className="seller-btn desktop-only" onClick={handleBecomeSeller}>
+            Become a Seller
+          </button>
         </div>
       </div>
 
       <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <Link to="/" className="nav-link" onClick={closeSidebar}>Home</Link>
         <Link to="/shop" className="nav-link" onClick={closeSidebar}>Shop</Link>
-        <Link to="/artisians" className="nav-link" onClick={closeSidebar}>Artisians</Link>
+        <Link to="/artisans" className="nav-link" onClick={closeSidebar}>Artisans</Link>
         <Link to="/orders" className="nav-link" onClick={closeSidebar}>Order History</Link>
         <Link to="/about" className="nav-link" onClick={closeSidebar}>About</Link>
+
         <button className="sign-in-btn mobile-only" onClick={handleSignIn}>
           <User size={18} /> <span>Sign In</span>
         </button>
-        <button className="seller-btn mobile-only" onClick={handleBecomeSeller}>Become a Seller</button>
+
+        <button className="seller-btn mobile-only" onClick={handleBecomeSeller}>
+          Become a Seller
+        </button>
       </div>
 
       {isSidebarOpen && <div className="overlay" onClick={closeSidebar}></div>}
