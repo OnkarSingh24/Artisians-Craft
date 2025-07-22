@@ -41,7 +41,7 @@ const Navigation = () => {
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/shop" className="nav-link">Shop</Link> 
           <Link to="/artisans" className="nav-link">Artisans</Link>
-          <Link to="/Dashboard" className="nav-link">About</Link> 
+          <Link to="/Dashboard" className="nav-link">Dashboard</Link> 
         </div>
 
         <div className="search-container desktop-only">
