@@ -1,40 +1,31 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useContext } from 'react';
 import { ShoppingBag, Trash2, Plus, Minus, ArrowLeft, Info, Lock, Truck, LoaderCircle } from 'lucide-react';
 import './Cart.css'; 
+import axios from 'axios';
+import { content } from '../../context';
+import { data, useNavigate } from 'react-router-dom';
 
-const fetchCartItemsFromAPI = () => {
-  return new Promise((resolve) => {
-    const isCartEmpty = Math.random() > 0.5;
-    
-    setTimeout(() => {
-      if (isCartEmpty) {
-        resolve({ data: [] }); 
-      } else {
-        resolve({
-          data: [
-            {
-              id: 1,
-              name: 'Sterling Silver Pendant',
-              artist: 'Priya Sharma',
-              category: 'Jewelry',
-              price: 65.00,
-              quantity: 1,
-              image: 'https://placehold.co/100x100/e0e0e0/333?text=Item+1',
-            },
-            {
-              id: 2,
-              name: 'Handcrafted Ceramic Mug',
-              artist: 'David Green',
-              category: 'Pottery',
-              price: 28.00,
-              quantity: 2,
-              image: 'https://placehold.co/100x100/d9ead3/333?text=Item+2',
-            },
-          ],
-        });
-      }
-    }, 1500); 
-  });
+ const backendurl =useContext(content);
+ const navigate = useNavigate();
+const fetchCartItemsFromAPI = async()=>{
+ 
+  const response = await axios.get(backendurl + `/api/cart`);
+  if (response.data.success){
+return {
+  data: response.data.cart.items.map(item => ({
+    id: item.productid._id,
+    name: item.productid.name,
+    category: item.productid.category ,
+    price:item.productid.price,
+    quantity:item.quantity
+  })),
+};
+  }
+else{
+  throw new error ("cart fetch failed!");
+}
+  
+  
 };
 
 
@@ -165,39 +156,37 @@ export default function Cart() {
   }, []); 
 
   
-  const handleUpdateQuantity = (itemId, newQuantity) => {
+  const handleUpdateQuantity = async(itemId, newQuantity) => {
     if (newQuantity < 1) {
-      handleRemoveItem(itemId);
+      await handleRemoveItem(itemId);
       return;
     }
-    setCartItems(cartItems.map(item =>
-      item.id === itemId ? { ...item, quantity: newQuantity } : item
-    ));
+
+    await axios.put(`/api/cart/update` , {productid :itemId, quantity: newQuantity} );
+    setCartItems(prev =>
+      prev.map(item =>
+        item.id === itemId ? { ...item, quantity: newQuantity } : item
+      )
+    );
   };
 
-  const handleRemoveItem = (itemId) => {
+  const handleRemoveItem = async(itemId) => {
     // Example: api.removeItem(itemId);
-    setCartItems(cartItems.filter(item => item.id !== itemId));
+    await axios.delete(`/api/cart/${itemId}`);
+  setCartItems(prev => prev.filter(item => item.id !== itemId));
   };
 
-  const handleClearCart = () => {
-    // Example: api.clearCart();
+  const handleClearCart = async() => {
+    await axios.delete(`api/cart/clear`)
     setCartItems([]);
   };
 
   const handleStartShopping = () => {
-      // This is a placeholder. In a real app, you'd navigate to a products page.
-      // For this demo, we'll just add one item to the cart.
-      const firstItem = {
-          id: 3,
-          name: 'Hand-Woven Scarf',
-          artist: 'Maria Garcia',
-          category: 'Textiles',
-          price: 42.00,
-          quantity: 1,
-          image: 'https://placehold.co/100x100/fce8b2/333?text=New+Item',
-      };
-      setCartItems([firstItem]);
+
+      
+      const handleStartShopping = ()=>{
+      navigate('/shop'); 
+      }
   }
 
   const subtotal = useMemo(() => {

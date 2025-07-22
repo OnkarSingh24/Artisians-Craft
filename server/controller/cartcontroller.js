@@ -1,48 +1,46 @@
 import express from 'express';
 import cartmodel from "../module/cartmodule.js";
 
-export const addtocart =async(req, res)=>{
- const {productid , quantity } = req.body;
- const userid =req.user.id;
-
- try {
-   let cart = await cartmodel.findOne({userid});
-
-   if(!cart){
-    cart =new cartmodel ({
-        userid,
-        items:[(productid , quantity)]
-    });
-   }
-
-   else{
-    const existingitem =cart.items.find(item => item.productid.toString()=== productid)
-    if(existingitem){
-        existingitem.quantity += quantity;
-    }
-    else {
-        cart.items.push({productid , quantity});
-    }
-
-   }
-   await cart.save();
- res.json({success : true , message:"Item added to cart succesfully!" });
-
-    
- } catch (error) {
-res.json ({ success : true , message : error.message});
-    
- }
-
-};
-
-//to get cartitems 
-export const getcart = async (req, res) => {
-  const userId = req.user.id;
+// Add to Cart
+export const addtocart = async (req, res) => {
+  const { productid, quantity } = req.body;
+  const userid = req.user.id;
 
   try {
-    const cart = await cartmodel.findOne({ userId }).populate('items.productId');
-    if (!cart) return res.json({ success: true, cart: { items: [] } });
+    let cart = await cartmodel.findOne({ userid });
+
+    if (!cart) {
+      cart = new cartmodel({
+        userid,
+        items: [{ productid, quantity }],
+      });
+    } else {
+      const existingItem = cart.items.find(item => item.productid.toString() === productid);
+      if (existingItem) {
+        existingItem.quantity += quantity;
+      } else {
+        cart.items.push({ productid, quantity });
+      }
+    }
+
+    await cart.save();
+    res.json({ success: true, message: "Item added to cart successfully!", cart });
+
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// Get Cart
+export const getcart = async (req, res) => {
+  const userid = req.user.id;
+
+  try {
+    const cart = await cartmodel.findOne({ userid }).populate('items.productid');
+
+    if (!cart) {
+      return res.json({ success: true, cart: { items: [] } });
+    }
 
     res.json({ success: true, cart });
   } catch (error) {
@@ -50,36 +48,34 @@ export const getcart = async (req, res) => {
   }
 };
 
-//update items in cart 
+// Update Cart Item
+export const updatecart = async (req, res) => {
+  const { productid, quantity } = req.body;
+  const userid = req.user.id;
 
-export const updatecart = async (req,res)=>{
-    const {productid , quantity}= req.body;
-    const userid = req.user.id;
+  try {
+    const cart = await cartmodel.findOne({ userid });
 
-    try {
-        const cart =await cartmodel.findOne({userid});
+    if (!cart) {
+      return res.json({ success: false, message: 'Cart not found!' });
+    }
 
-        if(!cart){
-            return res.json({success: false , message: 'cart not found!'});
-        } 
-        
-        constitems =cart.items.find(i => i.productid.toString() === productid);
-        if (!items){
-            
-                return res.json({ success: false, message: 'Item not in cart' });
-            
-        }
+    const item = cart.items.find(i => i.productid.toString() === productid);
+
+    if (!item) {
+      return res.json({ success: false, message: 'Item not in cart' });
+    }
+
     item.quantity = quantity;
     await cart.save();
-    res.json({ success: true, message: 'Cart updated', cart });    
 
-    } catch (error) {
-    res.status(500).json({ success: false, message: error.message });       
-    }
- 
+    res.json({ success: true, message: 'Cart updated', cart });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
 };
 
-//delete items from cart 
+// Remove Item from Cart
 export const removecartitem = async (req, res) => {
   const { productid } = req.params;
   const userid = req.user.id;
@@ -97,7 +93,7 @@ export const removecartitem = async (req, res) => {
   }
 };
 
-//clear cart 
+// Clear Entire Cart
 export const clearcart = async (req, res) => {
   const userid = req.user.id;
 
