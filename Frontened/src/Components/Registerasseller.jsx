@@ -1,4 +1,4 @@
-import React, { useState , useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import { Lock, Mail, User, Phone, MapPin, Briefcase, FileText } from 'lucide-react';
 import "./SellerRegister.css";
 import { content } from '../../context';
@@ -6,45 +6,42 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const RegisterAsSeller = () => {
-
   const navigate = useNavigate();
-  const{backendurl , setisregisterasseller} = useContext(content);
+  const { backendurl, setisregisterasseller } = useContext(content);
+
   const [formData, setFormData] = useState({
     Name: '',
     Email: '',
     Phone: '',
     Password: '',
     ConfirmPassword: '',
-    
     Business: '',
     Address: '',
     Gstin: '',
-    Pan:'',
+    Pan: '',
     description: '',
   });
 
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.id.charAt(0).toUpperCase() + e.target.id.slice(1)]: e.target.value }));
-
-
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.id]: e.target.value
+    }));
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.Password !== formData.ConfirmPassword) {
       setError('Passwords do not match');
       return;
     }
     setError('');
-    console.log(formData);
 
-
-       try {
-      
+    try {
       axios.defaults.withCredentials = true;
-      const { data } = await axios.post(backendurl + '/api/auth/registerasseller', { formData});
+      const { data } = await axios.post(backendurl + '/api/auth/registerasseller', { formData });
       if (data.success) {
         setisregisterasseller(true);
         navigate('/artisandirectory');
@@ -63,12 +60,12 @@ const RegisterAsSeller = () => {
 
       <form onSubmit={handleSubmit} className="register-form">
         <div className="input-group">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="Name">Name</label>
           <div className="input-field">
             <User className="icon" />
             <input
               type="text"
-              id="name"
+              id="Name"
               value={formData.Name}
               onChange={handleChange}
               placeholder="Your Name"
@@ -78,12 +75,12 @@ const RegisterAsSeller = () => {
         </div>
 
         <div className="input-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="Email">Email</label>
           <div className="input-field">
             <Mail className="icon" />
             <input
               type="email"
-              id="email"
+              id="Email"
               value={formData.Email}
               onChange={handleChange}
               placeholder="Your Email"
@@ -93,12 +90,12 @@ const RegisterAsSeller = () => {
         </div>
 
         <div className="input-group">
-          <label htmlFor="phone">Phone</label>
+          <label htmlFor="Phone">Phone</label>
           <div className="input-field">
             <Phone className="icon" />
             <input
               type="tel"
-              id="phone"
+              id="Phone"
               value={formData.Phone}
               onChange={handleChange}
               placeholder="Your Phone number"
@@ -108,12 +105,12 @@ const RegisterAsSeller = () => {
         </div>
 
         <div className="input-group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="Password">Password</label>
           <div className="input-field">
             <Lock className="icon" />
             <input
               type="password"
-              id="password"
+              id="Password"
               value={formData.Password}
               onChange={handleChange}
               placeholder="Enter Password"
@@ -123,12 +120,12 @@ const RegisterAsSeller = () => {
         </div>
 
         <div className="input-group">
-          <label htmlFor="confirmPassword">Confirm Password</label>
+          <label htmlFor="ConfirmPassword">Confirm Password</label>
           <div className="input-field">
             <Lock className="icon" />
             <input
               type="password"
-              id="confirmPassword"
+              id="ConfirmPassword"
               value={formData.ConfirmPassword}
               onChange={handleChange}
               placeholder="Verify Password"
@@ -139,12 +136,12 @@ const RegisterAsSeller = () => {
         </div>
 
         <div className="input-group">
-          <label htmlFor="businessName">Business Name</label>
+          <label htmlFor="Business">Business Name</label>
           <div className="input-field">
             <Briefcase className="icon" />
             <input
               type="text"
-              id="businessName"
+              id="Business"
               value={formData.Business}
               onChange={handleChange}
               placeholder="Your business name"
@@ -154,12 +151,12 @@ const RegisterAsSeller = () => {
         </div>
 
         <div className="input-group">
-          <label htmlFor="address">Business Address</label>
+          <label htmlFor="Address">Business Address</label>
           <div className="input-field">
             <MapPin className="icon" />
             <input
               type="text"
-              id="address"
+              id="Address"
               value={formData.Address}
               onChange={handleChange}
               placeholder="Your Business address"
@@ -169,12 +166,12 @@ const RegisterAsSeller = () => {
         </div>
 
         <div className="input-group">
-          <label htmlFor="gstin">GSTIN</label>
+          <label htmlFor="Gstin">GSTIN</label>
           <div className="input-field">
             <FileText className="icon" />
             <input
               type="text"
-              id="gstin"
+              id="Gstin"
               value={formData.Gstin}
               onChange={handleChange}
               placeholder="Your GSTIN"
@@ -184,12 +181,12 @@ const RegisterAsSeller = () => {
         </div>
 
         <div className="input-group">
-          <label htmlFor="panId">PAN ID</label>
+          <label htmlFor="Pan">PAN ID</label>
           <div className="input-field">
             <FileText className="icon" />
             <input
               type="text"
-              id="panId"
+              id="Pan"
               value={formData.Pan}
               onChange={handleChange}
               placeholder="Your PAN ID"
@@ -199,9 +196,9 @@ const RegisterAsSeller = () => {
         </div>
 
         <div className="input-group">
-          <label htmlFor="shortDescription">Short Description</label>
+          <label htmlFor="description">Short Description</label>
           <textarea
-            id="shortDescription"
+            id="description"
             value={formData.description}
             onChange={handleChange}
             rows="3"
