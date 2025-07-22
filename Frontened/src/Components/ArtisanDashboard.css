@@ -1,281 +1,209 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html, body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f8f3ef; /* your background color */
-    height: 100%;
-  }
-.artisan-dashboard {
-    display: flex;
-    min-height: 100%;
-    background-color: #f8f3ef;
-    font-family: "Segoe UI", sans-serif;
-  }
-  
-  .dashboard-sidebar {
-    width: 31%;
-    min-width: 270px;
-    max-width: 340px;
-    background: hsl(20deg 37.5% 96.86%);
-    display: flex;
-    gap: 4rem;
-    flex-direction: column;
-    align-items: center;
-    padding: 4.5rem 1.5rem 2rem 1.5rem;
-    border-right: 1px solid #e7d1b7;
-  }
-  
-  .artisan-photo {
-    width: 280px;
-    height: 280px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.09);
-    margin-bottom: 1rem;
-    border: 5px solid #faebd6;
-  }
-  
-  .artisan-info h2 {
-    font-size: 1.6rem;
-    color: #583d1b;
-    margin-bottom: 0.7rem;
-    text-align: center;
-  }
-  
-  .artisan-contact p {
-    color: #856d4e;
-    font-size: 1.05rem;
-    margin: 0.15rem 0;
-  }
-  .artisan-contact span {
-    color: #ad7e23;
-    font-weight: 500;
-    margin-right: 4px;
-  }
-  button{
-    position: sticky;
-  }
-  
-  /* Main Content */
-  .dashboard-main {
-    width: 100%;
-    min-width: 0;
-    background-color: hsl(20deg 37.5% 96.86%);
-    padding: 2.5rem 3rem 2.5rem 3rem;
-    position: relative;
-    overflow-y: auto;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-  }
-  
-  .details-section {
-    background-color: white;
-    border-radius: 1.2rem;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    padding: 2rem 2rem 1.1rem 2rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .details-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 2.5rem;
-  }
-  
-  .details-header h3 {
-    font-size: 1.25rem;
-    color: #634c1b;
-    margin-bottom: 0.7rem;
-  }
-  
-  .artisan-desc {
-    color: #594123;
-    margin-bottom: 0.85rem;
-    line-height: 1.6;
-  }
-  
-  .craft-category {
-    color: #674c23;
-    background: #fbeed9;
-    padding: 0.35em 0.85em;
-    border-radius: 0.5em;
-    display: inline-block;
-    font-size: 1rem;
-    margin-bottom: 0.5em;
-  }
-  
-  .action-btn {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    background: hsl(15deg 74.78% 54.9%);
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 0.99rem;
-    font-weight: 500;
-    margin-top: 10px;
-    padding: 12px 15px;
-    box-shadow: 0 3px 10px rgba(236, 145, 37, 0.08);
-    cursor: pointer;
-    transition: background 0.25s, transform 0.19s;
-  }
-  .action-btn:hover {
-    background: white;
-    color : hsl(15deg 74.78% 54.9%);
-    transform: translateY(-1.5px) scale(1.03);
-  }
-  
-  /* Sticky Buttons */
-  .sticky-edit {
-    position: sticky;
-    top: 2rem;
-    right: 0.5rem;
-    z-index: 11;
-  }
-  
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: -1.6rem;
-  }
-  
-  .sticky-add {
-    position: sticky;
-    top: 2rem;
-    right: 0.5rem;
-    z-index: 11;
-  }
-  
-  /* Products Grid */
-  .products-section { }
-  .product-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-  }
-  .product-card {
-    background-color: #ffff;
-    border-radius: 1rem;
-    box-shadow: 0 1.7px 7px rgba(0,0,0,0.11);
-    width: 280px;
-    height: 320px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1.1rem;
-    transition: transform 0.18s;
-    margin-bottom: 0.3rem;
-  }
-  .product-card:hover {
-    transform: translateY(-4px) scale(1.03);
-  }
-  .product-card img {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 0.75rem;
-    margin-bottom: 0.55rem;
-    background: #f2ecd9;
-  }
-  .action-btn sticky-edit{
-    position: sticky;
-  }
-  .product-info {
-    width: 100%;
-    text-align: left;
-    padding-top: 0;
-  }
-  .product-info h5 {
-    color: #422710;
-    font-size: 1.05rem;
-    margin-bottom: 0.16rem;
-  }
-  .product-category {
-    color: #856d4e;
-    font-size: 0.89rem;
-    margin: 0.08rem 0;
-  }
-  .product-price {
-    color: #b4760b;
-    font-weight: 600;
-    font-size: 1rem;
-    margin-bottom: 0.19rem;
-  }
-  .edit-product-btn {
-    background: hsl(15deg 74.78% 54.9%);
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    font-size: 0.88rem;
-    display: flex;
-    align-items: center;
-    gap: 3px;
-    padding: 5px 11px;
-    margin-top: 0.33rem;
-    cursor: pointer;
-    box-shadow: 0 1px 7px rgba(236, 145, 37, 0.07);
-    transition: background 0.25s, transform 0.17s;
-  }
-  .edit-product-btn:hover {
-    background: hsl(15deg 74.78% 54.9%);
-    transform: scale(1.04);
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 1024px) {
-    .artisan-dashboard {
-      flex-direction: column;
-    }
-    .dashboard-sidebar {
-      width: 100%;
-      max-width: none;
-      padding: 2rem 1rem;
-      align-items: center;
-      border-right: none;
-      border-bottom: 1px solid #e7d1b7;
-    }
-    .dashboard-main {
-      width: 100%;
-      padding: 2rem 1.2rem;
-      min-height: 70vh;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .artisan-photo {
-      width: 120px;
-      height: 120px;
-    }
-    .dashboard-sidebar {
-      padding: 1.3rem 0.3rem;
-    }
-    .dashboard-main {
-      padding: 1rem 0.2rem;
-    }
-    .details-section {
-      padding: 0.9rem 0.7rem;
-      border-radius: 0.6rem;
-    }
-    .product-card {
-      width: 100%;
-      min-width: 0;
-      padding: 0.7rem 0.5rem;
-    }
-    .section-header, .details-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1.1rem;
-    }
-  }
-  
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+  background-color: #fdf8f2;
+  color: #3c2f2f;
+}
+
+.artisan-dashboard-container {
+  display: flex;
+  max-height: 100%;
+}
+
+/* --- Sidebar (Left Panel) --- */
+.artisan-sidebar {
+  width: 240px;
+  background-color: #ffffff;
+  position: sticky;
+  border-right: 1px solid #e3d5ca;
+  display: flex;
+  flex-direction: column;
+  padding-top: 1.5rem ;
+  flex-shrink: 0;
+  transition: width 0.3s ease;
+}
+.sidebar-header {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  border-bottom: 1px solid #e3d5ca;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  color: #8a5a44;
+  font-size: 1.25rem;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+
+.sidebar-nav button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%; 
+  padding: 0.85rem 1.5rem; 
+  border: none; 
+  background: none; 
+  text-align: left; 
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif; 
+  font-size: 1rem;
+  font-weight: 500;
+  color: #6b5d5d; 
+  cursor: pointer; 
+  border-left: 3px solid transparent; 
+  transition: all 0.2s ease; 
+}
+.sidebar-nav button:hover {
+  background-color: #fdf8f2;
+  color: #e67e22; 
+}
+
+.sidebar-nav button.active {
+  background-color: #fffaf5; 
+  color: #e67e22; 
+  border-left-color: #e67e22; 
+  font-weight: 600; 
+}
+
+.artisan-main-content {
+  flex-grow: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.artisan-profile h2, .products-view h2, .form-container h2 {
+  font-size: 1.75rem;
+  color: #3c2f2f;
+  margin-top: 0; 
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #e3d5ca; 
+  padding-bottom: 0.75rem;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  gap: 1.5rem;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07); 
+  margin-bottom: 2rem;
+}
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; 
+  object-fit: cover; 
+  border: 4px solid #e67e22; 
+}
+
+.profile-info h3 { text-align: center; margin: 0 0 1rem 0; font-size: 1.5rem; }
+.profile-info p { margin: 0.5rem 0; color: #6b5d5d; line-height: 1.6; }
+
+.profile-description { background-color: #ffffff; padding: 1.5rem; border-radius: 12px; }
+.profile-description h4 { margin-top: 0; }
+
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.product-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+  overflow: hidden; 
+  display: flex;
+  flex-direction: column;
+  position: relative; 
+  transition: transform 0.2s ease, box-shadow 0.2s ease; 
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.product-image { width: 100%; height: 200px; object-fit: cover; background-color: #f0f0f0; }
+.product-details { padding: 1rem; flex-grow: 1; }
+.product-details h3 { font-size: 1.1rem; margin: 0 0 0.25rem 0; color: #3c2f2f; }
+.product-price { font-size: 1.2rem; font-weight: 600; color: #8a5a44; margin: 0.5rem 0; }
+.product-category { font-size: 0.85rem; color: #777; }
+
+.product-actions {
+  position: absolute; 
+  top: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0; 
+  visibility: hidden; 
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.product-card:hover .product-actions {
+  opacity: 1;
+  visibility: visible;
+}
+
+.action-btn {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #e3d5ca;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: grid; 
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.action-btn.edit-btn { color: #8a5a44; } 
+.action-btn.delete-btn { color: #c0392b; } 
+.action-btn:hover { background-color: white; transform: scale(1.1); }
+
+/* --- Product Form Styles --- */
+.form-container { max-width: 800px; margin: 0 auto; background-color: #ffffff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07); }
+.product-form .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.form-group { display: flex; flex-direction: column; }
+.form-group.full-width { grid-column: 1 / -1; /* Makes this field span both columns. */ }
+.form-group label { margin-bottom: 0.5rem; font-weight: 500; color: #3c2f2f; }
+.form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 1px solid #e3d5ca; border-radius: 8px; font-size: 1rem; box-sizing: border-box; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+
+
+.form-group input:focus, .form-group textarea:focus {
+  outline: none; /* Removes the default browser outline. */
+  border-color: #e67e22; /* Orange border. */
+  box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.2); /* A soft orange glow. */
+}
+.form-group textarea { resize: vertical; min-height: 80px; }
+
+.submit-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; background-color: #e67e22; color: white; padding: 0.85rem 1.5rem; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 1.5rem; transition: background-color 0.2s ease; }
+.submit-btn:hover { background-color: #d35400; }
+.form-error { color: #c0392b; margin-top: 1rem; text-align: center; }
+
+
+.loading-state, .error-state, .empty-state-message { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; min-height: 300px; color: #6b5d5d; text-align: center; }
+.error-state { color: #c0392b; }
+
+@media (max-width: 768px) {
+  .artisan-dashboard-container { flex-direction: column; }
+  .artisan-sidebar { width: 100%; height: auto; flex-direction: row; align-items: center; padding: 0.5rem; border-right: none; border-bottom: 1px solid #e3d5ca; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+  .sidebar-header { display: none; } /* Hide the "Artisan Panel" text on mobile. */
+  .sidebar-nav ul { display: flex; width: 100%; justify-content: space-around; margin: 0; }
+  .sidebar-nav button { flex-direction: column; gap: 0.25rem; padding: 0.5rem; font-size: 0.8rem; border-left: none; border-bottom: 3px solid transparent; }
+  .sidebar-nav button.active { border-left-color: transparent; border-bottom-color: #e67e22; }
+  .artisan-main-content { padding: 1rem; }
+  .product-form .form-grid { grid-template-columns: 1fr; } /* Make the form a single column on mobile. */
+  .profile-card { flex-direction: column; }
+}
