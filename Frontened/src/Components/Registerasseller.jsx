@@ -45,7 +45,7 @@ const RegisterAsSeller = () => {
       const { data } = await axios.post(backendurl + '/api/auth/registerasseller', { formData });
       if (data.success) {
         setisregisterasseller(true);
-        navigate('/artisandirectory');//artisan dashboard api here
+        navigate('/artisanDashboard');//artisan dashboard api here
       } else {
         alert(data.message);
       }
