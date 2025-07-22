@@ -14,7 +14,8 @@ export const ContextProvider = (props)=>{
         backendurl,
         isloggedin ,setisloggedin,
         isregister, setisregister,
-        userdata,setuserdata 
+        userdata,setuserdata ,
+        isregisterasseller , setisregisterasseller
 
     }
 
