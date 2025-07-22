@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 // Make sure to install lucide-react: npm install lucide-react
 import { ShoppingBag, Trash2, Plus, Minus, ArrowLeft, Info, Lock, Truck, LoaderCircle } from 'lucide-react';
 import './Cart.css'; // Your CSS file remains the same
-.
+
 const fetchCartItemsFromAPI = () => {
   return new Promise((resolve) => {
     const isCartEmpty = Math.random() > 0.5;

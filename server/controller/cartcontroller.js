@@ -1,5 +1,5 @@
 import express from 'express';
-import cartmodel from "../module/cartmodule";
+import cartmodel from "../module/cartmodule.js";
 
 export const addtocart =async(req, res)=>{
  const {productid , quantity } = req.body;
