@@ -3,6 +3,7 @@ import './Shop.css';
 import { Search, List, Grid3x3 } from 'lucide-react';
 import { RiDropdownList } from 'react-icons/ri';
 import { Heart, Star, DollarSign, ShoppingCart } from 'lucide-react';
+import { useCart } from "../context/CartContext";
 
 
 const Dropdown = () => {
@@ -186,6 +187,7 @@ const products = [
 
 const ProductCard = ({ product }) => {
   const [liked, setLiked] = useState(false);
+  const { addToCart } = useCart(); // get function from context
 
   return (
     <div className="product-card">
@@ -197,7 +199,7 @@ const ProductCard = ({ product }) => {
         >
           <Heart size={18} fill={liked ? 'red' : 'none'} color={liked ? 'red' : '#333'} />
         </button>
-        <button className="cart-float-btn">
+        <button className="cart-float-btn" onClick={addToCart}>
           <ShoppingCart size={18} /> Add to Cart
         </button>
       </div>
@@ -225,11 +227,9 @@ const TrendingProducts = ({ products }) => {
           <ProductCard key={index} product={product} />
         ))}
       </div>
-
     </section>
   );
 };
-
 const Pagination = ({ productsPerPage, totalProducts, paginate, currentPage }) => {
   const pageNumbers = [];
   const totalPages = Math.ceil(totalProducts / productsPerPage);
@@ -364,12 +364,13 @@ function FilterSidebar({ selectedCategories, setSelectedCategories, selectedRati
 
 const Shop = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const { addToCart } = useCart();
   const productsPerPage = 6; // or 8 or any number you want per page
-
+  
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedRating, setSelectedRating] = useState(null);
   const [priceRange, setPriceRange] = useState(500);
-  const [viewType, setViewType] = useState("grid");
+  // const [viewType, setViewType] = useState("grid");
   const [Category, setCategory] = useState("All");
   const filteredProducts = products.filter((p) => {
     const matchCategoryLine = Category === 'All' || p.category.includes(Category);
