@@ -166,6 +166,21 @@ const RegisterAsSeller = () => {
         </div>
 
         <div className="input-group">
+          <label htmlFor="category">Category</label>
+          <div className="input-field">
+            <FileText className="icon" />
+            <input
+              type="text"
+              id="category"
+              value={formData.category}
+              onChange={handleChange}
+              placeholder="Eg: Handcrafts, Artworks, etc."
+              required
+            />
+          </div>
+        </div>
+
+        <div className="input-group">
           <label htmlFor="Gstin">GSTIN</label>
           <div className="input-field">
             <FileText className="icon" />
