@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom'; // ✅ removed BrowserRouter
+import { Route, Routes, useLocation } from 'react-router-dom';
+
 import Navigation from './Components/navigation';
 import Home from './Components/Home';
 import Artisians from './Components/artisians';
@@ -9,24 +10,25 @@ import ResetPassword from './Components/resetpassword';
 import ArtisanDirectory from './Components/ArtisanDirectory';
 import Register from './Components/Register';
 import Shop from './Components/Shop';
-import Dashboard from './Components/Dashboard';
+import AdminDashboard from './Components/AdminDashboard';
 
 import './App.css';
 
 function AppContent() {
   const location = useLocation();
 
-  const hideNavbarPaths = ['/signin', '/registerasseller', '/resetpassword', '/Register'];
-  const showNavbar = !hideNavbarPaths.includes(location.pathname);
+  const hideNavbarPaths = [
+    '/signin',
+    '/registerasseller',
+    '/resetpassword',
+    '/register'
+  ];
+
+  const showNavbar = !hideNavbarPaths.includes(location.pathname.toLowerCase());
 
   useEffect(() => {
     const navHeight = 64;
-
-    if (showNavbar) {
-      document.body.style.paddingTop = `${navHeight}px`;
-    } else {
-      document.body.style.paddingTop = '0';
-    }
+    document.body.style.paddingTop = showNavbar ? `${navHeight}px` : '0';
 
     return () => {
       document.body.style.paddingTop = '0';
@@ -44,8 +46,8 @@ function AppContent() {
         <Route path="/registerasseller" element={<RegisterAsSeller />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/artisandirectory" element={<ArtisanDirectory />} />
-        <Route path="/Register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<AdminDashboard />} />
       </Routes>
     </div>
   );
