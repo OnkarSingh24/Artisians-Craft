@@ -24,7 +24,7 @@ const Login = () => {
         setisloggedin(true);
         switch(data.role){
           case 'admin':
-            navigate('/admindashboard')//admin dashboard api
+            navigate('/dashboard')//admin dashboard api
             break;
           case 'seller' :
             navigate('/artisansdashboard')//artisans dasboard

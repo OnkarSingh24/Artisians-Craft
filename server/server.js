@@ -7,7 +7,9 @@ import productroutes from './routes/productroutes.js';
 import userrouter from "./routes/userroutes.js";
 import adminroutes from "./routes/adminroutes.js";
 import orderroutes from "./routes/orderroutes.js";
+import statusrouter from "./routes/statusroutes.js";
 import connectDB from './config/mongodb.js';
+import statusroutes from "./routes/statusroutes.js";
 
 const app = express();
 const port =process.env.PORT|| 4000 ;
@@ -30,7 +32,7 @@ app.use ('/api/auth', authroutes);
 app.use ('/api/user', userrouter);
 app.use('/api/crud', productroutes);
 app.use('/api/admin', adminroutes );
-
+app.use('api/status' , statusroutes);
 app.use('/api/cart' , orderroutes);
 
 
