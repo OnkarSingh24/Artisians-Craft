@@ -48,6 +48,7 @@ function AppContent() {
         <Route path="/artisandirectory" element={<ArtisanDirectory />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<AdminDashboard />} />
+        
       </Routes>
     </div>
   );

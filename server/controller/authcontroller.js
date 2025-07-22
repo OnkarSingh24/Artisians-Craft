@@ -77,7 +77,7 @@ export const login = async (req, res) => {
             maxAge: 7 * 24 * 60 * 60 * 1000,
         });
 
-        return res.json({ success: true, message: "Login successful" });
+        return res.json({ success: true, message: "Login successful"  , role:user.role});
     } catch (error) {
         return res.json({ success: false, message: "Wrong credentials entered!" });
     }
@@ -249,7 +249,7 @@ export const resetpassword = async (req, res) => {
 };
 //to register as seller
 export const  registerasseller = async(req,res)=>{
-    const{Name,Email,Password, Buissness ,category,description,  Gstin,Pan} =req.body;
+    const{Name,Email,Password, Buissness ,category,description,  Gstin,Pan ,phone} =req.body.formData;
 
 const isValidPAN = (pan) => {
   const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
@@ -261,7 +261,7 @@ const isValidGSTIN = (gstin) => {
 };
 
 
-    if(!Name||!Email ||!Password ||!Buissness||!category ||!description ){
+    if(!Name||!Email ||!Password ||!Buissness||!category ||!description ||!phone || !Gstin || !Pan){
         return res.json({success:false ,message:"All fields required"});
     }
 
@@ -272,7 +272,7 @@ const isValidGSTIN = (gstin) => {
        }
        const hashedPassword =await bcrypt.hash(Password,10);
 
-       const role = (Gstin && Pan) ? 'seller' : 'seller';
+       const role = (Gstin && Pan) ? 'seller' : 'user';
 
        const newuser = new  usermodel({
            Name,
@@ -283,7 +283,8 @@ const isValidGSTIN = (gstin) => {
            description,
            Gstin,
            Pan,
-           verifiedseller: isValidGSTIN && isValidPAN
+           role,
+           verifiedseller: isValidGSTIN(Gstin) && isValidPAN(Pan)
        });
        await newuser.save();
 

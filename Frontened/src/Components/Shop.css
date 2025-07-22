@@ -1,27 +1,30 @@
+
 body{
   padding-top: 64px;
   width:100%;
 }
 .Shop{
-  padding: 20px 40px;
-  background-color: hsl(60, 14%, 99%);
+  margin: 20px 40px;
+  background-color:  rgb(245, 248, 252);
+}
+.header{
+  background: linear-gradient(to bottom, hsl(25deg 100% 95%), rgb(245, 248, 252));
+  display: flex;
+  flex-direction: column;
+  text-shadow: none;
 }
 .header h2{
   font-size: 1.875rem;
-  padding-top: 64px;
   line-height: 2.25rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
 .header p{
-  color:hsl(25 10% 55%);
-  display: block;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  unicode-bidi: isolate;
-  
+    color: hsl(25 10% 55%);
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+   
 }
 .search-line {
   display: flex;
@@ -159,6 +162,7 @@ select {
   padding: 20px;
   padding-top: 20px;
   border-radius: 16px;
+  height: 600px;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.06);
   width: 240px;
   font-family: "Segoe UI", sans-serif;
@@ -217,7 +221,7 @@ select {
   font-weight: bold;
   color: #1a1a1a;
   margin-bottom: 0.5rem;
-} */
+} 
 
 .Trending-Products p {
   font-size: 1.125rem;
@@ -228,32 +232,33 @@ select {
 .product-card {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
   padding: 1.5rem;
   text-align: left;
-  min-height: 428px;
+  justify-content: flex-start;
+  height: auto;
   max-width: 320px;
   background-color: #fff;
   border-radius: 1rem;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  flex: 1 1 320px;
- 
+
   box-sizing: border-box;
-  justify-content: space-between;
   align-items: flex-start;
   transition: transform 0.3s ease;
 }
 
-.product-card img{
-  height: 200px;
-
+.product-image {
+  width: 100%;
+  height: 220px; 
+  object-fit: cover; 
+  border-radius: 8px;
 }
 .product-list {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  width: 100%;
+  /* width: 100%; */
   padding-top: 4rem;
   gap: 2rem;
 }
@@ -353,10 +358,7 @@ select {
 }
 .price{
   display: flex;
-  /* The `-ms-flex-align: center;` property is a vendor-specific CSS property that was used for older
-  versions of Internet Explorer to align flex items along the cross-axis in a flex container. In
-  this case, it was used to align items vertically in a flex container. */
-  /* -ms-flex-align: center; */
+  
   align-items: center;
   font-weight: 700;
   font-size: 1.125rem;

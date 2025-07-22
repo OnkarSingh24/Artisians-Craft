@@ -12,11 +12,12 @@ const RegisterAsSeller = () => {
   const [formData, setFormData] = useState({
     Name: '',
     Email: '',
-    Phone: '',
+    phone: '',
     Password: '',
     ConfirmPassword: '',
-    Business: '',
+    Buissness: '',
     Address: '',
+    category:'' ,
     Gstin: '',
     Pan: '',
     description: '',
@@ -44,7 +45,7 @@ const RegisterAsSeller = () => {
       const { data } = await axios.post(backendurl + '/api/auth/registerasseller', { formData });
       if (data.success) {
         setisregisterasseller(true);
-        navigate('/artisandirectory');
+        navigate('/artisanDashboard');//artisan dashboard api here
       } else {
         alert(data.message);
       }
@@ -95,8 +96,8 @@ const RegisterAsSeller = () => {
             <Phone className="icon" />
             <input
               type="tel"
-              id="Phone"
-              value={formData.Phone}
+              id="phone"
+              value={formData.phone}
               onChange={handleChange}
               placeholder="Your Phone number"
               required
@@ -141,8 +142,8 @@ const RegisterAsSeller = () => {
             <Briefcase className="icon" />
             <input
               type="text"
-              id="Business"
-              value={formData.Business}
+              id="Buissness"
+              value={formData.Buissness}
               onChange={handleChange}
               placeholder="Your business name"
               required

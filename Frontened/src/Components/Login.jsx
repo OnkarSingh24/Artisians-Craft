@@ -22,7 +22,18 @@ const Login = () => {
       const { data } = await axios.post(backendurl + '/api/auth/login', { Email, Password });
       if (data.success) {
         setisloggedin(true);
-        navigate('/');
+        switch(data.role){
+          case 'admin':
+            navigate('/admindashboard')//admin dashboard api
+            break;
+          case 'seller' :
+            navigate('/artisansdashboard')//artisans dasboard
+            break;
+          default:
+            navigate('/')//user to home page   
+        }
+
+        
       } else {
         alert(data.message);
       }
