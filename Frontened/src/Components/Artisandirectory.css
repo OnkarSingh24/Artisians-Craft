@@ -65,7 +65,7 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   padding: 1.2rem;
   overflow-y: auto;
-  max-height: calc(100vh - 11.25rem);
+  max-height: calc(100vh - 7.5rem);
 }
 
 @media (min-width: 1024px) {

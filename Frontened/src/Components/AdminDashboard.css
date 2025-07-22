@@ -1,0 +1,160 @@
+.admin-dashboard {
+  font-family: 'Segoe UI', sans-serif;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px 40px;
+  background: #f9fafb;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.dashboard-header h2 {
+  font-size: 26px;
+  margin-bottom: 4px;
+  color: #2e4a7d;
+}
+
+.dashboard-header span {
+  color: #3b82f6;
+}
+
+.dashboard-header p {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.dashboard-summary {
+  margin-top: 12px;
+  font-weight: 500;
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+}
+
+.section-pending,
+.section-history {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.section-pending h3,
+.section-history h3 {
+  font-size: 20px;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.section-pending span {
+  background: #f97316;
+  color: white;
+  font-size: 13px;
+  margin-left: 8px;
+  padding: 2px 10px;
+  border-radius: 12px;
+}
+
+.section-pending p,
+.section-history p {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.card-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.card {
+  background: #fefefe;
+  border: 1px solid #e5e7eb;
+  padding: 16px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.user-info strong {
+  font-size: 16px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.user-info p {
+  margin: 2px 0;
+  font-size: 14px;
+  color: #374151;
+}
+
+.user-info small {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.actions button {
+  padding: 8px 14px;
+  margin-left: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+}
+
+.actions .approve {
+  background: #22c55e;
+  color: white;
+}
+
+.actions .approve:hover {
+  background: #16a34a;
+}
+
+.actions .reject {
+  background: #ef4444;
+  color: white;
+}
+
+.actions .reject:hover {
+  background: #dc2626;
+}
+
+.status {
+  font-weight: bold;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 90px;
+}
+
+.status.approved {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.status.rejected {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+@media (max-width: 600px) {
+  .card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+  }
+}
