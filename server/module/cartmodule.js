@@ -10,7 +10,7 @@ const cartiteminfo  = new mongoose.Schema({
     quantity:{
         type:Number,
         default:1
-    }
+            }
 });
 
 const cartinfo = new mongoose.Schema({

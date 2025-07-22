@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
-// Make sure to install lucide-react: npm install lucide-react
 import { ShoppingBag, Trash2, Plus, Minus, ArrowLeft, Info, Lock, Truck, LoaderCircle } from 'lucide-react';
-import './Cart.css';
+import './Cart.css'; 
 
 const fetchCartItemsFromAPI = () => {
   return new Promise((resolve) => {
