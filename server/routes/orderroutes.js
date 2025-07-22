@@ -1,25 +1,14 @@
 import express from 'express';
-import productmodel from '../module/productmodules.js';
+import { addtocart, clearcart, getcart, removecartitem,  updatecart } from "../controller/cartcontroller.js";
+import userauth, {} from "../middleware//userauth.js";
 
-const orderroutes = express.Router();
 
-orderroutes.post('/checkout', async (req, res) => {
-  try {
-    const cartItems = req.body.cartItems; 
-    let total = 0;
+const cartrouter =express.Router();
 
-    for (let item of cartItems) {
-      const product = await productmodel.findById(item.productId);
-      if (!product) continue;
+cartrouter.post('/add', userauth , addtocart);
+cartrouter.get('/getcart', userauth , getcart);
+cartrouter.put('/update', userauth , updatecart);
+cartrouter.delete('/deleteitem', userauth , removecartitem);
+cartrouter.delete('/clear', userauth , clearcart);
 
-      total += product.price * item.quantity;
-    }
-
-    res.json({ success: true, total });
-  } catch (err) {
-    console.error("Error in checkout:", err);
-    res.status(500).json({ success: false, message: 'Checkout failed' });
-  }
-});
-
-export default orderroutes;
+export default cartrouter;
