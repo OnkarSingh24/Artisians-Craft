@@ -4,8 +4,8 @@ body{
   width:100%;
 }
 .Shop{
-  margin: 20px 40px;
-  background-color:  rgb(245, 248, 252);
+  margin: 10px 10px;
+  background-color: rgb(245, 248, 252);
 }
 .header{
   background: linear-gradient(to bottom, hsl(25deg 100% 95%), rgb(245, 248, 252));
@@ -17,6 +17,7 @@ body{
   font-size: 1.875rem;
   line-height: 2.25rem;
   font-weight: 700;
+  padding-top: 15px;
   margin-bottom: 0.5rem;
 }
 .header p{
@@ -159,12 +160,13 @@ select {
 /* Filter  */
 .filter-box {
   background-color: white;
-  padding: 20px;
-  padding-top: 20px;
-  border-radius: 16px;
-  height: 600px;
+  padding : 15px;
+  padding-top: 25px;
+  padding-left: 15px;
+  border-radius: 18px;
+  height: 580px;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.06);
-  width: 240px;
+  width: 20%;
   font-family: "Segoe UI", sans-serif;
   font-size: 14px;
 }
@@ -232,12 +234,12 @@ select {
 .product-card {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
   padding: 1.5rem;
   text-align: left;
   justify-content: flex-start;
   height: auto;
-  max-width: 320px;
+  max-width: 95%;
   background-color: #fff;
   border-radius: 1rem;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
@@ -256,10 +258,10 @@ select {
 }
 .product-list {
   display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  justify-content: center;
+  
   /* width: 100%; */
-  padding-top: 4rem;
+  padding-top: 0.8rem;
   gap: 2rem;
 }
 
@@ -381,6 +383,7 @@ select {
   gap: 8px;
   margin-top: 24px;
   flex-wrap: wrap;
+  padding-bottom: 1rem;
 }
 
 .page-btn {

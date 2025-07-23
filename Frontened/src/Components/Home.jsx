@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './Home.css';
+import { Link } from 'react-router-dom';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { FaGem, FaPaintBrush } from "react-icons/fa";
-import { GiAmphora, GiWoodPile, GiYarn, GiGlassBall } from "react-icons/gi";
+import { GiAmphora, GiWoodPile, GiYarn, GiGlassBall, GiRupee } from "react-icons/gi";
 import {
   MapPin, Star, Heart, Gem,
   Scissors,
@@ -18,6 +19,7 @@ import {
   DollarSign,
   StarIcon,
   QuoteIcon,
+  IndianRupee,
 } from 'lucide-react';
 
 const ImageCarousel = () => {
@@ -104,8 +106,8 @@ const ArtisanCard = ({ artisan }) => (
       <p className="location"><MapPin size={14} /> {artisan.location}</p>
       <div className="stats">
         <span className="rating"><Star color="#fbbf24" fill="#fbbf24" size={16} /> {artisan.rating}</span>
-        <span>{artisan.products}</span>
-        <span>{artisan.followers}</span>
+        <span className='pro-fol'>{artisan.products}</span>
+        <span className='pro-fol' >{artisan.followers}</span>
       </div>
     </div>
   </div>
@@ -176,7 +178,7 @@ const ProductCard = ({ product }) => (
       <p className="maker">{product.maker}</p>
       <span className="rating"><Star color="#fbbf24" fill="#fbbf24" size={16} /> {product.rating}</span>
       <div className="last-line">
-        <span className="price"><DollarSign size={18} /> {product.price}</span>
+        <span className="price"><IndianRupee size={18} /> {product.price}</span>
         <button className='cart'>< ShoppingCart size={18} />Add</button>
       </div>
     </div>
@@ -224,7 +226,7 @@ const TrendingProducts = () => {
           <ProductCard key={index} product={product} />
         ))}
       </div>
-      <button className="view-all-btn2">Show All Products →</button>
+      <Link to='/shop' className="view-all-btn2">Show All Products →</Link>
     </section>
   );
 };
@@ -238,7 +240,7 @@ const FeaturedArtisans = () => {
           <ArtisanCard key={index} artisan={artisan} />
         ))}
       </div>
-      <button className="view-all-btn">View All Artisans →</button>
+      <Link to='/artisian' className="view-all-btn">View All Artisans →</Link>
     </section>
   );
 };
@@ -259,7 +261,7 @@ const Home = () => {
   const categories = [
     {
       Icon: <GiAmphora color="#b5651d" size={32} />,
-      Desc: "Pottery & Ceramics",
+      Desc: "Pottery ",
       InStock: "234 items",
     },
     {
@@ -301,7 +303,7 @@ const Home = () => {
                 <Sparkles className="icon" /> Discover Authentic Handmade Art
               </p>
             </div>
-            <h1 style={{ fontSize: '60px', fontWeight: 'bold', lineHeight: '1.2' }}>
+            <h1 style={{ fontSize: '50px', fontWeight: 'bold', lineHeight: '1' }}>
               Where Artisans Meet Art Lovers
             </h1>
             <p1>
@@ -310,13 +312,13 @@ const Home = () => {
             </p1>
             <div className="btn">
               <div className="div">
-                <button className="btn1">
+                <Link to='/shop' className="btn1">
                   <ShoppingBag className="Bagicon" />
                   Shop Now
-                </button>
+                </Link>
               </div>
               <div className="SellerBtn">
-                <button>Become a Seller</button>
+                <Link to = '/registerasseller'><button>Become a Seller</button></Link>
               </div>
             </div>
 
@@ -365,12 +367,12 @@ const Home = () => {
           your own creations, join our community of art lovers and talented artisans.
         </p>
         <div className="footer-buttons">
-          <button2 className="btn_primary">
+          <Link to='/shop'className="btn_primary">
             Start Shopping <span role="img" aria-label="cart">🛒</span>
-          </button2>
-          <button1 className="btn_secondary">
+          </Link>
+          <Link to='/artisan' className="btn_secondary">
             Join as Artisan <span role="img" aria-label="user">👤</span>
-          </button1>
+          </Link>
         </div>
       </div>
 
