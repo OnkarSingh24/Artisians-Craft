@@ -27,7 +27,7 @@ const Login = () => {
             navigate('/dashboard')//admin dashboard api
             break;
           case 'seller' :
-            navigate('/artisansdashboard')//artisans dasboard
+            navigate('/artisanDashboard')//artisans dasboard
             break;
           default:
             navigate('/')//user to home page   

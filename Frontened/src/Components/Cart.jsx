@@ -3,13 +3,13 @@ import { ShoppingBag, Trash2, Plus, Minus, ArrowLeft, Info, Lock, Truck, LoaderC
 import './Cart.css'; 
 import axios from 'axios';
 import { content } from '../../context';
-import { data, useNavigate ,useContext } from 'react-router-dom';
+import { data, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 
- const backendurl =useContext(content);
- const navigate = useNavigate();
-const fetchCartItemsFromAPI = async()=>{
  
-  const response = await axios.get(backendurl + `/api/cart`);
+const fetchCartItemsFromAPI = async()=>{
+ const {backendurl} =useContext(content);
+  const response = await axios.get(backendurl `/api/cart`);
   if (response.data.success){
 return {
   data: response.data.cart.items.map(item => ({
@@ -96,9 +96,9 @@ const OrderSummary = ({ subtotal, itemCount }) => {
           Add <strong>₹{amountForFreeShipping.toFixed(2)}</strong> more for free shipping!
         </div>
       )}
-      <link to='/checkout' className="checkout-btn">
+      <Link to='/checkout' className="checkout-btn">
         Proceed to Checkout
-      </link>
+      </Link>
       <div className="secure-info">
         <p><Lock size={14}/> Secure checkout</p>
         <p><Truck size={14}/> Free shipping on orders over ₹{freeShippingThreshold}</p>
@@ -134,9 +134,11 @@ const LoadingSpinner = () => (
 
 
 export default function Cart() {
-  const [cartItems, setCartItems] = useState([]);
-  const [loading, setLoading] = useState(true); 
-  const [error, setError] = useState(null);
+const {backendurl} =useContext(content);
+const navigate = useNavigate();
+const [cartItems, setCartItems] = useState([]);
+const [loading, setLoading] = useState(true); 
+const [error, setError] = useState(null);
 
   // Fetch data from the "backend" when the component mounts
   useEffect(() => {
@@ -162,7 +164,7 @@ export default function Cart() {
       return;
     }
 
-    await axios.put(`/api/cart/update` , {productid :itemId, quantity: newQuantity} );
+    await axios.put(backendurl+`/api/cart/update` , {productid :itemId, quantity: newQuantity} );
     setCartItems(prev =>
       prev.map(item =>
         item.id === itemId ? { ...item, quantity: newQuantity } : item
@@ -172,22 +174,22 @@ export default function Cart() {
 
   const handleRemoveItem = async(itemId) => {
     // Example: api.removeItem(itemId);
-    await axios.delete(`/api/cart/${itemId}`);
+    await axios.delete( backendurl+`/api/cart/${itemId}`);
   setCartItems(prev => prev.filter(item => item.id !== itemId));
   };
 
   const handleClearCart = async() => {
-    await axios.delete(`api/cart/clear`)
+    await axios.delete(backendurl+ `api/cart/clear`)
     setCartItems([]);
   };
 
-  const handleStartShopping = () => {
+ 
 
       
       const handleStartShopping = ()=>{
       navigate('/shop'); 
       }
-  }
+  
 
   const subtotal = useMemo(() => {
     return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);

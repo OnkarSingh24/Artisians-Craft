@@ -12,7 +12,8 @@ import Shop from './Components/Shop';
 import Cart from './Components/Cart';
 import AdminDashboard from './Components/AdminDashboard'; 
 import ArtisanDashboard from "./Components/ArtisanDashboard";
-import Checkout from "./Components/Checkout"
+import Dashboard from './Components/Dashboard';
+//import Checkout from "./Components/Checkout"
 import './App.css';
 
 
@@ -58,7 +59,7 @@ function AppContent() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/dashboard" element={<AdminDashboard />} /> {/* ✅ Changed */}
         <Route path="/artisanDashboard" element={<ArtisanDashboard />} />
-        <Route path="/checkout" element={<Checkout />} />
+        
       </Routes>
     </div>
   );
