@@ -48,7 +48,7 @@ const ProductForm = ({ initialData, onSubmit, formType }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
-    if (!formData.name || !formData.price || !formData.category) {
+    if (!formData.name|| !formData.price || !formData.category) {
       setError("Please fill in at least Name, Price, and Category.");
       return;
     }
@@ -109,7 +109,7 @@ export default function ArtisanDashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const emptyFormState = { Name: "", category: "", price: "", imageUrl: "", description: "", quantity: 1 };
+  const emptyFormState = { name: "", category: "", price: "", imageUrl: "", description: "", quantity: 1 };
 
  useEffect(() => {
   const fetchProducts = async () => {

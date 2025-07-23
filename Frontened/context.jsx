@@ -30,6 +30,7 @@ const [sellerData, setSellerData] = useState(null);
     try {
       const {data} =await axios.get(`${backendurl}/api/authroutes/registerasseller` , {withCredentials:true});
     setSellerData(data.user);
+     setuserdata(data.user);
     } catch (error) {
       console.log("failed to load user");
       

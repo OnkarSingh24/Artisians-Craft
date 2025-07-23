@@ -10,7 +10,7 @@ const userinfo = new mongoose.Schema({
     resetotp: {type: String ,default:''},
     resetotpexpire: {type: Number ,default:0},
     Buissness:{type:String},
-    Phone:{type: Number ,unique: true},
+    Phone:{type: String ,unique: true},
     category:{type:String  },
     description:{type:String },
     Gstin:{type:String ,unique:true },

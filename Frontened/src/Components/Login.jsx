@@ -8,7 +8,7 @@ import { NavContext, NavProvider } from './NavContext';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { backendurl, setisloggedin } = useContext(content);
+  const { backendurl, setisloggedin ,setuserdata , setSellerData} = useContext(content);
   const { setUser } = useContext(NavContext); // 👈 Get setUser from NavContext
 
   const [Email, setEmail] = useState('');
@@ -20,14 +20,21 @@ const Login = () => {
       e.preventDefault();
       axios.defaults.withCredentials = true;
       const { data } = await axios.post(backendurl + '/api/auth/login', { Email, Password });
-
+ console.log("Login API response", data);
       if (data.success) {
+       
+
         setisloggedin(true);
+        setuserdata(data.user);
+        setSellerData(data.user);
         setUser({ email: Email, role: data.role }); // 👈 Update NavContext
+
+        
+
 
         switch (data.role) {
           case 'admin':
-            navigate('/dashboard');
+            navigate('/admindashboard');
             break;
           case 'seller' :
             navigate('/artisanDashboard')//artisans dasboard

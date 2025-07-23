@@ -53,6 +53,7 @@ function AppContent() {
         <Route path="/dashboard" element={<Checkout />} /> {/* ✅ Dashboard opens Checkout */}
         <Route path="/cart" element={<Cart />} />
         <Route path="/artisanDashboard" element={<ArtisanDashboard />} />
+        <Route path="/adminDashboard" element={<AdminDashboard />} />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </div>
