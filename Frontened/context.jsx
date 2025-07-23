@@ -1,4 +1,5 @@
 //import { meta } from "@eslint/js";
+import axios from "axios";
 import { createContext, useState } from "react";
 
 export const content = createContext()
@@ -11,6 +12,7 @@ export const ContextProvider = (props)=>{
    const [pendingUsers, setPendingUsers] = useState([]);
   const [approvedUsers, setApprovedUsers] = useState([]);
   const [rejectedUsers, setRejectedUsers] = useState([]);
+const [sellerData, setSellerData] = useState(null);
 
   const fetchUsers = async () => {
     try {
@@ -24,6 +26,15 @@ export const ContextProvider = (props)=>{
       console.error("Error fetching users", err);
     }
   };
+  const fetchSellerData =async()=>{
+    try {
+      const {data} =await axios.get(`${backendurl}/api/authroutes/registerasseller` , {withCredentials:true});
+    setSellerData(data.user);
+    } catch (error) {
+      console.log("failed to load user");
+      
+    }
+  };
 
 
     const value ={
@@ -32,10 +43,13 @@ export const ContextProvider = (props)=>{
         isregister, setisregister,
         userdata,setuserdata ,
         isregisterasseller , setisregisterasseller ,
+        sellerData,setSellerData ,
+        
         pendingUsers,
         approvedUsers,
         rejectedUsers,
         fetchUsers,
+        fetchSellerData
 
     }
 

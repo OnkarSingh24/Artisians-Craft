@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom';
 
 const RegisterAsSeller = () => {
   const navigate = useNavigate();
-  const { backendurl, setisregisterasseller } = useContext(content);
+  const { backendurl, setisregisterasseller ,setSellerData ,fetchSellerData } = useContext(content);
+ 
 
   const [formData, setFormData] = useState({
     Name: '',
@@ -44,9 +45,12 @@ const RegisterAsSeller = () => {
       axios.defaults.withCredentials = true;
       const { data } = await axios.post(backendurl + '/api/auth/registerasseller', { formData });
       if (data.success) {
+        
         setisregisterasseller(true);
+        setSellerData(data.seller);
         navigate('/artisanDashboard');//artisan dashboard api here
       } else {
+        await fetchSellerData();
         alert(data.message);
       }
     } catch (error) {

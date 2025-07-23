@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback ,useContext } from "react";
+import { content } from '../../context';
 import "./ArtisanDashboard.css";
 import {
   LayoutDashboard,
@@ -8,6 +9,7 @@ import {
   AlertCircle,
   Pencil,
 } from "lucide-react";
+import axios from "axios";
 
 
 const mockArtisan = {
@@ -100,48 +102,68 @@ const ProductForm = ({ initialData, onSubmit, formType }) => {
 
 export default function ArtisanDashboard() {
   const [activeView, setActiveView] = useState("dashboard");
+  const { backendurl ,sellerData } = useContext(content);
   const [artisan, setArtisan] = useState(null);
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null); // State for the product being edited
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const emptyFormState = { name: "", category: "", price: "", imageUrl: "", description: "", quantity: 1 };
+  const emptyFormState = { Name: "", category: "", price: "", imageUrl: "", description: "", quantity: 1 };
 
-  useEffect(() => {
-    setLoading(true);
-    const timer = setTimeout(() => {
-      setArtisan(mockArtisan);
-      setProducts(mockProducts);
+ useEffect(() => {
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get(`${backendurl}/api/crud/mine`, {
+        withCredentials: true,
+      });
+      setProducts(data.products);
+      setArtisan(sellerData); 
       setLoading(false);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, []);
+    } catch (err) {
+      setError("Failed to load products.");
+      setLoading(false);
+    }
+  };
 
-  const handleProductAdd = (formData) => {
-    const newProduct = {
-      ...formData,
-      id: Date.now(),
-      image: formData.imageUrl || "https://placehold.co/600x400/EEE/31343C?text=New+Product",
-    };
-    setProducts((prev) => [newProduct, ...prev]);
+  fetchProducts();
+}, [backendurl, sellerData]);
+
+
+  const handleProductAdd = async(formData) => {
+    try {
+    const {data} =await axios.post(`${backendurl}/api/crud`, formData , {withCredentials:true});
+    setProducts((prev) => [data.product, ...prev]);
     alert("Product added successfully!");
-    setActiveView("products");
+    setActiveView("products");  
+    } catch (error) {
+      alert("failed to add product");
+      
+    }
+    
   };
   
-  const handleProductUpdate = (updatedData) => {
-    setProducts((prev) => 
-        prev.map((p) => (p.id === updatedData.id ? { ...p, ...updatedData } : p))
-    );
+  const handleProductUpdate = async(updatedData) => {
+    try {
+     const {data} = await axios.put(`${backendurl}/api/crud/${updatedData.id}` , updatedData , {withCredentials:true});
     alert("Product updated successfully!");
-    setEditingProduct(null); // Exit edit mode
-    setActiveView("products");
+    setEditingProduct(null); 
+    setActiveView("products"); 
+    } catch (error) {
+     alert("failed to update product") ;
+    }
+    
   };
 
-  const handleProductDelete = (productId) => {
+  const handleProductDelete = async(productId) => {
     if (!window.confirm("Are you sure you want to delete this product?")) return;
-    setProducts((prev) => prev.filter((p) => p.id !== productId));
+    try {
+     const {data} =await axios.delete(`${backendurl}/api/crud/${productId}`, {withCredentials:true});
     alert("Product deleted successfully.");
+    } catch (error) {
+     alert("failed to delete product"); 
+    }
   };
   
   const handleEditClick = (product) => {
@@ -194,13 +216,13 @@ export default function ArtisanDashboard() {
           <div className="artisan-profile">
             <h2>Artisan Profile</h2>
             <div className="profile-card">
-              <img src={artisan?.photo} alt={artisan?.name} className="profile-photo" />
+              <img src={artisan?.photo} alt={artisan?.Name} className="profile-photo" />
               <div className="profile-info">
-                <h3>{artisan?.name}</h3>
-                <p><strong>Business:</strong> {artisan?.businessName}</p>
-                <p><strong>Email:</strong> {artisan?.email}</p>
-                <p><strong>Phone:</strong> {artisan?.phone}</p>
-                <p><strong>GST No:</strong> {artisan?.gst}</p>
+                <h3>{artisan?.Name}</h3>
+                <p><strong>Business:</strong> {artisan?.Buissness}</p>
+                <p><strong>Email:</strong> {artisan?.Email}</p>
+                <p><strong>Phone:</strong> {artisan?.Phone}</p>
+                <p><strong>GST No:</strong> {artisan?.Gstin}</p>
                 <p><strong>Category:</strong> {artisan?.category}</p>
               </div>
             </div>

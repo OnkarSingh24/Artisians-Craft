@@ -308,8 +308,22 @@ We are excited to have you with us. Start exploring and sell creativity that is 
 Happy selling!
 Team Desi Etsy`
     };
-    await transporter.sendMail(mailOptions);    
-return res.json({success:true , message:"Seller registred successfully"})
+    await transporter.sendMail(mailOptions); 
+       
+return res.json({success:true , message:"Seller registred successfully" ,
+    seller: {
+    Name: newuser.Name,
+    Email: newuser.Email,
+    Buissness: newuser.Buissness,
+    Gstin: newuser.Gstin,
+    Pan: newuser.Pan,
+    category: newuser.category,
+    description: newuser.description,
+    phone: newuser.phone,
+    role: newuser.role,
+    verifiedseller: newuser.verifiedseller
+  }
+})
 
 
     } catch (error) {

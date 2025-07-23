@@ -13,7 +13,9 @@ import Cart from './Components/Cart';
 import AdminDashboard from './Components/AdminDashboard'; 
 import ArtisanDashboard from "./Components/ArtisanDashboard";
 import Checkout from "./Components/Checkout"
+import { NavProvider } from './Components/NavContext';
 import './App.css';
+
 
 function AppContent() {
   const location = useLocation();

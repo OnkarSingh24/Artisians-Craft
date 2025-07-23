@@ -52,3 +52,12 @@ export const deleteproduct =async(req,res)=>{
     }
   
 };
+//get all products
+export const getmyproducts = async (req, res) => {
+  try {
+    const products = await productmodel.find({ sellerId: req.user._id });
+    res.json({ products });
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching your products" });
+  }
+};
