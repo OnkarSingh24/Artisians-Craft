@@ -12,10 +12,8 @@ import Shop from './Components/Shop';
 import Cart from './Components/Cart';
 import AdminDashboard from './Components/AdminDashboard'; 
 import ArtisanDashboard from "./Components/ArtisanDashboard";
-import Dashboard from './Components/Dashboard';
-//import Checkout from "./Components/Checkout"
+import Checkout from "./Components/Checkout"
 import './App.css';
-
 
 function AppContent() {
   const location = useLocation();
@@ -31,12 +29,7 @@ function AppContent() {
 
   useEffect(() => {
     const navHeight = 64;
-
-    if (showNavbar) {
-      document.body.style.paddingTop = `${navHeight}px`;
-    } else {
-      document.body.style.paddingTop = '0';
-    }
+    document.body.style.paddingTop = showNavbar ? `${navHeight}px` : '0';
 
     return () => {
       document.body.style.paddingTop = '0';
@@ -55,20 +48,21 @@ function AppContent() {
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/artisandirectory" element={<ArtisanDirectory />} />
         <Route path="/Register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Checkout />} /> {/* ✅ Dashboard opens Checkout */}
         <Route path="/cart" element={<Cart />} />
-        <Route path="/dashboard" element={<AdminDashboard />} /> {/* ✅ Changed */}
         <Route path="/artisanDashboard" element={<ArtisanDashboard />} />
-        
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </div>
   );
 }
 
 function App() {
-  return <>
-  <AppContent/>
-  </> ;
+  return (
+    <NavProvider>
+      <AppContent />
+    </NavProvider>
+  );
 }
 
 export default App;

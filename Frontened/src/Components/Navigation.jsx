@@ -1,19 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Search, Heart, ShoppingCart, User, Menu, X } from 'lucide-react';
 import './navigation.css';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { NavContext, NavProvider } from './NavContext';
 const Navigation = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
+  const { user } = useContext(NavContext);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
-  const closeSidebar = () => {
-    setIsSidebarOpen(false);
-  };
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const closeSidebar = () => setIsSidebarOpen(false);
 
   const handleSignIn = () => {
     navigate('/signin');
@@ -27,6 +23,11 @@ const Navigation = () => {
 
   const handleCartClick = () => {
     navigate('/cart');
+    closeSidebar();
+  };
+
+  const handleDashboardClick = () => {
+    navigate('/dashboard');
     closeSidebar();
   };
 
@@ -46,7 +47,7 @@ const Navigation = () => {
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/shop" className="nav-link">Shop</Link> 
           <Link to="/artisans" className="nav-link">Artisans</Link>
-          <Link to="/dashboard" className="nav-link">Dashboard</Link> 
+          <span className="nav-link" onClick={handleDashboardClick}>Dashboard</span>
         </div>
 
         <div className="search-container desktop-only">
@@ -58,19 +59,19 @@ const Navigation = () => {
 
         <div className="actions">
           <button className="icon-btn"><Heart size={20} /></button>
+          <button className="icon-btn" onClick={handleCartClick}><ShoppingCart size={20} /></button>
 
-          {/* ✅ Cart Button Now Navigates */}
-          <button className="icon-btn" onClick={handleCartClick}>
-            <ShoppingCart size={20} />
-          </button>
+          {user ? (
+            <button className="icon-btn" onClick={handleDashboardClick} title={user.email}>
+              <User size={20} />
+            </button>
+          ) : (
+            <button className="sign-in-btn desktop-only" onClick={handleSignIn}>
+              <User size={18} /><span>Sign In</span>
+            </button>
+          )}
 
-          <button className="sign-in-btn desktop-only" onClick={handleSignIn}>
-            <User size={18} /><span>Sign In</span>
-          </button>
-
-          <button className="seller-btn desktop-only" onClick={handleBecomeSeller}>
-            Become a Seller
-          </button>
+          <button className="seller-btn desktop-only" onClick={handleBecomeSeller}>Become a Seller</button>
         </div>
       </div>
 
@@ -78,16 +79,21 @@ const Navigation = () => {
         <Link to="/" className="nav-link" onClick={closeSidebar}>Home</Link>
         <Link to="/shop" className="nav-link" onClick={closeSidebar}>Shop</Link>
         <Link to="/artisans" className="nav-link" onClick={closeSidebar}>Artisans</Link>
+        <Link to="/dashboard" className="nav-link" onClick={closeSidebar}>Dashboard</Link>
         <Link to="/orders" className="nav-link" onClick={closeSidebar}>Order History</Link>
         <Link to="/about" className="nav-link" onClick={closeSidebar}>About</Link>
 
-        <button className="sign-in-btn mobile-only" onClick={handleSignIn}>
-          <User size={18} /> <span>Sign In</span>
-        </button>
+        {user ? (
+          <button className="sign-in-btn mobile-only" onClick={handleDashboardClick}>
+            <User size={18} /><span>Dashboard</span>
+          </button>
+        ) : (
+          <button className="sign-in-btn mobile-only" onClick={handleSignIn}>
+            <User size={18} /><span>Sign In</span>
+          </button>
+        )}
 
-        <button className="seller-btn mobile-only" onClick={handleBecomeSeller}>
-          Become a Seller
-        </button>
+        <button className="seller-btn mobile-only" onClick={handleBecomeSeller}>Become a Seller</button>
       </div>
 
       {isSidebarOpen && <div className="overlay" onClick={closeSidebar}></div>}

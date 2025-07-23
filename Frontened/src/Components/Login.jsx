@@ -1,16 +1,16 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock } from 'lucide-react';
 import './Login.css';
-import { content } from '../../context';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-
-
+import { content } from '../../context';
+import { NavContext, NavProvider } from './NavContext';
 
 const Login = () => {
- const navigate = useNavigate();
-  const{backendurl , setisloggedin} = useContext(content);
+  const navigate = useNavigate();
+  const { backendurl, setisloggedin } = useContext(content);
+  const { setUser } = useContext(NavContext); // 👈 Get setUser from NavContext
+
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
@@ -20,27 +20,28 @@ const Login = () => {
       e.preventDefault();
       axios.defaults.withCredentials = true;
       const { data } = await axios.post(backendurl + '/api/auth/login', { Email, Password });
+
       if (data.success) {
         setisloggedin(true);
-        switch(data.role){
+        setUser({ email: Email, role: data.role }); // 👈 Update NavContext
+
+        switch (data.role) {
           case 'admin':
-            navigate('/dashboard')//admin dashboard api
+            navigate('/dashboard');
             break;
           case 'seller' :
             navigate('/artisanDashboard')//artisans dasboard
             break;
           default:
-            navigate('/')//user to home page   
+            navigate('/');
         }
-
-        
       } else {
         alert(data.message);
       }
     } catch (error) {
       alert(error.message);
     }
-  }
+  };
 
   return (
     <div className="login-container">
@@ -49,8 +50,6 @@ const Login = () => {
         <p className="subtitle">Access your dashboard and manage your crafts</p>
 
         <form onSubmit={handleSubmit} className="login-form">
-
-          {/* Email Field with Icon */}
           <div className="form-group input-with-icon">
             <label>Email</label>
             <div className="input-wrapper">
@@ -65,7 +64,6 @@ const Login = () => {
             </div>
           </div>
 
-          {/* Password Field with Icon */}
           <div className="form-group input-with-icon">
             <div className="label-row">
               <label>Password</label>
@@ -98,7 +96,7 @@ const Login = () => {
             <span>or continue with</span>
           </div>
 
-          <button className="btn-google" >
+          <button className="btn-google">
             <i className="fab fa-google"></i> Google
           </button>
 
