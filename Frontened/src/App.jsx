@@ -49,7 +49,7 @@ function AppContent() {
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/artisandirectory" element={<ArtisanDirectory />} />
         <Route path="/Register" element={<Register />} />
-        <Route path="/dashboard" element={<Checkout />} />
+        <Route path="/dashboard" element={<Checkout />} /> {/* ✅ Dashboard opens Checkout */}
         <Route path="/cart" element={<Cart />} />
         <Route path="/artisanDashboard" element={<ArtisanDashboard />} />
       </Routes>

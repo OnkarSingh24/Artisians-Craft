@@ -13,7 +13,7 @@ import {
 import './Cart.css';
 import axios from 'axios';
 import { content } from '../../context';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const fetchCartItemsFromAPI = async (backendurl) => {
   const response = await axios.get(`${backendurl}/api/cart`);
@@ -25,8 +25,8 @@ const fetchCartItemsFromAPI = async (backendurl) => {
         category: item.productid.category,
         price: item.productid.price,
         quantity: item.quantity,
-        image: item.productid.image || 'placeholder.jpg',  // fallback
-        artist: item.productid.artist || 'Unknown Artist'  // fallback
+        image: item.productid.image || 'placeholder.jpg',
+        artist: item.productid.artist || 'Unknown Artist'
       })),
     };
   } else {
@@ -42,11 +42,11 @@ const CartItem = ({ item, onUpdateQuantity, onRemoveItem }) => (
         <h3 className="cart-item-name">{item.name}</h3>
         <p className="cart-item-artist">by {item.artist}</p>
         <span className="cart-item-category">{item.category}</span>
-        <p className="cart-item-price-mobile">${item.price.toFixed(2)}</p>
+        <p className="cart-item-price-mobile">₹{item.price.toFixed(2)}</p>
       </div>
     </div>
     <div className="cart-item-controls">
-      <p className="cart-item-price-desktop">${item.price.toFixed(2)}</p>
+      <p className="cart-item-price-desktop">₹{item.price.toFixed(2)}</p>
       <div className="quantity-selector">
         <button onClick={() => onUpdateQuantity(item.id, item.quantity - 1)} className="quantity-btn">
           <Minus size={16} />
@@ -56,7 +56,7 @@ const CartItem = ({ item, onUpdateQuantity, onRemoveItem }) => (
           <Plus size={16} />
         </button>
       </div>
-      <p className="cart-item-subtotal">Subtotal: ${(item.price * item.quantity).toFixed(2)}</p>
+      <p className="cart-item-subtotal">Subtotal: ₹{(item.price * item.quantity).toFixed(2)}</p>
     </div>
     <button onClick={() => onRemoveItem(item.id)} className="remove-item-btn">
       <Trash2 size={20} />
@@ -77,31 +77,33 @@ const OrderSummary = ({ subtotal, itemCount }) => {
       <div className="summary-details">
         <div className="summary-row">
           <span>Subtotal ({itemCount} Item{itemCount !== 1 ? 's' : ''})</span>
-          <span className="summary-value">${subtotal.toFixed(2)}</span>
+          <span className="summary-value">₹{subtotal.toFixed(2)}</span>
         </div>
         <div className="summary-row">
           <span>Shipping</span>
-          <span className="summary-value">${shipping.toFixed(2)}</span>
+          <span className="summary-value">₹{shipping.toFixed(2)}</span>
         </div>
         <div className="summary-row">
           <span>Tax</span>
-          <span className="summary-value">${tax.toFixed(2)}</span>
+          <span className="summary-value">₹{tax.toFixed(2)}</span>
         </div>
       </div>
       <div className="summary-total-row">
         <span>Total</span>
-        <span>${total.toFixed(2)}</span>
+        <span>₹{total.toFixed(2)}</span>
       </div>
       {subtotal > 0 && subtotal < freeShippingThreshold && (
         <div className="free-shipping-notice">
           <Info size={16} />
-          Add <strong>${amountForFreeShipping.toFixed(2)}</strong> more for free shipping!
+          Add <strong>₹{amountForFreeShipping.toFixed(2)}</strong> more for free shipping!
         </div>
       )}
-      <button className="checkout-btn">Proceed to Checkout</button>
+      <Link to="/checkout" className="checkout-btn">
+        Proceed to Checkout
+      </Link>
       <div className="secure-info">
         <p><Lock size={14} /> Secure checkout</p>
-        <p><Truck size={14} /> Free shipping on orders over ${freeShippingThreshold}</p>
+        <p><Truck size={14} /> Free shipping on orders over ₹{freeShippingThreshold}</p>
       </div>
     </div>
   );
