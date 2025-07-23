@@ -10,14 +10,17 @@ const AdminDashboard = () => {
     approvedUsers,
     rejectedUsers,
     fetchUsers,
+    userdata 
+    
   } = useContext(content);
-
+  
   const [pendingProducts, setPendingProducts] = useState([]);
-
+  
   // Fetch both users and products when component mounts
   useEffect(() => {
     fetchUsers();
     fetchPendingProducts();
+   
   }, []);
 
   // Fetch Pending Products
@@ -71,7 +74,7 @@ const AdminDashboard = () => {
   return (
     <div className="admin-dashboard">
       <header className="dashboard-header">
-        <h2>Welcome, <span>Admin</span></h2>
+        <h2>Welcome, <span>{userdata?.Name}</span></h2>
         <p>Manage seller and product approvals efficiently</p>
         <div className="dashboard-summary">
           <span>Pending Sellers: {pendingUsers.length}</span>
@@ -89,8 +92,8 @@ const AdminDashboard = () => {
           {pendingUsers.map(user => (
             <div key={user._id} className="card">
               <div className="user-info">
-                <strong>{user.name}</strong>
-                <p>{user.email}</p>
+                <strong>{user.Name}</strong>
+                <p>{user.Email}</p>
                 <small>Registered on {new Date(user.createdAt).toLocaleString()}</small>
               </div>
               <div className="actions">
@@ -110,8 +113,8 @@ const AdminDashboard = () => {
           {[...approvedUsers, ...rejectedUsers].map(user => (
             <div key={user._id} className="card">
               <div className="user-info">
-                <strong>{user.name}</strong>
-                <p>{user.email}</p>
+                <strong>{user.Name}</strong>
+                <p>{user.Email}</p>
                 <small>Processed on {new Date(user.updatedAt).toLocaleString()}</small>
               </div>
               <div className={`status ${user.status}`}>
@@ -130,7 +133,7 @@ const AdminDashboard = () => {
           {pendingProducts.map(product => (
             <div key={product._id} className="card">
               <div className="product-info">
-                <strong>{product.name}</strong>
+                <strong>{product.Name}</strong>
                 <p>{product.description}</p>
                 <small>Uploaded on {new Date(product.createdAt).toLocaleString()}</small>
               </div>

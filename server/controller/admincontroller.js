@@ -16,19 +16,25 @@ export const adminlogin = (req, res) => {
 
 //get pending  product
  export const pendingproducts =async(req , res)=>{
-const products =await product.find({approved:false});
-return res.json({sucess: true , products});
+  try {
+  const products =await product.find({status : 'pending'});
+  return res.json({sucess: true , products});  
+  } catch (error) {
+    return res.json({success:false , message: error.message});
+    
+  }
+
  };
 
  //aprove product 
 
  export const approveproduct =async(req,res)=>{
 try {
-    const updatedproduct =await product.findByIdAndUpdate( req.params.id , {approved:true} ,{new:true});
+    const updatedproduct =await product.findByIdAndUpdate( req.params.id , {status:'approved'} ,{new:true});
 if (!updatedproduct) {
       return res.status(404).json({ success: false, message: "Product not found" });
     }
-    return res.status(200).json({ success: true, product: updated });
+    return res.status(200).json({ success: true, product: updatedproduct });
     
 } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
@@ -40,7 +46,7 @@ if (!updatedproduct) {
 //to delete the product when not approved
 export const rejectProduct = async (req, res) => {
   try {
-    const deleted = await product.findByIdAndDelete(req.params.id);
+    const deleted = await product.findByIdAndDelete(req.params.id , {status: 'rejected'} , {new:true});
     if (!deleted) {
       return res.status(404).json({ success: false, message: "Product not found" });
     }
