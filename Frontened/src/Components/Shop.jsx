@@ -1,13 +1,10 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Shop.css';
-import { Search, List, Grid3x3 } from 'lucide-react';
-import { RiDropdownList } from 'react-icons/ri';
-import { Heart, Star, DollarSign, ShoppingCart } from 'lucide-react';
-import { useCart } from "../context/CartContext";
+import { Search, List, Grid3x3, Filter, X } from 'lucide-react'; // Import Filter and X
+import { Heart, Star, IndianRupee, ShoppingCart } from 'lucide-react';
 
 
 const Dropdown = () => {
-
   const [SelectedCategory, setSelectedCategory] = useState("");
   return (
     <select value={SelectedCategory}
@@ -20,12 +17,14 @@ const Dropdown = () => {
     </select>
   );
 };
+
 const products = [
+  // Your products array remains unchanged...
   {
     name: "Handcrafted Ceramic Vase",
     maker: "by Priya Sharma",
     rating: "5(23)",
-    price: "89",
+    price: "8090",
     category: "Pottery & Ceramics",
     img: "",
   },
@@ -33,7 +32,7 @@ const products = [
     name: "Boho Clay Wall Hanging",
     maker: "by Aarav Gupta",
     rating: "4.5(12)",
-    price: "45",
+    price: "4050",
     category: "Home Decor",
     img: "https://i.etsystatic.com/9031043/r/il/d02877/6921340460/il_600x600.6921340460_a6wl.jpg",
   },
@@ -41,7 +40,7 @@ const products = [
     name: "Handwoven Cotton Scarf",
     maker: "by Ananya Patel",
     rating: "4.8(30)",
-    price: "35",
+    price: "3500",
     category: "Textiles",
     img: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/",
   },
@@ -57,7 +56,7 @@ const products = [
     name: "Hand Blown Glass Bowl",
     maker: "by Meera Nair",
     rating: "5(16)",
-    price: "78",
+    price: "7800",
     category: "Glassware",
     img: "https://m.media-amazon.com/images/I/91fMlDFJQHL._AC_SL1500_.jpg",
   },
@@ -65,7 +64,7 @@ const products = [
     name: "Silver Leaf Earrings",
     maker: "by Tanya Mehta",
     rating: "4.6(19)",
-    price: "29",
+    price: "2900",
     category: "Jewelry",
     img: "https://m.media-amazon.com/images/I/61OyToFNdUL._UY695_.jpg",
   },
@@ -73,7 +72,7 @@ const products = [
     name: "Abstract Acrylic Painting",
     maker: "by Rishi Khanna",
     rating: "4.7(22)",
-    price: "110",
+    price: "1100",
     category: "Paintings",
     img: "https://m.media-amazon.com/images/I/51Kk1eK1UCL._AC_UF1000,1000_QL80_.jpg",
   },
@@ -81,7 +80,7 @@ const products = [
     name: "Miniature Brass Sculpture",
     maker: "by Sneha Iyer",
     rating: "5(35)",
-    price: "95",
+    price: "9005",
     category: "Sculptures",
     img: "https://m.media-amazon.com/images/I/81knLe8ZUSL._AC_SL1500_.jpg",
   },
@@ -89,7 +88,7 @@ const products = [
     name: "Macramé Wall Hanging",
     maker: "by Kavya R.",
     rating: "4.9(11)",
-    price: "39",
+    price: "3900",
     category: "Home Decor",
     img: "https://m.media-amazon.com/images/I/71xfLOqDDsL._AC_SL1500_.jpg",
   },
@@ -97,7 +96,7 @@ const products = [
     name: "Clay Tea Set",
     maker: "by Arjun Malhotra",
     rating: "4.8(28)",
-    price: "65",
+    price: "6500",
     category: "Pottery & Ceramics",
     img: "https://m.media-amazon.com/images/I/71Y2OjD5JeL._AC_SL1500_.jpg",
   },
@@ -105,7 +104,7 @@ const products = [
     name: "Hand-painted Silk Scarf",
     maker: "by Nidhi Sen",
     rating: "4.7(14)",
-    price: "55",
+    price: "5500",
     category: "Textiles",
     img: "https://m.media-amazon.com/images/I/81ta9DWcErL._AC_SL1500_.jpg",
   },
@@ -113,7 +112,7 @@ const products = [
     name: "Wooden Lamp Base",
     maker: "by Ishaan Roy",
     rating: "4.6(20)",
-    price: "72",
+    price: "7200",
     category: "Woodworking",
     img: "https://m.media-amazon.com/images/I/61XMIzTbnhL._AC_SL1200_.jpg",
   },
@@ -121,7 +120,7 @@ const products = [
     name: "Colorful Glass Tumbler Set",
     maker: "by Mitali Das",
     rating: "5(10)",
-    price: "48",
+    price: "4800",
     category: "Glassware",
     img: "https://m.media-amazon.com/images/I/71iv9Ksf-ML._AC_SL1500_.jpg",
   },
@@ -129,7 +128,7 @@ const products = [
     name: "Ethnic Beaded Necklace",
     maker: "by Devika Singh",
     rating: "4.8(26)",
-    price: "38",
+    price: "3800",
     category: "Jewelry",
     img: "https://m.media-amazon.com/images/I/91gZwO6T5fL._AC_UY1100_.jpg",
   },
@@ -137,7 +136,7 @@ const products = [
     name: "Landscape Canvas Painting",
     maker: "by Manav Joshi",
     rating: "5(17)",
-    price: "102",
+    price: "1020",
     category: "Paintings",
     img: "https://m.media-amazon.com/images/I/81vAI3M7lCL._AC_UF1000,1000_QL80_.jpg",
   },
@@ -153,7 +152,7 @@ const products = [
     name: "Macrame Coasters Set",
     maker: "by Reema Kapoor",
     rating: "4.5(18)",
-    price: "22",
+    price: "2200",
     category: "Home Decor",
     img: "https://m.media-amazon.com/images/I/71N+mDZZfdL._AC_SL1500_.jpg",
   },
@@ -161,7 +160,7 @@ const products = [
     name: "Hand-painted Clay Mugs",
     maker: "by Mohit Jain",
     rating: "4.7(21)",
-    price: "42",
+    price: "4200",
     category: "Pottery & Ceramics",
     img: "https://m.media-amazon.com/images/I/81ZG8jABuML._AC_SL1500_.jpg",
   },
@@ -169,7 +168,7 @@ const products = [
     name: "Silk Table Runner",
     maker: "by Shreya T.",
     rating: "4.6(9)",
-    price: "33",
+    price: "333",
     category: "Textiles",
     img: "https://m.media-amazon.com/images/I/81I2HD60a9L._AC_SL1500_.jpg",
   },
@@ -177,29 +176,26 @@ const products = [
     name: "Wooden Spice Rack",
     maker: "by Karan Desai",
     rating: "4.8(16)",
-    price: "58",
+    price: "580",
     category: "Woodworking",
     img: "",
   },
 ];
 
-
-
 const ProductCard = ({ product }) => {
   const [liked, setLiked] = useState(false);
-  const { addToCart } = useCart(); // get function from context
 
   return (
     <div className="product-card">
       <div className="card-img-wrapper2">
-      <img src={product.img} alt={product.name} className="product-image" />
+        <img src={product.img} alt={product.name} className="product-image" />
         <button
           className={`likebtn ${liked ? 'liked' : ''}`}
           onClick={() => setLiked(!liked)}
         >
           <Heart size={18} fill={liked ? 'red' : 'none'} color={liked ? 'red' : '#333'} />
         </button>
-        <button className="cart-float-btn" onClick={addToCart}>
+        <button className="cart-float-btn" onClick={() => addToCart(product)}>
           <ShoppingCart size={18} /> Add to Cart
         </button>
       </div>
@@ -212,13 +208,14 @@ const ProductCard = ({ product }) => {
         </span>
         <div className="last-line">
           <span className="price">
-            <DollarSign size={18} /> {product.price}
+            <IndianRupee size={18} /> {product.price}
           </span>
         </div>
       </div>
     </div>
   );
 };
+
 const TrendingProducts = ({ products }) => {
   return (
     <section>
@@ -230,6 +227,7 @@ const TrendingProducts = ({ products }) => {
     </section>
   );
 };
+
 const Pagination = ({ productsPerPage, totalProducts, paginate, currentPage }) => {
   const pageNumbers = [];
   const totalPages = Math.ceil(totalProducts / productsPerPage);
@@ -277,15 +275,19 @@ const Pagination = ({ productsPerPage, totalProducts, paginate, currentPage }) =
   );
 };
 
-
-
-
-function FilterSidebar({ selectedCategories, setSelectedCategories, selectedRating, setSelectedRating, priceRange, setPriceRange }) {
+function FilterSidebar({
+  selectedCategories,
+  setSelectedCategories,
+  selectedRating,
+  setSelectedRating,
+  priceRange,
+  setPriceRange,
+  onClose, // Prop to close the sidebar on mobile
+}) {
   const categories = [
     'Pottery & Ceramics', 'Jewelry', 'Textiles', 'Woodworking',
     'Glassware', 'Paintings', 'Sculptures', 'Home Decor'
   ];
-
   const ratings = [5, 4, 3];
 
   const handleCategoryChange = (category) => {
@@ -296,28 +298,31 @@ function FilterSidebar({ selectedCategories, setSelectedCategories, selectedRati
     }
   };
 
-
   return (
     <div className="filter-box">
-      <h3 className="filter-title">Filters</h3>
+      <div className="filter-header">
+        <h3 className="filter-title">Filters</h3>
+        <button onClick={onClose} className="close-filter-btn">
+          <X size={20} />
+        </button>
+      </div>
 
       <div className="filter-section">
         <label className="section-title">Price Range</label>
         <input
           type="range"
           min="0"
-          max="500"
+          max="10000"
           value={priceRange}
           onChange={(e) => setPriceRange(e.target.value)}
         />
         <div className="price-range-labels">
-          <span>$0</span>
-          <span>${priceRange}</span>
+          <span>₹0</span>
+          <span>₹{priceRange}</span>
         </div>
       </div>
 
       <div className="filter-section">
-      
         <label className="section-title">Categories</label>
         {categories.map((category) => (
           <label key={category} className="checkbox-label">
@@ -344,151 +349,125 @@ function FilterSidebar({ selectedCategories, setSelectedCategories, selectedRati
             />
             {"⭐".repeat(r)} & up
           </label>
-          
-        ))}<label className="radio-label">
-        <input
-          type="radio"
-          name="rating"
-          value=""
-          checked={selectedRating === null}
-          onChange={() => setSelectedRating(null)}
-        />
-        None
-      </label>
+        ))}
+        <label className="radio-label">
+          <input
+            type="radio"
+            name="rating"
+            value=""
+            checked={selectedRating === null}
+            onChange={() => setSelectedRating(null)}
+          />
+          None
+        </label>
       </div>
     </div>
   );
 }
 
-
-
 const Shop = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const { addToCart } = useCart();
-  const productsPerPage = 6; // or 8 or any number you want per page
   
+  const productsPerPage = 8;
+
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedRating, setSelectedRating] = useState(null);
   const [priceRange, setPriceRange] = useState(500);
-  // const [viewType, setViewType] = useState("grid");
   const [Category, setCategory] = useState("All");
+  
+  // State to manage mobile filter visibility
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
+
   const filteredProducts = products.filter((p) => {
     const matchCategoryLine = Category === 'All' || p.category.includes(Category);
     const matchSidebarCategory = selectedCategories.length === 0 || selectedCategories.includes(p.category);
     const matchRating = !selectedRating || parseInt(p.rating[0]) >= selectedRating;
     const matchPrice = parseInt(p.price) <= priceRange;
-  
     return matchCategoryLine && matchSidebarCategory && matchRating && matchPrice;
   });
-  
+
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   useEffect(() => {
     setCurrentPage(1);
   }, [Category, selectedCategories, selectedRating, priceRange]);
-  
+
   return (
     <div className='Shop'>
       <div className="header">
         <h2>Shop Handmade Art</h2>
         <p>Discover unique, authentic pieces from talented artisans worldwide</p>
       </div>
+
       <div className="search-line">
-        <div className="search"><Search /><input type="search" placeholder='search products , artisans and categories...' id="search-bar" /></div>
+        <div className="search">
+          <Search />
+          <input type="search" placeholder='search products, artisans...' id="search-bar" />
+        </div>
+        <button className="filter-toggle-btn" onClick={() => setIsFilterVisible(true)}>
+          <Filter size={16} />
+          <span>Filters</span>
+        </button>
         <Dropdown />
-        {/* <div className="grid-line">
-          <div
-            className={`icon-button ${viewType === "grid" ? "active" : ""}`}
-            onClick={() => setViewType("grid")}
-          >
-            <Grid3x3 />
-          </div>
-          <div
-            className={`icon-button ${viewType === "list" ? "active" : ""}`}
-            onClick={() => setViewType("list")}
-          >
-            <List />
-          </div>
-        </div> */}
       </div>
+
       <div className="Category-line">
-        <div
-          className={`Category-button ${Category === "All" ? "active" : ""}`}
-          onClick={() => setCategory("All")}
-        >
+        <div className={`Category-button ${Category === "All" ? "active" : ""}`} onClick={() => setCategory("All")}>
           <button className='Category-btn'>All</button>
         </div>
-        <div
-          className={`Category-button ${Category === "Pottery & Ceramics" ? "active" : ""}`}
-          onClick={() => setCategory("Pottery & Ceramics")}
-
-        >
+        <div className={`Category-button ${Category === "Pottery & Ceramics" ? "active" : ""}`} onClick={() => setCategory("Pottery & Ceramics")}>
           <button className='Category-btn'>Pottery</button>
         </div>
-        <div
-          className={`Category-button ${Category === "Jewelry" ? "active" : ""}`}
-          onClick={() => setCategory("Jewelry")}
-        >
+        <div className={`Category-button ${Category === "Jewelry" ? "active" : ""}`} onClick={() => setCategory("Jewelry")}>
           <button className='Category-btn'>Jewelry</button>
         </div>
-        <div
-          className={`Category-button ${Category === "Textile" ? "active" : ""}`}
-          onClick={() => setCategory("Textile")}
-        >
+        <div className={`Category-button ${Category === "Textiles" ? "active" : ""}`} onClick={() => setCategory("Textiles")}>
           <button className='Category-btn'>Textile</button>
         </div>
-        <div
-          className={`Category-button ${Category === "Woodworking" ? "active" : ""}`}
-          onClick={() => setCategory("Woodworking")}
-        >
+        <div className={`Category-button ${Category === "Woodworking" ? "active" : ""}`} onClick={() => setCategory("Woodworking")}>
           <button className='Category-btn'>Woodworking</button>
         </div>
-        <div
-          className={`Category-button ${Category === "Glassware" ? "active" : ""}`}
-          onClick={() => setCategory("Glassware")}
-        >
+        <div className={`Category-button ${Category === "Glassware" ? "active" : ""}`} onClick={() => setCategory("Glassware")}>
           <button className='Category-btn'>Glasswares</button>
         </div>
-        <div
-          className={`Category-button ${Category === "Paintings" ? "active" : ""}`}
-          onClick={() => setCategory("Paintings")}
-        >
+        <div className={`Category-button ${Category === "Paintings" ? "active" : ""}`} onClick={() => setCategory("Paintings")}>
           <button className='Category-btn'>Paintings</button>
         </div>
-        <div
-          className={`Category-button ${Category === "Sculptures" ? "active" : ""}`}
-          onClick={() => setCategory("Sculptures")}
-        >
-          <button className='Category-btn' >Sculptures</button>
+        <div className={`Category-button ${Category === "Sculptures" ? "active" : ""}`} onClick={() => setCategory("Sculptures")}>
+          <button className='Category-btn'>Sculptures</button>
         </div>
       </div>
-      <div style={{ display: 'flex', gap: '24px' }}>
-        <FilterSidebar
-          selectedCategories={selectedCategories}
-          setSelectedCategories={setSelectedCategories}
-          selectedRating={selectedRating}
-          setSelectedRating={setSelectedRating}
-          priceRange={priceRange}
-          setPriceRange={setPriceRange}
-        />
 
-<div style={{ flex: 1 }}>
-  <TrendingProducts products={currentProducts} />
-  <Pagination
-    productsPerPage={productsPerPage}
-    totalProducts={filteredProducts.length}
-    paginate={paginate}
-    currentPage={currentPage}
-  />
-</div>
+      <div className="shop-main-content">
+        <div className={`filter-container ${isFilterVisible ? 'visible' : ''}`} onClick={() => setIsFilterVisible(false)}>
+            <div onClick={(e) => e.stopPropagation()}> {/* Prevents closing when clicking inside the sidebar */}
+                <FilterSidebar
+                    selectedCategories={selectedCategories}
+                    setSelectedCategories={setSelectedCategories}
+                    selectedRating={selectedRating}
+                    setSelectedRating={setSelectedRating}
+                    priceRange={priceRange}
+                    setPriceRange={setPriceRange}
+                    onClose={() => setIsFilterVisible(false)}
+                />
+            </div>
+        </div>
 
-
+        <div style={{ flex: 1 }}>
+          <TrendingProducts products={currentProducts} />
+          <Pagination
+            productsPerPage={productsPerPage}
+            totalProducts={filteredProducts.length}
+            paginate={paginate}
+            currentPage={currentPage}
+          />
+        </div>
       </div>
-
     </div>
   )
 }
 
-export default Shop
+export default Shop;

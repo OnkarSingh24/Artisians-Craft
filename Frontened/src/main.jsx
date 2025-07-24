@@ -4,8 +4,12 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './index.css'
 import App from './App.jsx'
-import { ContextProvider } from '../context.jsx';
-//import { CartProvider } from './context/CartContext.jsx'
+
+
+
+import { ContextProvider } from '../context.jsx'
+
+
 createRoot(document.getElementById('root')).render(
   
   <BrowserRouter>
@@ -13,7 +17,11 @@ createRoot(document.getElementById('root')).render(
     <ContextProvider>
    <App />
     </ContextProvider>
+
     
+
+   
+
     </BrowserRouter>
     
  
