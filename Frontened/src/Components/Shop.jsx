@@ -187,7 +187,7 @@ const products = [
 
 const ProductCard = ({ product }) => {
   const [liked, setLiked] = useState(false);
-  const { addToCart } = useCart(); // get function from context
+
 
   return (
     <div className="product-card">
@@ -364,7 +364,7 @@ function FilterSidebar({ selectedCategories, setSelectedCategories, selectedRati
 
 const Shop = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const { addToCart } = useCart();
+ 
   const productsPerPage = 6; // or 8 or any number you want per page
   
   const [selectedCategories, setSelectedCategories] = useState([]);
