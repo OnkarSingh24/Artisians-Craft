@@ -60,13 +60,13 @@ body {
 }
 
 .left-side h1 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.75rem;
 }
 
 .left-side p {
-  font-size: 1.125rem;
+  font-size: 1.1rem;
   color: var(--text-light);
-  margin: 1rem 0;
+  margin: 2rem 0;
   text-align: left;
 }
 
@@ -440,6 +440,11 @@ body {
       padding: 20px;
     }
   }
+    .left-side p1 {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
   
   @media (max-width: 480px) {
     .left-side {
@@ -447,12 +452,12 @@ body {
     }
   
     .top p {
-      font-size: 0.75rem;
+      font-size: 1rem;
       padding: 5px 12px;
     }
   
     .left-side p1 {
-      font-size: 1rem;
+      font-size: 2.5rem;
       margin-top: 1.5rem;
       margin-bottom: 2rem;
     }
