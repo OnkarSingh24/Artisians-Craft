@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import './Cart.css';
 
+
 const ErrorDisplay = ({ message, onRetry }) => (
   <div className="error-container">
     <AlertCircle size={48} color="#e53e3e" />
@@ -55,6 +56,7 @@ const OrderSummary = ({ subtotal, itemCount, onCheckout }) => {
         <span>₹{total.toFixed(2)}</span>
       </div>
       <button className="checkout-btn" onClick={onCheckout}>Proceed to Checkout</button>
+      <button className="clearcart-btn">onclick={handleclearcart} Clear cart</button>
       <div className="secure-info">
         <p><Lock size={14} /> Secure checkout</p>
         <p><Truck size={14} /> Enjoy Free Shipping On All Orders! 🚚</p>
@@ -96,7 +98,7 @@ export default function Cart() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`${backendurl}/api/cart`, { withCredentials: true })
+    axios.get(`${backendurl}/api/cart/getcart`, { withCredentials: true })
       .then(res => {
         if (res.data.success) {
           const transformed = res.data.cart.items.map(item => ({
@@ -118,16 +120,46 @@ export default function Cart() {
       });
   }, []);
 
-  const handleUpdateQuantity = (itemId, newQty) => {
+  const handleUpdateQuantity = async(itemId, newQty) => {
     if (newQty < 1) return handleRemoveItem(itemId);
-    setCartItems(prev =>
-      prev.map(item => item.id === itemId ? { ...item, quantity: newQty } : item)
-    );
+    try {
+      const res =await axios.post(`${backendurl}+/api/cart/update` ,{
+        productid: itemId ,
+        quantity :newQty
+      }, {withCredentials: true});
+if(res.data.success){
+     setCartItems(prev =>
+      prev.map(item => item.id === itemId ? { ...item, quantity: newQty } : item) );
+    }
+    } catch (error) {
+     console.log("failed to update cart" , error); 
+    }
+    
+    
   };
 
-  const handleRemoveItem = (itemId) => {
-    setCartItems(prev => prev.filter(item => item.id !== itemId));
+  const handleRemoveItem = async(itemId) => {
+
+    try {
+      const res =await axios.delete(`${backendurl}/api/cart/deleteitem/${itemId}`);
+      if(res.data.success){
+        setCartItems(prev => prev.filter(item => item.id !== itemId));
+      }
+    } catch (error) {
+     console.log("Failed to remove item" , error); 
+    }
+    
   };
+  const handleclearcart =async()=>{
+    try {
+      const res =await axios.delete(`${backendurl}/api/cart/clear`);
+      if(res.data.success){
+        setCartItems([]);
+      }
+    } catch (error) {
+     console.error("failed to clear cart" ,error); 
+    }
+  }
 
   const subtotal = useMemo(() =>
     cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
