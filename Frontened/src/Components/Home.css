@@ -60,7 +60,7 @@ body {
 }
 
 .left-side h1 {
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.7rem;
 }
 
 .left-side p {
@@ -74,7 +74,7 @@ body {
   display: flex;
   align-items: center;
   gap: 2rem;
-  margin: 1.5rem 0 5rem;
+  margin: 1.5rem 0.5rem;
 }
 
 .btn1 {
@@ -126,13 +126,14 @@ body {
   display: flex;
   justify-content: space-between;
   gap: 1.3rem;
-  padding-top: 1.2rem;
+  padding-top: 1rem;
   border-top: 2px solid #eee;
   max-width: 37.5rem;
   flex-wrap: wrap;
 }
 
 .stat-item {
+  margin-top: rem;
   text-align: center;
   flex: 1;
 }
@@ -442,7 +443,7 @@ body {
   }
     .left-side p1 {
       font-size: 1.2rem;
-      margin-top: 1rem;
+      margin-top: 0.2rem;
       margin-bottom: 2rem;
     }
   
@@ -452,13 +453,13 @@ body {
     }
   
     .top p {
-      font-size: 1rem;
+      font-size: 1.5rem;
       padding: 5px 12px;
     }
   
     .left-side p1 {
       font-size: 2.5rem;
-      margin-top: 1.5rem;
+      margin-top: 1rem;
       margin-bottom: 2rem;
     }
   
