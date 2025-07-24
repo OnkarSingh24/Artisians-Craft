@@ -206,9 +206,9 @@ body {
 
 .carousel-slide img {
   border-radius: var(--border-radius);
-  height: 18.75rem;
-  object-fit: cover;
-  width: 60%;
+  height: 20.75rem;
+  object-fit: fill;
+  width: 58%;
 }
 
 .badge {
@@ -542,8 +542,8 @@ body {
   }
   
   .artisan-image {
-    width: 100%;
-    height: 220px;
+    height: 200px;
+    width: 280px;
     object-fit: cover;
     background-color: #888;
     border-top-left-radius: 1rem;
