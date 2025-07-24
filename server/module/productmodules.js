@@ -5,7 +5,7 @@ price: {type: Number , required: true },
 category: {type: String, required: true },
 image: {type: String  },
 description: {type: String , required: true },
-sellerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+sellerId: { type: mongoose.Schema.Types.ObjectId, ref: 'user' },
 status: {
     type: String,
     enum: ['pending', 'approved', 'rejected'],

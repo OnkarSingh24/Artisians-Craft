@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { content } from "../../context";
+import { content } from "../../context.jsx";
 import {
   ShoppingBag, Trash2, Plus, Minus, ArrowLeft, Lock, Truck, AlertCircle
 } from 'lucide-react';
@@ -123,7 +123,7 @@ export default function Cart() {
   const handleUpdateQuantity = async(itemId, newQty) => {
     if (newQty < 1) return handleRemoveItem(itemId);
     try {
-      const res =await axios.post(`${backendurl}+/api/cart/update` ,{
+      const res =await axios.post(`${backendurl}/api/cart/update` ,{
         productid: itemId ,
         quantity :newQty
       }, {withCredentials: true});

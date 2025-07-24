@@ -8,7 +8,7 @@ const cartrouter =express.Router();
 cartrouter.post('/add', userauth , addtocart);
 cartrouter.get('/getcart', userauth , getcart);
 cartrouter.put('/update', userauth , updatecart);
-cartrouter.delete('/deleteitem', userauth , removecartitem);
+cartrouter.delete('/deleteitem/:id', userauth , removecartitem);
 cartrouter.delete('/clear', userauth , clearcart);
 
 export default cartrouter;
