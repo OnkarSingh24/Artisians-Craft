@@ -189,14 +189,14 @@ const Customers = ({ customer }) => (
   <div className="customer-card">
     <div className="upper">
       <div className="inverted-commas">< QuoteIcon size={30} /></div>
-      <div className="rating">{customer.rating}<StarIcon size={18} className='star'/> </div>
+      <div className="rating">{customer.rating}<StarIcon size={18} className='star' /> </div>
       <p>{customer.desc}</p>
     </div>
     <div className="customer-info">
       <div className="photo">{customer.photo}</div>
       <div className="name-location"><div className="customer-name">{customer.name}</div>
-      <div className="location"> {customer.location}</div>
-      
+        <div className="location"> {customer.location}</div>
+
       </div>
     </div>
   </div>
@@ -303,9 +303,23 @@ const Home = () => {
                 <Sparkles className="icon" /> Discover Authentic Handmade Art
               </p>
             </div>
-            <h1 style={{ fontSize: '50px', fontWeight: 'bold', lineHeight: '1' }}>
-              Where Artisans Meet Art Lovers
+            <h1 style={{
+              fontFamily: 'Kaushan Script',
+              fontSize: '60px',
+              fontWeight: 'bold',
+              lineHeight: '1',
+              color: '#391a36c4',
+            }}>
+              "Where <span style={{
+                color: 'hsl(15deg 74.78% 48%)',
+                textShadow: '0 0 1x hsl(15deg 74.78% 48%), 0 0 1x hsl(15deg 74.78% 48%)',
+              }}>Creativity</span> Breathes & <span style={{
+                color: 'hsl(15deg 74.78% 48%)',
+                textShadow: '0 0 1x hsl(15deg 74.78% 48%), 0 0 1x hsl(15deg 74.78% 48%)',
+              }}>Authenticity</span> Belongs."
             </h1>
+
+
             <p1>
               Discover unique, handcrafted treasures from talented artisans around the world.
               Each piece tells a story, crafted with passion and tradition.
@@ -318,7 +332,7 @@ const Home = () => {
                 </Link>
               </div>
               <div className="SellerBtn">
-                <Link to = '/registerasseller'><button>Become a Seller</button></Link>
+                <Link to='/registerasseller'><button>Become a Seller</button></Link>
               </div>
             </div>
 
@@ -359,75 +373,75 @@ const Home = () => {
       <FeaturedArtisans />
       <TrendingProducts />
       <CustomerReviews />
-       <footer className="footer">
-      <div className="footer-top">
-        <h2>Ready to Start Your Journey?</h2>
-        <p>
-          Whether you're looking for unique handmade pieces or want to share
-          your own creations, join our community of art lovers and talented artisans.
-        </p>
-        <div className="footer-buttons">
-          <Link to='/shop'className="btn_primary">
-            Start Shopping <span role="img" aria-label="cart">🛒</span>
-          </Link>
-          <Link to='/artisan' className="btn_secondary">
-            Join as Artisan <span role="img" aria-label="user">👤</span>
-          </Link>
-        </div>
-      </div>
-
-      <div className="footer-bottom">
-        <div className="footer-brand">
-          <div className="logo">CA</div>
-          <h3>CraftedArt</h3>
+      <footer className="footer">
+        <div className="footer-top">
+          <h2>Ready to Start Your Journey?</h2>
           <p>
-            Connecting artisans with art lovers worldwide through authentic,
-            handcrafted treasures.
+            Whether you're looking for unique handmade pieces or want to share
+            your own creations, join our community of art lovers and talented artisans.
           </p>
-          <button className="community-btn">🌱 Growing Community</button>
-        </div>
-
-        <div className="footer-links">
-          <div className="column">
-            <h4>Shop</h4>
-            <ul>
-              <li>All Products</li>
-              <li>Pottery</li>
-              <li>Jewelry</li>
-              <li>Textiles</li>
-            </ul>
-          </div>
-
-          <div className="column">
-            <h4>Support</h4>
-            <ul>
-              <li>Help Center</li>
-              <li>Shipping Info</li>
-              <li>Returns</li>
-              <li>Contact Us</li>
-            </ul>
-          </div>
-
-          <div className="column">
-            <h4>Company</h4>
-            <ul>
-              <li>About Us</li>
-              <li>Our Artisans</li>
-              <li>Blog</li>
-              <li>Careers</li>
-            </ul>
+          <div className="footer-buttons">
+            <Link to='/shop' className="btn_primary">
+              Start Shopping <span role="img" aria-label="cart">🛒</span>
+            </Link>
+            <Link to='/artisan' className="btn_secondary">
+              Join as Artisan <span role="img" aria-label="user">👤</span>
+            </Link>
           </div>
         </div>
-      </div>
 
-      <div className="footer-legal">
-        <p>© 2024 CraftedArt. All rights reserved.</p>
-        <div>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
+        <div className="footer-bottom">
+          <div className="footer-brand">
+            <div className="logo">CA</div>
+            <h3>CraftedArt</h3>
+            <p>
+              Connecting artisans with art lovers worldwide through authentic,
+              handcrafted treasures.
+            </p>
+            <button className="community-btn">🌱 Growing Community</button>
+          </div>
+
+          <div className="footer-links">
+            <div className="column">
+              <h4>Shop</h4>
+              <ul>
+                <li>All Products</li>
+                <li>Pottery</li>
+                <li>Jewelry</li>
+                <li>Textiles</li>
+              </ul>
+            </div>
+
+            <div className="column">
+              <h4>Support</h4>
+              <ul>
+                <li>Help Center</li>
+                <li>Shipping Info</li>
+                <li>Returns</li>
+                <li>Contact Us</li>
+              </ul>
+            </div>
+
+            <div className="column">
+              <h4>Company</h4>
+              <ul>
+                <li>About Us</li>
+                <li>Our Artisans</li>
+                <li>Blog</li>
+                <li>Careers</li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-    </footer>
+
+        <div className="footer-legal">
+          <p>© 2024 CraftedArt. All rights reserved.</p>
+          <div>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

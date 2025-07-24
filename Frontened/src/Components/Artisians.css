@@ -210,29 +210,57 @@
 
 .header {
   display: flex;
-  justify-content:space-between;
-  align-items: flex-end;
+  justify-content: space-between;
   flex-wrap: wrap;
   margin-bottom: 2rem;
   text-shadow: 2px 2px 4px #a0a0a0;
   font-weight: 500;
+  background-color:rgb(245, 248, 252);
+  
+  
 }
 
+.header {
+  position: relative;
+  background: rgb(245, 248, 252) !important;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.header::before,
+.header::after {
+  content: none !important;
+  background: none !important;
+  display: none !important;
+  flex-direction: column;
+  
+}
+
+.header * {
+  background: none !important;
+  text-align: start;
+  
+  
+  
+}
 .header > div {
   flex: 1;
-  text-align: left;
+  flex-direction: row;
 }
-
 .header h4 {
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
+  background-color:rgb(245, 248, 252);
+  
 }
 
 .header p {
   color: #555;
   font-size: 1rem;
   margin: 0;
+  background-color:rgb(245, 248, 252);
 }
 
 .filter-btn {
@@ -245,6 +273,7 @@
   align-items: center;
   gap: 6px;
   font-weight: 500;
+  
 }
 
 .cards {

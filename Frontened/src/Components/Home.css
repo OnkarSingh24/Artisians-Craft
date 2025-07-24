@@ -12,23 +12,24 @@
 
 body {
   margin: 0;
-  padding-top: 4rem;
+  padding-top: 2rem;
+  padding-bottom: 1.25rem;
   width: 100%;
   font-family: sans-serif;
 }
 
 .background-pattern {
-  background: linear-gradient(to right, hsl(25, 100%, 95%), #ffffff);
+  background: linear-gradient(to bottom, hsl(35, 100%, 97%), rgb(245, 248, 252));
   background-color: hsl(25.26deg 33.33% 88.82%);
-  height: 37.5rem;
+  height: 37rem;
 }
 
 .contents {
   display: flex;
   flex-wrap: wrap;
   padding: 3rem 4rem;
-  gap: 2rem;
-  line-height: 1.6;
+  gap: 1rem;
+  line-height: 1.8;
 }
 
 .left-side {
@@ -50,7 +51,7 @@ body {
   font-size: 0.5rem;
   padding: 0.375rem 1rem;
   width: fit-content;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .icon {
@@ -59,13 +60,13 @@ body {
 }
 
 .left-side h1 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.75rem;
 }
 
 .left-side p {
-  font-size: 1.125rem;
+  font-size: 1.1rem;
   color: var(--text-light);
-  margin: 1rem 0;
+  margin: 2rem 0;
   text-align: left;
 }
 
@@ -124,8 +125,8 @@ body {
 .stats {
   display: flex;
   justify-content: space-between;
-  gap: 2rem;
-  padding-top: 1.25rem;
+  gap: 1.3rem;
+  padding-top: 1.2rem;
   border-top: 2px solid #eee;
   max-width: 37.5rem;
   flex-wrap: wrap;
@@ -137,7 +138,7 @@ body {
 }
 
 .stat-item h3 {
-  font-size: var(--font-lg);
+  font-size: 2rem;
   color: var(--primary-color);
   font-weight: bold;
   margin: 0;
@@ -241,17 +242,18 @@ body {
 
 /* Explore Categories Section */
 .ExploreCategories {
-  background-color: hsl(60deg 14.29% 95.88%);
-  padding: 64px;
+  background: linear-gradient(to bottom,  rgb(245, 248, 252) , hsl(20, 100%, 98%));
+  background-color: hsl(25.26deg 33.33% 88.82%);
+  padding-bottom: 1.3rem;
   line-height: 1.5;
 }
 
 .ExploreCategories h2 {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2.6rem;
   font-weight: bold;
   color: #1a1a1a;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .ExploreCategories p {
@@ -438,6 +440,11 @@ body {
       padding: 20px;
     }
   }
+    .left-side p1 {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
   
   @media (max-width: 480px) {
     .left-side {
@@ -445,12 +452,12 @@ body {
     }
   
     .top p {
-      font-size: 0.75rem;
+      font-size: 1rem;
       padding: 5px 12px;
     }
   
     .left-side p1 {
-      font-size: 1rem;
+      font-size: 2.5rem;
       margin-top: 1.5rem;
       margin-bottom: 2rem;
     }
@@ -491,15 +498,15 @@ body {
 
   .featured-artisans {
     padding: 4rem 2rem;
-    background-color: white;
+    background-color: rgb(245, 248, 252);
   }
   
   .featured-artisans h2 {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2.6rem;
     font-weight: bold;
     color: #1a1a1a;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.1rem;
   }
   
   .featured-artisans .subheading {
@@ -635,7 +642,8 @@ body {
     .artisan-list {
       flex-direction: column;
       align-items: center;
-      padding: 2rem 1rem;
+      padding: 1.8rem 1rem;
+      
     }
   
     .artisan-card {
@@ -919,7 +927,7 @@ body {
 .Customer-Reviews {
   padding: 3rem 1rem;
   width: 100%;
-  background-color: #fff;
+  background-color: #f5f0f0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1050,7 +1058,6 @@ body {
   background-color: #fff;
   color: #333;
   width: 100%;
-  padding-top: 40px;
   border-top: 1px solid #eee;
 }
 
@@ -1170,6 +1177,7 @@ body {
 .footer-brand {
   flex: 1 1 250px;
   max-width: 300px;
+  margin-left: 75px;
 }
 
 .logo {
