@@ -1,32 +1,37 @@
-
-body{
+body {
   padding-top: 64px;
-  width:100%;
+  width: 100%;
 }
-.Shop{
+
+.Shop {
   margin: 10px 10px;
   background-color: rgb(245, 248, 252);
 }
-.header{
+
+.header {
   background: linear-gradient(to bottom, hsl(25deg 100% 95%), rgb(245, 248, 252));
   display: flex;
   flex-direction: column;
   text-shadow: none;
 }
-.header h2{
+
+.header h2 {
   font-size: 1.875rem;
   line-height: 2.25rem;
   font-weight: 700;
   padding-top: 15px;
+  margin-left: 1rem;
   margin-bottom: 0.5rem;
 }
-.header p{
-    color: hsl(25 10% 55%);
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-   
+
+.header p {
+  color: hsl(25 10% 55%);
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-left: 1rem;
 }
+
 .search-line {
   display: flex;
   align-items: center;
@@ -37,7 +42,6 @@ body{
   margin-bottom: 20px;
 }
 
-/* Search input with icon */
 .search {
   display: flex;
   align-items: center;
@@ -46,7 +50,7 @@ body{
   padding: 8px 14px;
   flex: 1;
   min-width: 250px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .search input {
@@ -58,7 +62,6 @@ body{
   background-color: transparent;
 }
 
-/* Dropdown styling */
 select {
   padding: 8px 12px;
   font-size: 14px;
@@ -68,38 +71,20 @@ select {
   min-width: 160px;
 }
 
-/* Grid/List icon toggle */
-.grid-line {
-  display: flex;
-  
+/* New button for toggling filters on mobile */
+.filter-toggle-btn {
+  display: none; /* Hidden on desktop */
   align-items: center;
-}
-
-.icon-button {
-  padding: 6px 8px;
-  border-radius: 6px;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #fff;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
-  transition:  ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #333;
-  border: 1px solid transparent;
 }
 
-.icon-button:hover {
-  background-color: #f0f0f0;
-}
-
-/* Highlight selected icon */
-.icon-button.active {
-  background-color: #e65b2c;
-  color: white;
-  box-shadow: 0 0 8px rgba(230, 91, 44, 0.6);
-  border-color: #e65b2c;
-}
-
-/* Category */
 .Category-line {
   display: flex;
   flex-wrap: nowrap;
@@ -122,7 +107,6 @@ select {
   flex: 1 1 0;
   background-color: hsl(35deg 15% 92% / 50%);
   border-radius: 30px;
-  border-radius: 0; /* we'll round inner button instead */
   transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
   display: flex;
   justify-content: center;
@@ -148,36 +132,45 @@ select {
   width: 100%;
 }
 
-/* Mobile Adjustments */
-@media screen and (max-width: 600px) {
-  .Category-btn {
-    padding: 10px 0;
-    font-size: 13px;
-  }
+.shop-main-content {
+  display: flex;
+  gap: 24px;
 }
 
-
-/* Filter  */
 .filter-box {
   background-color: white;
-  padding : 15px;
-  padding-top: 25px;
-  padding-left: 15px;
+  padding: 25px 15px 15px 15px;
   border-radius: 18px;
-  height: 580px;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.06);
-  width: 24%;
+  width: 280px; /* Using a fixed width can be more stable */
   font-family: "Segoe UI", sans-serif;
   font-size: 14px;
+  flex-shrink: 0; /* Prevents the sidebar from shrinking */
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .filter-title {
   font-size: 18px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin: 0;
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.close-filter-btn {
+  display: none; /* Hidden on desktop */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #555;
 }
 
 .filter-section {
@@ -205,103 +198,70 @@ select {
   gap: 6px;
   margin: 6px 0;
   cursor: pointer;
+  width: 100%;
 }
 
-
-.Trending-Products {
-  text-align: center;
-  /* padding: 4rem 2rem; */
-  background-color: #f6f6f3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.Trending-Products h2 {
-  margin-top: 1rem;
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #1a1a1a;
-  margin-bottom: 0.5rem;
-} 
-
-.Trending-Products p {
-  font-size: 1.125rem;
-  color: #666;
-  margin-bottom: 3rem;
+/* --- PRODUCT GRID AND CARD STYLES --- */
+.product-list {
+  display: grid;
+  /* Responsive columns that adjust to screen width */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding-top: 0.8rem;
 }
 
 .product-card {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  padding: 1.5rem;
+  gap: 1rem;
+  padding: 1rem;
   text-align: left;
-  justify-content: flex-start;
-  height: auto;
-  max-width: 95%;
   background-color: #fff;
   border-radius: 1rem;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-
-  box-sizing: border-box;
-  align-items: flex-start;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-.product-image {
-  width: 100%;
-  height: 220px; 
-  object-fit: cover; 
-  border-radius: 8px;
-}
-.product-list {
-  display: flex;
-  justify-content: center;
-  
-  /* width: 100%; */
-  padding-top: 0.8rem;
-  gap: 2rem;
-}
-
 
 .product-card:hover {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
 }
-
-.product-image {
-  width: 100%;
-  height: 350px;
-  object-fit:fill;
-  border-radius: 8px;
-}
-
 
 .card-img-wrapper2 {
   position: relative;
   overflow: hidden;
   width: 100%;
+  border-radius: 8px;
+}
+
+.product-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
 }
 
 .likebtn {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: white;
-  border: none;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  border: 1px solid #eee;
   border-radius: 50%;
   padding: 6px;
   cursor: pointer;
-  display: none;
+  display: flex;
   z-index: 2;
+  opacity: 0;
   transition: all 0.3s ease;
 }
 
 .cart-float-btn {
   position: absolute;
   bottom: 10px;
-  right: 10px;
+  left: 50%;
+  transform: translateX(-50%);
   color: white;
   background: #ea572a;
   border: 1px solid #ea572a;
@@ -309,36 +269,32 @@ select {
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
   font-weight: 500;
-  display: none;
+  display: flex;
   align-items: center;
   gap: 6px;
   cursor: pointer;
-  transition: all 0.3s ease;
   z-index: 2;
+  opacity: 0;
+  transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
-.card-img-wrapper2:hover .likebtn,
-.card-img-wrapper2:hover .cart-float-btn {
-  display: flex;
+.product-card:hover .likebtn,
+.product-card:hover .cart-float-btn {
+  opacity: 1;
 }
-
-
-/* .artisan-card-body {
-  padding: 1.5rem;
-  text-align: left;
-} */
 
 .name {
   font-size: 1.125rem;
   font-weight: bold;
   color: #1a1a1a;
   margin-bottom: 0.25rem;
-  text-align: start;
 }
 
 .maker {
   color: #888;
   margin-bottom: 1rem;
+  font-size: 0.9rem;
 }
 
 .rating {
@@ -352,31 +308,20 @@ select {
 
 .last-line {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  font-size: 0.875rem;
-  color: #444;
-  margin-top: 1rem;
+  align-items: center;
+  margin-top: auto; /* Pushes price to the bottom */
 }
-.price{
+
+.price {
   display: flex;
-  
   align-items: center;
   font-weight: 700;
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
 
-.rating {
-  display: flex;
-  align-items: center;
-  color: #f59e0b;
-  font-weight: bold;
-  gap: 0.25rem;
-}
-
-
-
+/* --- PAGINATION --- */
 .pagination {
   display: flex;
   justify-content: center;
@@ -407,38 +352,131 @@ select {
 }
 
 .page-btn:disabled {
-  background-color: #ccc;
+  background-color: #e0e0e0;
+  color: #999;
   cursor: not-allowed;
 }
-/* Add these new styles to your Cart.css file */
 
-.loading-container, .error-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #6b7280;
-  gap: 1rem;
-}
-
-.error-container {
-    color: #ef4444; /* red-500 */
-    background-color: #fee2e2; /* red-100 */
-    border: 1px solid #fca5a5; /* red-300 */
-    padding: 1rem 1.5rem;
-    border-radius: 0.5rem;
-    font-weight: 500;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
+/* ----------- Mobile Styles ----------- */
+@media (max-width: 768px) {
+  .header h2 {
+    font-size: 1.5rem;
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
-.loading-spinner-icon {
-  animation: spin 1s linear infinite;
+  /* --- Mobile Filter Drawer Logic --- */
+  .filter-toggle-btn {
+    display: flex; /* Show the button on mobile */
+  }
+
+  .filter-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .filter-container.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .filter-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 85%;
+    max-width: 320px;
+    height: 100%;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: none;
+    border-radius: 0;
+    z-index: 101;
+    overflow-y: auto;
+  }
+
+  .filter-container.visible .filter-box {
+    transform: translateX(0); /* Slide in */
+  }
+
+  .close-filter-btn {
+    display: block; /* Show close button on mobile */
+  }
+
+  /* --- Main Content and Product Grid on Mobile --- */
+  .shop-main-content {
+    flex-direction: column;
+  }
+  
+  .filter-box {
+    /* On desktop this is handled by the container, but on mobile it's part of the drawer */
+    width: 85%;
+  }
+
+  .product-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .product-image {
+    height: 180px;
+  }
+  
+  .name {
+      font-size: 0.9rem;
+  }
+
+  .maker, .rating {
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+  }
+
+  .price {
+      font-size: 1rem;
+  }
+
+  /* Make buttons always visible on mobile for better UX */
+  .cart-float-btn,
+  .likebtn {
+    opacity: 1;
+  }
+
+  .cart-float-btn {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+    bottom: 8px;
+  }
+  
+  .likebtn{
+      background: white;
+  }
+
+  /* --- Other Mobile Adjustments --- */
+  .search-line {
+    flex-wrap: wrap;
+  }
+
+  .search {
+    width: 100%;
+    order: 2; /* Move search bar to the next line */
+  }
+
+  .filter-toggle-btn {
+    order: 0;
+  }
+
+  select {
+    order: 1;
+  }
+
+  .page-btn {
+    padding: 4px 10px;
+    font-size: 0.85rem;
+  }
 }
