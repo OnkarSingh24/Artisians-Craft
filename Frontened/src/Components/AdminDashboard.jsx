@@ -10,7 +10,8 @@ const AdminDashboard = () => {
     approvedUsers,
     rejectedUsers,
     fetchUsers,
-    userdata 
+    userdata ,
+    setuserdata
     
   } = useContext(content);
   
@@ -20,6 +21,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     fetchUsers();
     fetchPendingProducts();
+    //fetchadmindata();
    
   }, []);
 
@@ -74,7 +76,7 @@ const AdminDashboard = () => {
   return (
     <div className="admin-dashboard">
       <header className="dashboard-header">
-        <h2>Welcome, <span>{userdata?.Name}</span></h2>
+        <h2>Welcome, <span>{userdata?.Name} || Admin</span></h2>
         <p>Manage seller and product approvals efficiently</p>
         <div className="dashboard-summary">
           <span>Pending Sellers: {pendingUsers.length}</span>

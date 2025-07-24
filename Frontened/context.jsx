@@ -9,10 +9,11 @@ export const ContextProvider = (props)=>{
    const[userdata , setuserdata ] = useState(null)
    const[isregister , setisregister ] = useState(false)
    const[isregisterasseller , setisregisterasseller ] = useState(false)
-   const [pendingUsers, setPendingUsers] = useState([]);
-  const [approvedUsers, setApprovedUsers] = useState([]);
-  const [rejectedUsers, setRejectedUsers] = useState([]);
-const [sellerData, setSellerData] = useState(null);
+
+    const [pendingUsers, setPendingUsers] = useState([]);
+    const [approvedUsers, setApprovedUsers] = useState([]);
+    const [rejectedUsers, setRejectedUsers] = useState([]);
+    const [sellerData, setSellerData] = useState(null);
 
   const fetchUsers = async () => {
     try {
@@ -30,7 +31,7 @@ const [sellerData, setSellerData] = useState(null);
     try {
       const {data} =await axios.get(`${backendurl}/api/authroutes/registerasseller` , {withCredentials:true});
     setSellerData(data.user);
-     setuserdata(data.user);
+    setuserdata(data.user);
     } catch (error) {
       console.log("failed to load user");
       
