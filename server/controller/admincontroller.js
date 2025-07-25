@@ -1,57 +1,33 @@
-import product from '../module/productmodules.js'
-import jwt from 'jsonwebtoken';
+import productmodel from "../module/productmodules.js";
+import usermodel from "../module/usermodule.js";
 
-const adminemail = "sharmakshita42@gmail.com";
-const adminpassword ="akshita";
-
-//adminlogin
-export const adminlogin = (req, res) => {
-  const { email, password } = req.body;
-  if (email === adminemail && password === adminpassword) {
-    const token = jwt.sign({ role: 'admin' }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    return res.json({ success: true, token });
-  }
-  return res.status(401).json({ success: false, message: 'Invalid admin credentials' });
-};
-
-//get pending  product
- export const pendingproducts =async(req , res)=>{
+export const getAdminInfo = async (req, res) => {
   try {
-  const products =await product.find({status : 'pending'});
-  return res.json({sucess: true , products});  
-  } catch (error) {
-    return res.json({success:false , message: error.message});
-    
-  }
+    // Fetch the admin from the database
+    const admin = await usermodel.findOne({ role: "admin" }).select("Name Email role"); // exclude sensitive fields
 
- };
-
- //aprove product 
-
- export const approveproduct =async(req,res)=>{
-try {
-    const updatedproduct =await product.findByIdAndUpdate( req.params.id , {status:'approved'} ,{new:true});
-if (!updatedproduct) {
-      return res.status(404).json({ success: false, message: "Product not found" });
+    if (!admin) {
+      return res.status(404).json({ success: false, message: "Admin not found" });
     }
-    return res.status(200).json({ success: true, product: updatedproduct });
-    
-} catch (error) {
-    return res.status(500).json({ success: false, message: error.message });
-    
-}
-
-};
-
-//to delete the product when not approved
-export const rejectProduct = async (req, res) => {
-  try {
-    const deleted = await product.findByIdAndDelete(req.params.id , {status: 'rejected'} , {new:true});
-    if (!deleted) {
-      return res.status(404).json({ success: false, message: "Product not found" });
-    }
-    return res.status(200).json({ success: true, message: "Product rejected and deleted" });
+    res.status(200).json({ success: true, admin });
   } catch (err) {
-    return res.status(500).json({ success: false, message: err.message });
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+export const getAllProductStatus = async (req, res) => {
+  try {
+    const pending = await productmodel.find({ status: "pending" });
+    const approved = await productmodel.find({ status: "approved" });
+    const rejected = await productmodel.find({ status: "rejected" });
+
+    res.status(200).json({
+      success: true,
+      pending,
+      approved,
+      rejected
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
   }
 };

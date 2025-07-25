@@ -1,44 +1,26 @@
-import usermodel from '../module/usermodule.js';
+import user from "../module/usermodule.js";
 
-// Get all sellers
-export const getSellers = async (req, res) => {
-  try {
-    const sellers = await usermodel.find({ role: 'seller' });
-    res.json(sellers);
-  } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
-  }
-};
-
-// Approve seller
 export const approveSeller = async (req, res) => {
   try {
-    const updated = await usermodel.findByIdAndUpdate(
+    const user = await user.findByIdAndUpdate(
       req.params.id,
-      { status: 'approved' },
+      { status: "approved", verifiedseller: true },
       { new: true }
     );
-    if (!updated) {
-      return res.status(404).json({ success: false, message: 'Seller not found' });
-    }
-    res.status(200).json({ success: true, seller: updated });
+    res.status(200).json({ success: true, message: "Seller approved", user });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
 };
 
-// Reject seller
 export const rejectSeller = async (req, res) => {
   try {
-    const updated = await usermodel.findByIdAndUpdate(
+    const user = await user.findByIdAndUpdate(
       req.params.id,
-      { status: 'rejected' },
+      { status: "rejected", verifiedseller: false },
       { new: true }
     );
-    if (!updated) {
-      return res.status(404).json({ success: false, message: 'Seller not found' });
-    }
-    res.status(200).json({ success: true, seller: updated });
+    res.status(200).json({ success: true, message: "Seller rejected", user });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }

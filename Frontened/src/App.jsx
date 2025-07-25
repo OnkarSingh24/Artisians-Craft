@@ -15,6 +15,7 @@ import ArtisanDashboard from "./Components/ArtisanDashboard";
 import Checkout from "./Components/Checkout"
 import { NavProvider } from './Components/NavContext';
 import './App.css';
+import Dashboard from './Components/Dashboard';
 
 
 function AppContent() {
@@ -50,7 +51,7 @@ function AppContent() {
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/artisandirectory" element={<ArtisanDirectory />} />
         <Route path="/Register" element={<Register />} />
-        <Route path="/dashboard" element={<Checkout />} /> {/* ✅ Dashboard opens Checkout */}
+        <Route path="/dashboard" element={<Dashboard />} /> {/* ✅ Dashboard opens Checkout */}
         <Route path="/cart" element={<Cart />} />
         <Route path="/artisanDashboard" element={<ArtisanDashboard />} />
         <Route path="/adminDashboard" element={<AdminDashboard />} />

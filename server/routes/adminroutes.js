@@ -1,15 +1,10 @@
-import express, { Router } from 'express';
-import { approveproduct, pendingproducts, rejectProduct , adminlogin } from '../controller/admincontroller.js';
+import express from "express";
+import { getAdminInfo, getAllProductStatus } from "../controller/admincontroller.js";
+import { verifyAdmin } from "../middleware/userauth.js";
 
+const adminroutes = express.Router();
 
-import { verifyAdmin }  from '../middleware/userauth.js';
-
-
-const adminroutes =express.Router();
-adminroutes.post('/adminlogin' , adminlogin);   
-adminroutes.get('/pendingproducts' ,verifyAdmin, pendingproducts);
-adminroutes.put('/approveproducts',verifyAdmin , approveproduct);
-adminroutes.delete('/rejectproduct' ,verifyAdmin, rejectProduct);
+adminroutes.get("/admininfo", verifyAdmin, getAdminInfo);
+adminroutes.get("/productstatus", verifyAdmin, getAllProductStatus);
 
 export default adminroutes;
- 
