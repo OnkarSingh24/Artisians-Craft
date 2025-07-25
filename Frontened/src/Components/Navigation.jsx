@@ -3,6 +3,7 @@ import { Search, Heart, ShoppingCart, User, Menu, X } from 'lucide-react';
 import './navigation.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { NavContext, NavProvider } from './NavContext';
+
 const Navigation = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
@@ -26,10 +27,7 @@ const Navigation = () => {
     closeSidebar();
   };
 
-  const handleDashboardClick = () => {
-    navigate('/dashboard');
-    closeSidebar();
-  };
+  // Removed the handleDashboardClick function as it is no longer needed for the main nav link.
 
   return (
     <nav className="navigation">
@@ -47,7 +45,8 @@ const Navigation = () => {
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/shop" className="nav-link">Shop</Link> 
           <Link to="/artisans" className="nav-link">Artisans</Link>
-          <span className="nav-link" onClick={handleDashboardClick}>Dashboard</span>
+          {/* Changed Dashboard to About */}
+          <Link to="/about" className="nav-link">About</Link>
         </div>
 
         <div className="search-container desktop-only">
@@ -62,7 +61,7 @@ const Navigation = () => {
           <button className="icon-btn" onClick={handleCartClick}><ShoppingCart size={20} /></button>
 
           {user ? (
-            <button className="icon-btn" onClick={handleDashboardClick} title={user.email}>
+            <button className="icon-btn" title={user.email}>
               <User size={20} />
             </button>
           ) : (
@@ -79,12 +78,11 @@ const Navigation = () => {
         <Link to="/" className="nav-link" onClick={closeSidebar}>Home</Link>
         <Link to="/shop" className="nav-link" onClick={closeSidebar}>Shop</Link>
         <Link to="/artisans" className="nav-link" onClick={closeSidebar}>Artisans</Link>
-        <Link to="/dashboard" className="nav-link" onClick={closeSidebar}>Dashboard</Link>
-        <Link to="/orders" className="nav-link" onClick={closeSidebar}>Order History</Link>
         <Link to="/about" className="nav-link" onClick={closeSidebar}>About</Link>
-
+        <Link to="/orders" className="nav-link" onClick={closeSidebar}>Order History</Link>
+        
         {user ? (
-          <button className="sign-in-btn mobile-only" onClick={handleDashboardClick}>
+          <button className="sign-in-btn mobile-only">
             <User size={18} /><span>Dashboard</span>
           </button>
         ) : (
