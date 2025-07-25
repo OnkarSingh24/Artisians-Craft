@@ -10,23 +10,21 @@ import {
   MapPin,
   Search,
   Filter,
-  CircleDollarSign,
   LineChart,
   Users as UsersIcon
 } from 'lucide-react';
 
 const artisans = [
   {
-    name: 'Jasus Sharma',
+    name: 'Elena Rodriguez',
     craft: 'Ceramic Pottery',
-    location: 'Jalandhar, Punjab',
+    location: 'Santa Fe, New Mexico, USA',
     years: 15,
     rating: 4.9,
     products: 127,
     followers: 2300,
     awards: 7,
-    verified: true,
-    img : "https://i.pinimg.com/736x/6b/b6/d0/6bb6d094147301f3ccce198b6d6179bc.jpg",
+    verified: false,
     featured: true
   },
   {
@@ -39,8 +37,7 @@ const artisans = [
     followers: 230,
     awards: 2,
     verified: true,
-    img : 'https://i.pinimg.com/736x/a6/90/6f/a6906fde96ec3328c4078150233279da.jpg',
-    featured: true
+    featured: false
   },
   {
     name: 'Marcus Chen',
@@ -52,7 +49,6 @@ const artisans = [
     followers: 1800,
     awards: 5,
     verified: true,
-    img : 'https://i.pinimg.com/736x/be/c0/a1/bec0a1697ccfdcd745e33368645756a8.jpg',
     featured: true
   },
   {
@@ -65,7 +61,18 @@ const artisans = [
     followers: 3100,
     awards: 4,
     verified: true,
-    img : 'https://i.pinimg.com/736x/4b/f6/63/4bf6633b4e8a98201805dddb78de559b.jpg',
+    featured: false
+  },
+  {
+    name: 'Elena Rodriguez',
+    craft: 'Ceramic Pottery',
+    location: 'Santa Fe, New Mexico, USA',
+    years: 15,
+    rating: 4.9,
+    products: 127,
+    followers: 2300,
+    awards: 7,
+    verified: false,
     featured: true
   },
   {
@@ -78,7 +85,18 @@ const artisans = [
     followers: 2300,
     awards: 7,
     verified: true,
-    img : 'https://i.pinimg.com/1200x/d8/cd/7a/d8cd7afee0b6fb4fd492f6686f59da33.jpg',
+    featured: false
+  },
+  {
+    name: 'Elena Rodriguez',
+    craft: 'Ceramic Pottery',
+    location: 'Santa Fe, New Mexico, USA',
+    years: 15,
+    rating: 4.9,
+    products: 127,
+    followers: 2300,
+    awards: 7,
+    verified: true,
     featured: true
   },
   {
@@ -91,35 +109,8 @@ const artisans = [
     followers: 2300,
     awards: 7,
     verified: true,
-    img : 'https://i.pinimg.com/736x/6a/5a/ad/6a5aadd9194686d1a1553c7f336ef0fd.jpg',
     featured: true
-  },
-  {
-    name: 'Elena Rodriguez',
-    craft: 'Ceramic Pottery',
-    location: 'Santa Fe, New Mexico, USA',
-    years: 15,
-    rating: 4.9,
-    products: 127,
-    followers: 2300,
-    toards: 7,
-    verified: true,
-    img : 'https://i.pinimg.com/736x/ae/dd/53/aedd537c80e54e3f2dbc482ed43cc5f1.jpg',
-    featured: true
-  },
-  {
-    name: 'Elena Rodriguez',
-    craft: 'Ceramic Pottery',
-    location: 'Santa Fe, New Mexico, USA',
-    years: 15,
-    rating: 4.9,
-    products: 127,
-    followers: 2300,
-    awards: 7,
-    verified: true,
-    img : 'https://i.pinimg.com/736x/bf/9b/6c/bf9b6ca3f1ff282886d1eb5de535b32d.jpg',
-    featured: true
-  },
+  }
 ];
 
 const Artisians = () => {
@@ -127,7 +118,33 @@ const Artisians = () => {
   const [showAll, setShowAll] = useState(false);
 
   const filters = ["All", "Featured", "Verified", "Newest", "Top Rated", "Most Products"];
-  const visibleArtisans = showAll ? artisans : artisans.slice(0, 4);
+
+  const getFilteredArtisans = () => {
+    let filtered = [...artisans];
+    switch (activeTab) {
+      case "Featured":
+        filtered = filtered.filter((a) => a.featured);
+        break;
+      case "Verified":
+        filtered = filtered.filter((a) => a.verified);
+        break;
+      case "Newest":
+        filtered = filtered.sort((a, b) => a.years - b.years);
+        break;
+      case "Top Rated":
+        filtered = filtered.sort((a, b) => b.rating - a.rating);
+        break;
+      case "Most Products":
+        filtered = filtered.sort((a, b) => b.products - a.products);
+        break;
+      case "All":
+      default:
+        break;
+    }
+    return showAll ? filtered : filtered.slice(0, 4);
+  };
+
+  const visibleArtisans = getFilteredArtisans();
 
   const handleViewProfile = (artisan) => {
     console.log(`View profile for: ${artisan.name}`);
@@ -135,7 +152,7 @@ const Artisians = () => {
 
   return (
     <div className='artisians'>
-      <div className="intro-section">
+      <div className='intro-section'>
         <div className='top-button'>
           ✨ <span>Meet Our Artisans</span>
         </div>
@@ -152,31 +169,10 @@ const Artisians = () => {
       </div>
 
       <div className='stats-section'>
-        <div className='stat-box'>
-          <div className="icon-box"><Users color="#ea572a" size={24} /></div>
-          <h2>1,200+</h2>
-          <p>Active Artisans</p>
-        </div>
-        <div className='stat-box'>
-          <div className='icon-box'><Globe color="#ea572a" size={24} /></div>
-          <h2>45+</h2>
-          <p>Countries</p>
-        </div>
-        <div className='stat-box'>
-          <div className='icon-box'><Globe color="#ea572a" size={24} /></div>
-          <h2>45+</h2>
-          <p>Countries</p>
-        </div>
-        <div className='stat-box'>
-          <div className='icon-box'><Award color="#ea572a" size={24} /></div>
-          <h2>50+</h2>
-          <p>Craft Categories</p>
-        </div>
-        <div className='stat-box'>
-          <div className='icon-box'><TrendingUp color="#ea572a" size={24} /></div>
-          <h2>25,000+</h2>
-          <p>Products Created</p>
-        </div>
+        <div className='stat-box'><div className="icon-box"><Users color="#ea572a" size={24} /></div><h2>1,200+</h2><p>Active Artisans</p></div>
+        <div className='stat-box'><div className='icon-box'><Globe color="#ea572a" size={24} /></div><h2>45+</h2><p>Countries</p></div>
+        <div className='stat-box'><div className='icon-box'><Award color="#ea572a" size={24} /></div><h2>50+</h2><p>Craft Categories</p></div>
+        <div className='stat-box'><div className='icon-box'><TrendingUp color="#ea572a" size={24} /></div><h2>25,000+</h2><p>Products Created</p></div>
       </div>
 
       <div className='search-filter'>
@@ -212,7 +208,10 @@ const Artisians = () => {
           <button
             key={item}
             className={activeTab === item ? "filter-tab active" : "filter-tab"}
-            onClick={() => setActiveTab(item)}
+            onClick={() => {
+              setActiveTab(item);
+              setShowAll(false);
+            }}
           >
             {item}
           </button>
@@ -234,7 +233,7 @@ const Artisians = () => {
           {visibleArtisans.map((a, i) => (
             <div className='artisan-card' key={i}>
               <div className='image-placeholder'>
-              <img className='ar-image' src={a.img} alt={a.name} />
+                <span>No Image</span>
                 {a.verified && <span className="badge green">✔ Verified</span>}
                 {a.featured && <span className="badge purple">★ Featured</span>}
               </div>
@@ -242,7 +241,6 @@ const Artisians = () => {
                 <h5>{a.name}</h5>
                 <p className='craft'>{a.craft}</p>
                 <p className='location'><MapPin size={14} /> {a.location}</p>
-                
                 <div className='stats'>
                   <span><Star size={14} color="#E26132" /> {a.rating} ({a.products} products)</span>
                   <span>{a.followers.toLocaleString()} followers</span>
@@ -256,11 +254,11 @@ const Artisians = () => {
             </div>
           ))}
         </div>
+
         <div className="artisan-buttons-container">
           {!showAll && (
             <button className="view-more-btn" onClick={() => setShowAll(true)}>View More Artisans</button>
           )}
-          {/* CORRECTED: This links to your ArtisanDirectory page */}
           <Link to="/artisandirectory">
             <button className="view-more-btn">All Artisans</button>
           </Link>
