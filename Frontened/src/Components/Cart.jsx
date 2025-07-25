@@ -100,17 +100,26 @@ export default function Cart() {
   useEffect(() => {
     axios.get(`${backendurl}/api/cart/getcart`, { withCredentials: true })
       .then(res => {
+        console.log("Raw response from cart API:", res.data);
         if (res.data.success) {
-          const transformed = res.data.cart.items.map(item => ({
-            id: item.productid._id,
-            name: item.productid.name,
-            category: item.productid.category,
-            price: item.productid.price,
+        const transformed = res.data.cart.items.map(item => {
+          if (!item.productid || typeof item.productid !== 'object') {
+            console.error("Missing or invalid productid in item:", item);
+          }
+
+          return {
+            id: item.productid?._id,
+            name: item.productid?.name,
+            category: item.productid?.category,
+            price: item.productid?.price,
             quantity: item.quantity,
-            image: item.productid.image,
-            artist: item.productid.artist
-          }));
+            image: item.productid?.image,
+            artist: item.productid?.artist
+          };
+        });
+        console.log("Transformed cart items:", transformed);
           setCartItems(transformed);
+          console.log(res.data);
         } else {
           throw new Error("Failed to load cart");
         }

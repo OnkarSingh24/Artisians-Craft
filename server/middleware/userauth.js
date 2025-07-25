@@ -1,9 +1,11 @@
 import jwt from "jsonwebtoken";
-//import user from '../module/usermodule.js';
+import user from '../module/usermodule.js';
 
 
 const userauth =async(req ,res ,next)=>{
-    const{token} =req.cookies;
+    //const{token} =req.cookies;
+    const token = req.cookies.token || req.headers.authorization?.split(" ")[1];
+
 
     if(!token){
         return res.json({success :false , message:'Not Authorised, login again'})

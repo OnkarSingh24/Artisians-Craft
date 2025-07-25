@@ -33,7 +33,10 @@ export const addtocart = async (req, res) => {
 
 // Get Cart
 export const getcart = async (req, res) => {
-  const userid = req.user.id;
+  const userid = req.body.userid;
+  if (!userid) {
+    return res.status(401).json({ success: false, message: "Unauthorized: No user ID" });
+  }
 
   try {
     const cart = await cartmodel.findOne({ userid }).populate('items.productid');
@@ -51,7 +54,7 @@ export const getcart = async (req, res) => {
 // Update Cart Item
 export const updatecart = async (req, res) => {
   const { productid, quantity } = req.body;
-  const userid = req.user.id;
+  const userid = req.body.userid;
 
   try {
     const cart = await cartmodel.findOne({ userid });
@@ -78,7 +81,7 @@ export const updatecart = async (req, res) => {
 // Remove Item from Cart
 export const removecartitem = async (req, res) => {
   const { productid } = req.params;
-  const userid = req.user.id;
+  const userid = req.body.userid;
 
   try {
     const cart = await cartmodel.findOneAndUpdate(
@@ -95,7 +98,7 @@ export const removecartitem = async (req, res) => {
 
 // Clear Entire Cart
 export const clearcart = async (req, res) => {
-  const userid = req.user.id;
+  const userid = req.body.userid;
 
   try {
     await cartmodel.findOneAndUpdate(
