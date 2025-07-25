@@ -133,10 +133,10 @@ export default function ArtisanDashboard() {
 
   const handleProductAdd = async(formData) => {
     try {
-    const {data} =await axios.post(`${backendurl}/api/crud`, formData , {withCredentials:true});
-    setProducts((prev) => [data.product, ...prev]);
+    const {data} =await axios.post(`${backendurl}/api/crud/`, formData , {withCredentials:true});
+    //setProducts((prev) => [data.product, ...prev]);
     alert("Product added successfully!");
-    setActiveView("products");  
+    setActiveView("dashboard");  
     } catch (error) {
       alert("failed to add product");
       
@@ -149,7 +149,7 @@ export default function ArtisanDashboard() {
      const {data} = await axios.put(`${backendurl}/api/crud/${updatedData.id}` , updatedData , {withCredentials:true});
     alert("Product updated successfully!");
     setEditingProduct(null); 
-    setActiveView("products"); 
+    setActiveView("dashboard"); 
     } catch (error) {
      alert("failed to update product") ;
     }
