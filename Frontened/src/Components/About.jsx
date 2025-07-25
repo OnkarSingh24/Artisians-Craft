@@ -19,13 +19,11 @@ const HeroSection = () => {
                 </div>
 
                 <h1 className="hero-title">
-                    Connecting <span className="highlight">Artisans</span> with the <br /> World
+                    Bridging <span className="highlight">Cultures</span> Through<br />the Art of the Hand.
                 </h1>
 
                 <p className="hero-description">
-                    CraftedArt was born from a simple belief: that handmade items carry the soul of their
-                    creators. We're building a platform where traditional craftsmanship meets modern commerce,
-                    preserving ancient arts while empowering artisans globally.
+                    At Artisan Craft, we believe every handmade item tells a story. We created a global marketplace to bridge traditional craftsmanship with modern commerce, empowering artisans and ensuring their ancient skills thrive.
                 </p>
 
                 <div className="hero-buttons">
@@ -149,12 +147,12 @@ const HeroSection = () => {
                                     <div className="team-image-placeholder">
                                         {<img src="/assets/your-image.png" alt="description" />}
                                     </div>
-                                    <h3 className="member-name">Sarah Chen</h3>
+                                    <h3 className="member-name">Akshita Sharma</h3>
                                     <p className="member-title">
                                         <span className="title-highlight">Founder & CEO</span>
                                     </p>
                                     <p className="member-bio">
-                                        Former art curator with 15 years of experience in promoting traditional crafts.
+                                        Former art curator with 0 years of experience in promoting traditional crafts.
                                     </p>
                                 </div>
 
@@ -162,7 +160,7 @@ const HeroSection = () => {
                                     <div className="team-image-placeholder">
                                         { }
                                     </div>
-                                    <h3 className="member-name">Marcus Rodriguez</h3>
+                                    <h3 className="member-name">Dishant Sarangal</h3>
                                     <p className="member-title">
                                         <span className="title-highlight">Head of Artisan Relations</span>
                                     </p>
@@ -174,7 +172,7 @@ const HeroSection = () => {
                                 <div className="team-member-card">
                                     <div className="team-image-placeholder">
                                     </div>
-                                    <h3 className="member-name">Priya Patel</h3>
+                                    <h3 className="member-name">Onkar Singh</h3>
                                     <p className="member-title">
                                         <span className="title-highlight">Head of Design</span>
                                     </p>
