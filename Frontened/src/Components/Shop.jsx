@@ -26,7 +26,7 @@ const products = [
     rating: "5(23)",
     price: "8090",
     category: "Pottery & Ceramics",
-    img: "",
+    img: "https://i.pinimg.com/736x/0e/53/ce/0e53ceddd5f463bf767ea4e93af91d87.jpg",
   },
   {
     name: "Boho Clay Wall Hanging",
@@ -42,15 +42,15 @@ const products = [
     rating: "4.8(30)",
     price: "3500",
     category: "Textiles",
-    img: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/",
+    img: "https://i.pinimg.com/1200x/3e/7e/da/3e7eda8873753f63411c68e8baabc5d2.jpg",
   },
   {
     name: "Wooden Serving Tray",
     maker: "by Rohit Verma",
     rating: "4.9(41)",
-    price: "60",
+    price: "600",
     category: "Woodworking",
-    img: "https://m.media-amazon.com/images/I/81oEoUwR8OL._AC_SL1500_.jpg",
+    img: "https://i.pinimg.com/1200x/71/f5/7d/71f57d678e1cd699a792bc8abf7a9e5d.jpg",
   },
   {
     name: "Hand Blown Glass Bowl",
@@ -58,7 +58,7 @@ const products = [
     rating: "5(16)",
     price: "7800",
     category: "Glassware",
-    img: "https://m.media-amazon.com/images/I/91fMlDFJQHL._AC_SL1500_.jpg",
+    img: "https://i.pinimg.com/736x/16/9e/88/169e8862c719d8b992b7143cf92dac22.jpg",
   },
   {
     name: "Silver Leaf Earrings",
@@ -66,7 +66,7 @@ const products = [
     rating: "4.6(19)",
     price: "2900",
     category: "Jewelry",
-    img: "https://m.media-amazon.com/images/I/61OyToFNdUL._UY695_.jpg",
+    img: "https://i.pinimg.com/736x/5b/02/64/5b026439cb48a298b7557c0018311173.jpg",
   },
   {
     name: "Abstract Acrylic Painting",
@@ -74,7 +74,7 @@ const products = [
     rating: "4.7(22)",
     price: "1100",
     category: "Paintings",
-    img: "https://m.media-amazon.com/images/I/51Kk1eK1UCL._AC_UF1000,1000_QL80_.jpg",
+    img: "https://i.pinimg.com/1200x/16/44/c1/1644c152bcfd5f5cd1e778c2e0f67aa7.jpg",
   },
   {
     name: "Miniature Brass Sculpture",
@@ -82,7 +82,7 @@ const products = [
     rating: "5(35)",
     price: "9005",
     category: "Sculptures",
-    img: "https://m.media-amazon.com/images/I/81knLe8ZUSL._AC_SL1500_.jpg",
+    img: "https://i.pinimg.com/1200x/c9/5e/13/c95e131342f94fe15a74aa5df380b424.jpg",
   },
   {
     name: "Macramé Wall Hanging",
@@ -90,7 +90,7 @@ const products = [
     rating: "4.9(11)",
     price: "3900",
     category: "Home Decor",
-    img: "https://m.media-amazon.com/images/I/71xfLOqDDsL._AC_SL1500_.jpg",
+    img: "https://i.pinimg.com/736x/ff/89/27/ff8927cf5913c58067f7c4e161447dab.jpg",
   },
   {
     name: "Clay Tea Set",
@@ -98,7 +98,7 @@ const products = [
     rating: "4.8(28)",
     price: "6500",
     category: "Pottery & Ceramics",
-    img: "https://m.media-amazon.com/images/I/71Y2OjD5JeL._AC_SL1500_.jpg",
+    img: "https://i.pinimg.com/1200x/bf/be/c6/bfbec62349bcffe8b01f86d7ec303992.jpg",
   },
   {
     name: "Hand-painted Silk Scarf",
@@ -106,7 +106,7 @@ const products = [
     rating: "4.7(14)",
     price: "5500",
     category: "Textiles",
-    img: "https://m.media-amazon.com/images/I/81ta9DWcErL._AC_SL1500_.jpg",
+    img: "https://i.pinimg.com/1200x/92/e8/f7/92e8f71230bf3d7c9331aac6bdaab026.jpg",
   },
   {
     name: "Wooden Lamp Base",
@@ -114,7 +114,7 @@ const products = [
     rating: "4.6(20)",
     price: "7200",
     category: "Woodworking",
-    img: "https://m.media-amazon.com/images/I/61XMIzTbnhL._AC_SL1200_.jpg",
+    img: "https://i.pinimg.com/1200x/3e/51/17/3e51179664ee4b85072f58500a9a7ab5.jpg",
   },
   {
     name: "Colorful Glass Tumbler Set",
@@ -122,7 +122,7 @@ const products = [
     rating: "5(10)",
     price: "4800",
     category: "Glassware",
-    img: "https://m.media-amazon.com/images/I/71iv9Ksf-ML._AC_SL1500_.jpg",
+    img: "https://i.pinimg.com/1200x/d9/55/d5/d955d535f25a897c6e9586499e2734c6.jpg",
   },
   {
     name: "Ethnic Beaded Necklace",
@@ -130,7 +130,7 @@ const products = [
     rating: "4.8(26)",
     price: "3800",
     category: "Jewelry",
-    img: "https://m.media-amazon.com/images/I/91gZwO6T5fL._AC_UY1100_.jpg",
+    img: "https://i.pinimg.com/736x/1d/97/6b/1d976bbab9a9323cbb39ea5e3da270c0.jpg",
   },
   {
     name: "Landscape Canvas Painting",
@@ -138,15 +138,15 @@ const products = [
     rating: "5(17)",
     price: "1020",
     category: "Paintings",
-    img: "https://m.media-amazon.com/images/I/81vAI3M7lCL._AC_UF1000,1000_QL80_.jpg",
+    img: "https://i.pinimg.com/736x/6d/d5/ee/6dd5eed5f2af525059ba1940570d2a3f.jpg",
   },
   {
     name: "Terracotta Garden Figurine",
     maker: "by Tanvi Prasad",
     rating: "4.9(13)",
-    price: "88",
+    price: "8800",
     category: "Sculptures",
-    img: "https://m.media-amazon.com/images/I/71dwvMfv1lL._AC_SL1500_.jpg",
+    img: "https://i.pinimg.com/1200x/90/bc/2e/90bc2e1bb771303c61368dbe3bc8ef2a.jpg",
   },
   {
     name: "Macrame Coasters Set",
@@ -154,7 +154,7 @@ const products = [
     rating: "4.5(18)",
     price: "2200",
     category: "Home Decor",
-    img: "https://m.media-amazon.com/images/I/71N+mDZZfdL._AC_SL1500_.jpg",
+    img: "https://i.pinimg.com/1200x/c0/cc/98/c0cc9846a0dd2a5a0646380ca0af2224.jpg",
   },
   {
     name: "Hand-painted Clay Mugs",
@@ -162,7 +162,7 @@ const products = [
     rating: "4.7(21)",
     price: "4200",
     category: "Pottery & Ceramics",
-    img: "https://m.media-amazon.com/images/I/81ZG8jABuML._AC_SL1500_.jpg",
+    img: "https://i.pinimg.com/736x/95/cf/c8/95cfc82c98e2941ea870c97a9bd386a6.jpg",
   },
   {
     name: "Silk Table Runner",
@@ -170,7 +170,7 @@ const products = [
     rating: "4.6(9)",
     price: "333",
     category: "Textiles",
-    img: "https://m.media-amazon.com/images/I/81I2HD60a9L._AC_SL1500_.jpg",
+    img: "https://i.pinimg.com/1200x/11/a8/9d/11a89d18168a1fe5fba832b5d48e77ae.jpg",
   },
   {
     name: "Wooden Spice Rack",
@@ -178,7 +178,7 @@ const products = [
     rating: "4.8(16)",
     price: "580",
     category: "Woodworking",
-    img: "",
+    img: "https://i.pinimg.com/736x/64/8e/99/648e9907106feb5e511a83b506b42cdf.jpg",
   },
 ];
 
@@ -372,7 +372,7 @@ const Shop = () => {
 
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedRating, setSelectedRating] = useState(null);
-  const [priceRange, setPriceRange] = useState(500);
+  const [priceRange, setPriceRange] = useState(50000);
   const [Category, setCategory] = useState("All");
   
   // State to manage mobile filter visibility

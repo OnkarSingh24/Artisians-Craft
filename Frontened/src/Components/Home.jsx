@@ -36,8 +36,7 @@ const ImageCarousel = () => {
     >
       <div className="carousel-slide">
         <img
-          src="https://media.licdn.com/dms/image/v2/D5603AQEDI8Qf3PcnAw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1727284652267?e=1757548800&v=beta&t=i7aAFAjwXOL0R8DPeBKs_gN4aDVDuLbWCeD3c3SuSn8"
-          alt="Art 1"
+          src="https://media.istockphoto.com/id/458417619/photo/craftsman-working-on-the-loom.jpg?s=612x612&w=0&k=20&c=2v9JfzZZ--jYkuPj4Hp3iZSUItVSiwUUscsKgWgNixU="
         />
         <span className="badge verified">
           <CheckCheck size={14} /> Verified Artisan
@@ -54,7 +53,7 @@ const ImageCarousel = () => {
       </div>
       <div className="carousel-slide">
         <img
-          src="https://media.timeout.com/images/105277436/750/562/image.jpg"
+          src="https://media.licdn.com/dms/image/v2/D4D12AQFsK_G3iOWSLg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1702122874916?e=1758758400&v=beta&t=p-1YNiYlAfp9VngxdTOLrB3LD6gzE9DtPkB_RZ6L8J8"
           alt="Art 3"
         />
         <span className="badge verified">
@@ -66,39 +65,46 @@ const ImageCarousel = () => {
 };
 const artisans = [
   {
-    name: 'Elena Rodriguez',
+    name: 'Puneet Kumar ',
     specialty: 'Ceramic Pottery',
-    location: 'Santa Fe, NM',
+    location: 'Jaipur, Rajasthan',
     rating: '4.9',
-    products: '127 products',
+    products: '2 products',
     followers: '2.3k followers',
-    img: 'https://via.placeholder.com/300x200',
+    img: 'https://media.licdn.com/dms/image/v2/D4D12AQFsK_G3iOWSLg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1702122874916?e=1758758400&v=beta&t=p-1YNiYlAfp9VngxdTOLrB3LD6gzE9DtPkB_RZ6L8J8',
   },
   {
-    name: 'Marcus Chen',
+    name: 'Dolly Sharma',
     specialty: 'Hand-woven Textiles',
-    location: 'Portland, OR',
+    location: 'Jalandhar, Punjab',
     rating: '4.8',
-    products: '89 products',
+    products: '3 products',
     followers: '1.8k followers',
-    img: 'https://via.placeholder.com/300x200',
+    img: 'https://www.thegoodloop.com/wp-content/uploads/2022/01/akhil-pawar-XCd_6nOdzjo-unsplash-1536x999.jpeg',
   },
   {
-    name: 'Priya Sharma',
+    name: 'Joginder Sharma',
     specialty: 'Jewelry Design',
-    location: 'Austin, TX',
+    location: 'Mumbai, Maharashtra',
     rating: '5',
-    products: '156 products',
+    products: '4 products',
     followers: '3.1k followers',
-    img: 'https://via.placeholder.com/300x200',
+    img: 'https://images.picxy.com/cache/2020/6/11/5721937a5889c9c5d13c49f1f9241287.jpg',
   },
 ];
 
-const ArtisanCard = ({ artisan }) => (
+const ArtisanCard = ({ artisan }) => {
+  const [liked, setLiked] = useState(false);
+  return(
   <div className="artisan-card">
     <div className="card-img-wrapper">
       <img className='artisan-image' src={artisan.img} alt={artisan.name} />
-      <button className="like-btn"><Heart size={18} /></button>
+      <button
+                className={`likebtn ${liked ? 'liked' : ''}`}
+                onClick={() => setLiked(!liked)}
+              >
+                <Heart size={18} fill={liked ? 'red' : 'none'} color={liked ? 'red' : '#333'} />
+              </button>
     </div>
     <div className="card-details">
       <h3>{artisan.name}</h3>
@@ -112,38 +118,38 @@ const ArtisanCard = ({ artisan }) => (
     </div>
   </div>
 );
+};
 const products = [
   {
-    name: 'Handcrafted Ceramic Vase',
-    maker: 'by Priya Sharma',
-    rating: '5(23)',
-    price: '89',
-    img: 'https://www.whisperinghomes.com/media/catalog/product/cache/4ca60b19ecf2bea5af936fc7882cfff5/Vases/VA-79-12-S/Cloud-Terracotta-Vase-Main-Lifestyle.jpg',
+    name: 'Vintage Handwoven Basket',
+    maker: 'by Meera Gupta',
+    rating: '4.8(17)',
+    price: '5900',
+    img: 'https://i.pinimg.com/1200x/b1/9e/02/b19e02603918e2110f55821c4904a0b7.jpg',
   },
   {
-    name: 'Handcrafted Ceramic Vase',
-    maker: 'by Priya Sharma',
-    rating: '5(23)',
-    price: '89',
-    img: 'https://www.whisperinghomes.com/media/catalog/product/cache/4ca60b19ecf2bea5af936fc7882cfff5/Vases/VA-79-12-S/Cloud-Terracotta-Vase-Main-Lifestyle.jpg',
+    name: 'Terracotta Clay Water Jug',
+    maker: 'by Ravi Kumar',
+    rating: '4.6(12)',
+    price: '3900',
+    img: 'https://i.pinimg.com/1200x/1b/f2/24/1bf22437ec3d536e2a02686ae49400b8.jpg',
   },
   {
-    name: 'Handcrafted Ceramic Vase',
-    maker: 'by Priya Sharma',
-    rating: '5(23)',
-    price: '89',
-    img: 'https://www.whisperinghomes.com/media/catalog/product/cache/4ca60b19ecf2bea5af936fc7882cfff5/Vases/VA-79-12-S/Cloud-Terracotta-Vase-Main-Lifestyle.jpg',
+    name: 'Handcrafted Wooden Elephant',
+    maker: 'by Anjali Verma',
+    rating: '5(34)',
+    price: '75',
+    img: 'https://i.pinimg.com/736x/3b/33/e8/3b33e8894ed9870a2756029197a11dd7.jpg',
   },
   {
-    name: 'Handcrafted Ceramic Vase',
-    maker: 'by Priya Sharma',
-    rating: '5(23)',
-    price: '89',
-    img: 'https://www.whisperinghomes.com/media/catalog/product/cache/4ca60b19ecf2bea5af936fc7882cfff5/Vases/VA-79-12-S/Cloud-Terracotta-Vase-Main-Lifestyle.jpg',
+    name: 'Kashmiri Papier-Mâché Box',
+    maker: 'by Faizan Dar',
+    rating: '4.9(21)',
+    price: '45',
+    img: 'https://i.pinimg.com/736x/41/41/f2/4141f26717e47d7cfe60f680b2a4e9b4.jpg',
   },
-
-
 ];
+
 const customers = [
   {
     desc: '"The quality of craftsmanship here is unmatched. Every piece tells a story and you can feel the love that went into making it."',
@@ -167,11 +173,18 @@ const customers = [
     photo: '',
   },
 ];
-const ProductCard = ({ product }) => (
+const ProductCard = ({ product }) => {
+  const [liked, setLiked] = useState(false);
+  return(
   <div className="product-card">
     <div className="card-img-wrapper2">
-      <img src={product.img} alt={product.name} />
-      <button className="likebtn"><Heart size={18} /></button>
+      <img className='product-image' src={product.img} alt={product.name} />
+      <button
+                className={`likebtn ${liked ? 'liked' : ''}`}
+                onClick={() => setLiked(!liked)}
+              >
+                <Heart size={18} fill={liked ? 'red' : 'none'} color={liked ? 'red' : '#333'} />
+              </button>
     </div>
     <div className="card-detail">
       <h4>{product.name}</h4>
@@ -184,6 +197,7 @@ const ProductCard = ({ product }) => (
     </div>
   </div>
 );
+};
 
 const Customers = ({ customer }) => (
   <div className="customer-card">
@@ -262,32 +276,32 @@ const Home = () => {
     {
       Icon: <GiAmphora color="#b5651d" size={32} />,
       Desc: "Pottery ",
-      InStock: "234 items",
+      InStock: "2 items",
     },
     {
       Icon: <FaGem color="#00bcd4" size={32} />,
       Desc: "Jewelry",
-      InStock: "567 items",
+      InStock: "5 items",
     },
     {
       Icon: <GiYarn color="#d6336c" size={32} />,
       Desc: "Textiles",
-      InStock: "189 items",
+      InStock: "1 items",
     },
     {
       Icon: <GiWoodPile color="#795548" size={32} />,
       Desc: "Woodworking",
-      InStock: "145 items",
+      InStock: "4 items",
     },
     {
       Icon: <GiGlassBall color="#03a9f4" size={32} />,
       Desc: "Glassware",
-      InStock: "98 items",
+      InStock: "8 items",
     },
     {
       Icon: <FaPaintBrush color="#f44336" size={32} />,
       Desc: "Paintings",
-      InStock: "276 items",
+      InStock: "2 items",
     },
   ];
 
@@ -305,7 +319,7 @@ const Home = () => {
             </div>
             <h1 style={{
               fontFamily: 'Kaushan Script',
-              fontSize: '60px',
+              fontSize: '55px',
               fontWeight: 'bold',
               lineHeight: '1',
               color: '#391a36c4',
