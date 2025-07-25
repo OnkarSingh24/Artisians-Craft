@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './ArtisanDirectory.css';
 
 const ArtisanDirectory = () => {
-  // Define artisan data outside the component or memoize it if it were dynamic
   const artisans = [
-    {
-      id: 'art001',
+    { id: 'art001',
       name: 'Elena Rodriguez',
       craft: 'Ceramic Pottery',
       location: 'Santa Fe, New Mexico, USA',

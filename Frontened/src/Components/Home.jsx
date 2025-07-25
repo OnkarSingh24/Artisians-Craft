@@ -254,7 +254,7 @@ const FeaturedArtisans = () => {
           <ArtisanCard key={index} artisan={artisan} />
         ))}
       </div>
-      <Link to='/artisian' className="view-all-btn">View All Artisans →</Link>
+      <Link to='/artisandirectory' className="view-all-btn">View All Artisans →</Link>
     </section>
   );
 };
@@ -398,7 +398,7 @@ const Home = () => {
             <Link to='/shop' className="btn_primary">
               Start Shopping <span role="img" aria-label="cart">🛒</span>
             </Link>
-            <Link to='/artisan' className="btn_secondary">
+            <Link to='/artisans' className="btn_secondary">
               Join as Artisan <span role="img" aria-label="user">👤</span>
             </Link>
           </div>

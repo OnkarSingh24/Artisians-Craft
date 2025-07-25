@@ -1,14 +1,14 @@
 import React, { useState, useContext } from 'react';
 import { Search, Heart, ShoppingCart, User, Menu, X } from 'lucide-react';
 import './navigation.css';
+import { useCart } from './CartContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { NavContext, NavProvider } from './NavContext';
-
 const Navigation = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
   const { user } = useContext(NavContext);
-
+  const { itemCount } = useCart();
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const closeSidebar = () => setIsSidebarOpen(false);
 
@@ -27,7 +27,10 @@ const Navigation = () => {
     closeSidebar();
   };
 
-  // Removed the handleDashboardClick function as it is no longer needed for the main nav link.
+  const handleDashboardClick = () => {
+    navigate('/dashboard');
+    closeSidebar();
+  };
 
   return (
     <nav className="navigation">
@@ -45,8 +48,7 @@ const Navigation = () => {
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/shop" className="nav-link">Shop</Link> 
           <Link to="/artisans" className="nav-link">Artisans</Link>
-          {/* Changed Dashboard to About */}
-          <Link to="/about" className="nav-link">About</Link>
+          <Link to="/about" >About</Link>
         </div>
 
         <div className="search-container desktop-only">
@@ -58,16 +60,21 @@ const Navigation = () => {
 
         <div className="actions">
           <button className="icon-btn"><Heart size={20} /></button>
-          <button className="icon-btn" onClick={handleCartClick}><ShoppingCart size={20} /></button>
+          <button className="icon-btn cart-icon-wrapper" onClick={handleCartClick}>
+            <ShoppingCart size={20} />
+            {itemCount > 0 && (
+              <span className="cart-item-count">{itemCount}</span>
+            )}
+          </button>
 
           {user ? (
-            <button className="icon-btn" title={user.email}>
-              <User size={20} />
-            </button>
+             <button className="icon-btn" /* ... */ >
+               <User size={20} />
+             </button>
           ) : (
-            <button className="sign-in-btn desktop-only" onClick={handleSignIn}>
-              <User size={18} /><span>Sign In</span>
-            </button>
+             <button className="sign-in-btn desktop-only" /* ... */ >
+               <User size={18} /><span>Sign In</span>
+             </button>
           )}
 
           <button className="seller-btn desktop-only" onClick={handleBecomeSeller}>Become a Seller</button>
@@ -78,11 +85,12 @@ const Navigation = () => {
         <Link to="/" className="nav-link" onClick={closeSidebar}>Home</Link>
         <Link to="/shop" className="nav-link" onClick={closeSidebar}>Shop</Link>
         <Link to="/artisans" className="nav-link" onClick={closeSidebar}>Artisans</Link>
-        <Link to="/about" className="nav-link" onClick={closeSidebar}>About</Link>
+        <Link to="/dashboard" className="nav-link" onClick={closeSidebar}>Dashboard</Link>
         <Link to="/orders" className="nav-link" onClick={closeSidebar}>Order History</Link>
-        
+        <Link to="/about" className="nav-link" onClick={closeSidebar}>About</Link>
+
         {user ? (
-          <button className="sign-in-btn mobile-only">
+          <button className="sign-in-btn mobile-only" onClick={handleDashboardClick}>
             <User size={18} /><span>Dashboard</span>
           </button>
         ) : (

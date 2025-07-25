@@ -17,15 +17,16 @@ import {
 
 const artisans = [
   {
-    name: 'Elena Rodriguez',
+    name: 'Jasus Sharma',
     craft: 'Ceramic Pottery',
-    location: 'Santa Fe, New Mexico, USA',
+    location: 'Jalandhar, Punjab',
     years: 15,
     rating: 4.9,
     products: 127,
     followers: 2300,
     awards: 7,
     verified: true,
+    img : "https://i.pinimg.com/736x/6b/b6/d0/6bb6d094147301f3ccce198b6d6179bc.jpg",
     featured: true
   },
   {
@@ -38,6 +39,7 @@ const artisans = [
     followers: 230,
     awards: 2,
     verified: true,
+    img : 'https://i.pinimg.com/736x/a6/90/6f/a6906fde96ec3328c4078150233279da.jpg',
     featured: true
   },
   {
@@ -50,6 +52,7 @@ const artisans = [
     followers: 1800,
     awards: 5,
     verified: true,
+    img : 'https://i.pinimg.com/736x/be/c0/a1/bec0a1697ccfdcd745e33368645756a8.jpg',
     featured: true
   },
   {
@@ -62,6 +65,7 @@ const artisans = [
     followers: 3100,
     awards: 4,
     verified: true,
+    img : 'https://i.pinimg.com/736x/4b/f6/63/4bf6633b4e8a98201805dddb78de559b.jpg',
     featured: true
   },
   {
@@ -74,6 +78,7 @@ const artisans = [
     followers: 2300,
     awards: 7,
     verified: true,
+    img : 'https://i.pinimg.com/1200x/d8/cd/7a/d8cd7afee0b6fb4fd492f6686f59da33.jpg',
     featured: true
   },
   {
@@ -86,6 +91,7 @@ const artisans = [
     followers: 2300,
     awards: 7,
     verified: true,
+    img : 'https://i.pinimg.com/736x/6a/5a/ad/6a5aadd9194686d1a1553c7f336ef0fd.jpg',
     featured: true
   },
   {
@@ -98,6 +104,7 @@ const artisans = [
     followers: 2300,
     toards: 7,
     verified: true,
+    img : 'https://i.pinimg.com/736x/ae/dd/53/aedd537c80e54e3f2dbc482ed43cc5f1.jpg',
     featured: true
   },
   {
@@ -110,6 +117,7 @@ const artisans = [
     followers: 2300,
     awards: 7,
     verified: true,
+    img : 'https://i.pinimg.com/736x/bf/9b/6c/bf9b6ca3f1ff282886d1eb5de535b32d.jpg',
     featured: true
   },
 ];
@@ -226,7 +234,7 @@ const Artisians = () => {
           {visibleArtisans.map((a, i) => (
             <div className='artisan-card' key={i}>
               <div className='image-placeholder'>
-                <span>No Image</span>
+              <img className='ar-image' src={a.img} alt={a.name} />
                 {a.verified && <span className="badge green">✔ Verified</span>}
                 {a.featured && <span className="badge purple">★ Featured</span>}
               </div>

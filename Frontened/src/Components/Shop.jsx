@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Shop.css';
 import { Search, List, Grid3x3, Filter, X } from 'lucide-react'; // Import Filter and X
 import { Heart, Star, IndianRupee, ShoppingCart } from 'lucide-react';
-
+import { useCart } from './CartContext'; 
 
 const Dropdown = () => {
   const [SelectedCategory, setSelectedCategory] = useState("");
@@ -182,7 +182,8 @@ const products = [
   },
 ];
 
-const ProductCard = ({ product }) => {
+// FIX: 'addToCart' is now a prop for this component
+const ProductCard = ({ product, addToCart }) => {
   const [liked, setLiked] = useState(false);
 
   return (
@@ -195,6 +196,7 @@ const ProductCard = ({ product }) => {
         >
           <Heart size={18} fill={liked ? 'red' : 'none'} color={liked ? 'red' : '#333'} />
         </button>
+        {/* This now works correctly */}
         <button className="cart-float-btn" onClick={() => addToCart(product)}>
           <ShoppingCart size={18} /> Add to Cart
         </button>
@@ -216,12 +218,12 @@ const ProductCard = ({ product }) => {
   );
 };
 
-const TrendingProducts = ({ products }) => {
+const TrendingProducts = ({ products, addToCart }) => {
   return (
     <section>
       <div className="product-list">
         {products.map((product, index) => (
-          <ProductCard key={index} product={product} />
+          <ProductCard key={index} product={product} addToCart={addToCart} />
         ))}
       </div>
     </section>
@@ -308,7 +310,7 @@ function FilterSidebar({
       </div>
 
       <div className="filter-section">
-        <label className="section-title">Price Range</label>
+        <label className="sec-title">Price Range</label>
         <input
           type="range"
           min="0"
@@ -323,7 +325,7 @@ function FilterSidebar({
       </div>
 
       <div className="filter-section">
-        <label className="section-title">Categories</label>
+        <label className="sec-title">Categories</label>
         {categories.map((category) => (
           <label key={category} className="checkbox-label">
             <input
@@ -337,7 +339,7 @@ function FilterSidebar({
       </div>
 
       <div className="filter-section">
-        <label className="section-title">Rating</label>
+        <label className="sec-title">Rating</label>
         {ratings.map((r) => (
           <label key={r} className="radio-label">
             <input
@@ -367,12 +369,12 @@ function FilterSidebar({
 
 const Shop = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  
+  const { addToCart } = useCart(); // Get the function from the context
   const productsPerPage = 8;
 
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedRating, setSelectedRating] = useState(null);
-  const [priceRange, setPriceRange] = useState(50000);
+  const [priceRange, setPriceRange] = useState(10000);
   const [Category, setCategory] = useState("All");
   
   // State to manage mobile filter visibility
@@ -381,7 +383,7 @@ const Shop = () => {
   const filteredProducts = products.filter((p) => {
     const matchCategoryLine = Category === 'All' || p.category.includes(Category);
     const matchSidebarCategory = selectedCategories.length === 0 || selectedCategories.includes(p.category);
-    const matchRating = !selectedRating || parseInt(p.rating[0]) >= selectedRating;
+    const matchRating = !selectedRating || parseInt(p.rating) >= selectedRating;
     const matchPrice = parseInt(p.price) <= priceRange;
     return matchCategoryLine && matchSidebarCategory && matchRating && matchPrice;
   });
@@ -444,20 +446,21 @@ const Shop = () => {
       <div className="shop-main-content">
         <div className={`filter-container ${isFilterVisible ? 'visible' : ''}`} onClick={() => setIsFilterVisible(false)}>
             <div onClick={(e) => e.stopPropagation()}> {/* Prevents closing when clicking inside the sidebar */}
-                <FilterSidebar
-                    selectedCategories={selectedCategories}
-                    setSelectedCategories={setSelectedCategories}
-                    selectedRating={selectedRating}
-                    setSelectedRating={setSelectedRating}
-                    priceRange={priceRange}
-                    setPriceRange={setPriceRange}
-                    onClose={() => setIsFilterVisible(false)}
-                />
+              <FilterSidebar
+                selectedCategories={selectedCategories}
+                setSelectedCategories={setSelectedCategories}
+                selectedRating={selectedRating}
+                setSelectedRating={setSelectedRating}
+                priceRange={priceRange}
+                setPriceRange={setPriceRange}
+                onClose={() => setIsFilterVisible(false)}
+              />
             </div>
         </div>
 
         <div style={{ flex: 1 }}>
-          <TrendingProducts products={currentProducts} />
+          {/* FIX: Pass 'addToCart' down to the component that renders the cards */}
+          <TrendingProducts products={currentProducts} addToCart={addToCart} />
           <Pagination
             productsPerPage={productsPerPage}
             totalProducts={filteredProducts.length}

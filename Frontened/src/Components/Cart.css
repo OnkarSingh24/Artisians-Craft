@@ -9,7 +9,9 @@ body {
   background-color: #f9fafb;
   color: #111827; 
 }
-
+.app{
+  background-color: rgb(242, 238, 238);
+}
 /* Main container styles */
 .page-container {
   min-height: 100vh;
