@@ -352,15 +352,15 @@ const Home = () => {
 
             <div className="stats">
               <div className="stat-item">
-                <h3>1,200+</h3>
+                <h3>25+</h3>
                 <p>Artisans</p>
               </div>
               <div className="stat-item">
-                <h3>15,000+</h3>
+                <h3>50+</h3>
                 <p>Products</p>
               </div>
               <div className="stat-item">
-                <h3>50k+</h3>
+                <h3>50+</h3>
                 <p>Happy Customers</p>
               </div>
             </div>
@@ -407,7 +407,7 @@ const Home = () => {
         <div className="footer-bottom">
           <div className="footer-brand">
             <div className="logo">CA</div>
-            <h3>CraftedArt</h3>
+            <h3>CraftiArts</h3>
             <p>
               Connecting artisans with art lovers worldwide through authentic,
               handcrafted treasures.
@@ -449,7 +449,7 @@ const Home = () => {
         </div>
 
         <div className="footer-legal">
-          <p>© 2024 CraftedArt. All rights reserved.</p>
+          <p>© 2024 CraftiArts. All rights reserved.</p>
           <div>
             <a href="#">Privacy Policy</a>
             <a href="#">Terms of Service</a>

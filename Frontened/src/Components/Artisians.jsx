@@ -10,7 +10,6 @@ import {
   MapPin,
   Search,
   Filter,
-  
   LineChart,
   Users as UsersIcon
 } from 'lucide-react';
@@ -102,7 +101,7 @@ const artisans = [
     rating: 4.9,
     products: 110,
     followers: 2100,
-    awards: 7, // Corrected from 'toards'
+    awards: 7,
     verified: true,
     img: 'https://i.pinimg.com/736x/ae/dd/53/aedd537c80e54e3f2dbc482ed43cc5f1.jpg',
     featured: true
@@ -125,10 +124,15 @@ const artisans = [
 const Artisians = () => {
   const [activeTab, setActiveTab] = useState("All");
   const [showAll, setShowAll] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("All Categories");
+  const [selectedLocation, setSelectedLocation] = useState("All Locations");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const filters = ["All", "Featured", "Verified", "Newest", "Top Rated", "Most Products"];
+
   const getFilteredArtisans = () => {
     let filtered = [...artisans];
+
     switch (activeTab) {
       case "Featured":
         filtered = filtered.filter((a) => a.featured);
@@ -143,14 +147,34 @@ const Artisians = () => {
         filtered = filtered.sort((a, b) => b.rating - a.rating);
         break;
       case "Most Products":
-        filtered = filtered.sort((a, b) => b.products - a.products);
+        filtered = filtered.filter((a) => a.products > 0).sort((a, b) => b.products - a.products);
         break;
       case "All":
       default:
         break;
     }
+
+    if (selectedCategory !== "All Categories") {
+      filtered = filtered.filter((a) => a.craft.includes(selectedCategory));
+    }
+
+    if (selectedLocation !== "All Locations") {
+      filtered = filtered.filter((a) => a.location.includes(selectedLocation));
+    }
+
+    if (searchTerm) {
+      const lowerCaseSearchTerm = searchTerm.toLowerCase();
+      filtered = filtered.filter(
+        (a) =>
+          a.name.toLowerCase().includes(lowerCaseSearchTerm) ||
+          a.craft.toLowerCase().includes(lowerCaseSearchTerm) ||
+          a.location.toLowerCase().includes(lowerCaseSearchTerm)
+      );
+    }
+
     return showAll ? filtered : filtered.slice(0, 4);
   };
+
   const visibleArtisans = getFilteredArtisans();
 
   const handleViewProfile = (artisan) => {
@@ -178,22 +202,22 @@ const Artisians = () => {
       <div className='stats-section'>
         <div className='stat-box'>
           <div className="icon-box"><Users color="#ea572a" size={24} /></div>
-          <h2>1,200+</h2>
+          <h2>25+</h2>
           <p>Active Artisans</p>
         </div>
         <div className='stat-box'>
           <div className='icon-box'><Globe color="#ea572a" size={24} /></div>
-          <h2>45+</h2>
+          <h2>5+</h2>
           <p>Countries</p>
         </div>
         <div className='stat-box'>
           <div className='icon-box'><Award color="#ea572a" size={24} /></div>
-          <h2>50+</h2>
+          <h2>5+</h2>
           <p>Craft Categories</p>
         </div>
         <div className='stat-box'>
           <div className='icon-box'><TrendingUp color="#ea572a" size={24} /></div>
-          <h2>25,000+</h2>
+          <h2>250+</h2>
           <p>Products Created</p>
         </div>
       </div>
@@ -201,28 +225,42 @@ const Artisians = () => {
       <div className='search-filter'>
         <div className='search-top'>
           <Search size={18} />
-          <input type="text" placeholder='Search artisans by name, location, or specialty...' />
+          <input
+            type="text"
+            placeholder='Search artisans by name, location, or specialty...'
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
-        <select className='dropdown'>
+        <select
+          className='dropdown'
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
           <option>All Categories</option>
-          <option>Jewelry</option>
+          <option>Ceramic Pottery</option>
           <option>Textile</option>
-          <option>Decor</option>
-          <option>Pottery & Ceramics</option>
-          <option>Handlooms</option>
-          <option>Woodworking</option>
-          <option>Glassware</option>
-          <option>Paintings</option>
+          <option>Pottery</option>
+          <option>Silver Jewelry Design</option>
+          <option>Terracotta Sculpting</option>
+          <option>Chikankari Embroidery</option>
+          <option>Kantha Stitching</option>
+          <option>Block Printing</option>
         </select>
-        <select className="dropdown">
+        <select
+          className="dropdown"
+          value={selectedLocation}
+          onChange={(e) => setSelectedLocation(e.target.value)}
+        >
           <option>All Locations</option>
-          <option>Punjab</option>
-          <option>Rajasthan</option>
-          <option>Kerala</option>
-          <option>Gujarat</option>
-          <option>Kashmir</option>
-          <option>Bihar</option>
-          <option>Assam</option>
+          <option>Jalandhar, Punjab</option>
+          <option>Jaipur, Rajasthan</option>
+          <option>Varanasi, Uttar Pradesh</option>
+          <option>Udaipur, Rajasthan</option>
+          <option>Kanchipuram, Tamil Nadu</option>
+          <option>Lucknow, Uttar Pradesh</option>
+          <option>Kolkata, West Bengal</option>
+          <option>Ahmedabad, Gujarat</option>
         </select>
       </div>
 
@@ -249,36 +287,42 @@ const Artisians = () => {
         </div>
 
         <div className='cards'>
-          {visibleArtisans.map((a, i) => (
-            <div className='artisan-card' key={i}>
-              <div className='image-placeholder'>
-              <img className='ar-image' src={a.img} alt={a.name} />
-                {a.verified && <span className="badge green">✔ Verified</span>}
-                {a.featured && <span className="badge purple">★ Featured</span>}
-              </div>
-              <div className='artisan-info'>
-                <h5>{a.name}</h5>
-                <p className='craft'>{a.craft}</p>
-                <p className='location'><MapPin size={14} /> {a.location}</p>
-                
-                <div className='stats'>
-                  <span><Star size={14} color="#E26132" /> {a.rating} ({a.products} products)</span>
-                  <span>{a.followers.toLocaleString()} followers</span>
+          {visibleArtisans.length > 0 ? (
+            visibleArtisans.map((a, i) => (
+              <div className='artisan-card' key={i}>
+                <div className='image-placeholder'>
+                  <img className='ar-image' src={a.img} alt={a.name} onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/300x200/cccccc/333333?text=Artisan'; }}/>
+                  {a.verified && <span className="badge green">✔ Verified</span>}
+                  {a.featured && <span className="badge purple">★ Featured</span>}
                 </div>
-                <div className="tags">
-                  <span>{a.years} yrs active</span>
-                  <span><Award size={12} /> {a.awards} awards</span>
+                <div className='artisan-info'>
+                  <h5>{a.name}</h5>
+                  <p className='craft'>{a.craft}</p>
+                  <p className='location'><MapPin size={14} /> {a.location}</p>
+
+                  <div className='stats'>
+                    <span><Star size={14} color="#E26132" /> {a.rating} ({a.products} products)</span>
+                    <span>{a.followers.toLocaleString()} followers</span>
+                  </div>
+                  <div className="tags">
+                    <span>{a.years} yrs active</span>
+                    <span><Award size={12} /> {a.awards} awards</span>
+                  </div>
+                  <button className="view-profile-btn" onClick={() => handleViewProfile(a)}>View Profile</button>
                 </div>
-                <button className="view-profile-btn" onClick={() => handleViewProfile(a)}>View Profile</button>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <p className="no-artisans-found">No artisans found matching your criteria.</p>
+          )}
         </div>
         <div className="artisan-buttons-container">
-          {!showAll && (
+          {getFilteredArtisans().length > 4 && !showAll && (
             <button className="view-more-btn" onClick={() => setShowAll(true)}>View More Artisans</button>
           )}
-          {/* CORRECTED: This links to your ArtisanDirectory page */}
+          {showAll && (
+            <button className="view-more-btn" onClick={() => setShowAll(false)}>View Less Artisans</button>
+          )}
           <Link to="/artisandirectory">
             <button className="view-more-btn">All Artisans</button>
           </Link>
@@ -286,7 +330,7 @@ const Artisians = () => {
       </div>
 
       <div className="why-choose-craftedart-section">
-        <h2>Why Artisans Choose CraftedArt</h2>
+        <h2>Why Artisans Choose CraftiArts</h2>
         <p className="why-choose-subtitle">
           Join a community that values your craft and helps you reach customers worldwide
         </p>

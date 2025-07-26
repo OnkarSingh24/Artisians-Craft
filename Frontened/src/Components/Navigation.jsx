@@ -41,8 +41,8 @@ const Navigation = () => {
         </div>
 
         <div className="logo-section">
-          <div className="logo-square"><span className="logo-text">AC</span></div>
-          <h1 className="brand-name">ARTISIAN'S CRAFT</h1>
+          <div className="logo-square"><span className="logo-text">CA</span></div>
+          <h1 className="brand-name">CraftiArts</h1>
         </div>
 
         <div className="nav-links desktop-only">

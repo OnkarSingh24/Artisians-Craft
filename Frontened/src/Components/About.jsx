@@ -4,10 +4,10 @@ import { Instagram } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const stats = [
-    { icon: "👥", value: "1,200+", label: "Active Artisans" },
-    { icon: "🌐", value: "45+", label: "Countries" },
-    { icon: "📈", value: "25,000+", label: "Products Sold" },
-    { icon: "⭐", value: "4.9/5", label: "Customer Rating" },
+    { icon: "👥", value: "25+", label: "Active Artisans" },
+    { icon: "🌐", value: "5+", label: "Countries" },
+    { icon: "📈", value: "50+", label: "Products Sold" },
+    { icon: "⭐", value: "4.7/5", label: "Customer Rating" },
 ];
 
 const HeroSection = () => {
@@ -89,7 +89,7 @@ const HeroSection = () => {
                         <div className="values-section-container">
                             <div className="values-header">
                                 <h2 className="values-title">Our Values</h2>
-                                <p className="values-subtitle">The principles that guide everything we do at CraftedArt</p>
+                                <p className="values-subtitle">The principles that guide everything we do at CraftiArts</p>
                             </div>
                             <div className="values-cards-container">
                                 <div className="value-card">
@@ -138,16 +138,16 @@ const HeroSection = () => {
                         <div className="team-section-container">
                             <div className="team-header">
                                 <h2 className="team-title">Meet Our Team</h2>
-                                <p className="team-subtitle">The passionate people behind CraftedArt's mission</p>
+                                <p className="team-subtitle">The passionate people behind CraftiArt's mission</p>
                             </div>
                             <div className="team-cards-container">
                                 <div className="team-member-card">
                                     <div className="team-image-placeholder">
-                                        {<img src="/assets/your-image.png" alt="description" />}
+                                        
                                     </div>
                                     <h3 className="member-name">Akshita Sharma</h3>
                                     <p className="member-title">
-                                        <span className="title-highlight">Founder & CEO</span>
+                                        
                                     </p>
                                     
                                 </div>
@@ -158,7 +158,7 @@ const HeroSection = () => {
                                     </div>
                                     <h3 className="member-name">Dishant Sarangal</h3>
                                     <p className="member-title">
-                                        <span className="title-highlight">Head of Artisan Relations</span>
+                                        
                                     </p>
                                    
                                 </div>
@@ -168,7 +168,7 @@ const HeroSection = () => {
                                     </div>
                                     <h3 className="member-name">Onkar Singh</h3>
                                     <p className="member-title">
-                                        <span className="title-highlight">Head of Design</span>
+                                       
                                     </p>
                                     
                                 </div>

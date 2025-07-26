@@ -104,7 +104,7 @@ const RegisterAsSeller = () => {
           Join Our Artisan Community
         </div>
         <h1 className="main-title">
-          Become a <span className="highlight">Seller</span> on CraftedArt
+          Become a <span className="highlight">Seller</span> on CraftiArts.
         </h1>
         <p className="subtitle">
           Share your passion with the world. Join thousands of artisans who are building successful businesses on our platform.
