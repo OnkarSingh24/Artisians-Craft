@@ -177,11 +177,10 @@ select {
   margin-bottom: 24px;
 }
 
-.sec-title {
+.section-title {
   display: block;
   font-weight: 500;
   margin-bottom: 8px;
-  font-size: 1.2rem;
 }
 
 .price-range-labels {
@@ -403,20 +402,20 @@ select {
   }
 
   .filter-container.visible .filter-box {
-    transform: translateX(0); 
+    transform: translateX(0); /* Slide in */
   }
 
   .close-filter-btn {
-    display: block; 
+    display: block; /* Show close button on mobile */
   }
 
-
+  /* --- Main Content and Product Grid on Mobile --- */
   .shop-main-content {
     flex-direction: column;
   }
   
   .filter-box {
-   
+    /* On desktop this is handled by the container, but on mobile it's part of the drawer */
     width: 85%;
   }
 
@@ -442,7 +441,7 @@ select {
       font-size: 1rem;
   }
 
-  
+  /* Make buttons always visible on mobile for better UX */
   .cart-float-btn,
   .likebtn {
     opacity: 1;
@@ -458,14 +457,14 @@ select {
       background: white;
   }
 
-  
+  /* --- Other Mobile Adjustments --- */
   .search-line {
     flex-wrap: wrap;
   }
 
   .search {
     width: 100%;
-    order: 2; 
+    order: 2; /* Move search bar to the next line */
   }
 
   .filter-toggle-btn {
