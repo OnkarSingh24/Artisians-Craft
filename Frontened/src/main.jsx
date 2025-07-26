@@ -11,9 +11,12 @@ createRoot(document.getElementById('root')).render(
   
   <BrowserRouter>
     <CartProvider>
-    <ContextProvider>
-   <App />
-    </ContextProvider>
+    <WishlistProvider>
+        <ContextProvider>
+          <App />
+        </ContextProvider>
+      </WishlistProvider>
+
     </CartProvider>
     </BrowserRouter>
     

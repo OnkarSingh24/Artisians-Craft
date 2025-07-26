@@ -17,8 +17,7 @@ import { NavProvider } from './Components/NavContext';
 import About from './Components/About';
 import './App.css';
 import Dashboard from './Components/Dashboard';
-
-
+import Wishlist from './Components/Wishlist';
 function AppContent() {
   const location = useLocation();
 
@@ -52,7 +51,7 @@ function AppContent() {
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/artisandirectory" element={<ArtisanDirectory />} />
         <Route path="/Register" element={<Register />} />
-
+        <Route path='/wishlist' element={<Wishlist/>}   />
         <Route path="/dashboard" element={<Dashboard />} /> {/* ✅ Dashboard opens Checkout */}
 
         <Route path="/about" element={<About />} /> {/* ✅ Dashboard opens Checkout */}

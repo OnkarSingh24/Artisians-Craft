@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Shop.css';
-import { Search, List, Grid3x3, Filter, X } from 'lucide-react'; // Import Filter and X
+import { Search, Filter, X } from 'lucide-react';
 import { Heart, Star, IndianRupee, ShoppingCart } from 'lucide-react';
-import { useCart } from './CartContext'; 
+import { useCart } from './CartContext';
+import { useWishlist } from './WishlistContext'; // 1. Import wishlist hook
 
 const Dropdown = () => {
   const [SelectedCategory, setSelectedCategory] = useState("");
@@ -19,8 +20,7 @@ const Dropdown = () => {
 };
 
 const products = [
-  // Your products array remains unchanged...
-  {
+    {
     name: "Handcrafted Ceramic Vase",
     maker: "by Priya Sharma",
     rating: "5(23)",
@@ -182,21 +182,29 @@ const products = [
   },
 ];
 
-// FIX: 'addToCart' is now a prop for this component
-const ProductCard = ({ product, addToCart }) => {
-  const [liked, setLiked] = useState(false);
+// 2. ProductCard is kept in this file and now receives wishlist functions as props
+const ProductCard = ({ product, addToCart, addToWishlist, removeFromWishlist, isWishlisted }) => {
+  // The 'liked' state is now determined by the global context, not local state
+  const isLiked = isWishlisted(product.name);
+
+  const handleWishlistToggle = () => {
+    if (isLiked) {
+      removeFromWishlist(product.name);
+    } else {
+      addToWishlist(product);
+    }
+  };
 
   return (
     <div className="product-card">
       <div className="card-img-wrapper2">
         <img src={product.img} alt={product.name} className="product-image" />
         <button
-          className={`likebtn ${liked ? 'liked' : ''}`}
-          onClick={() => setLiked(!liked)}
+          className={`likebtn ${isLiked ? 'liked' : ''}`}
+          onClick={handleWishlistToggle}
         >
-          <Heart size={18} fill={liked ? 'red' : 'none'} color={liked ? 'red' : '#333'} />
+          <Heart size={18} fill={isLiked ? 'red' : 'none'} color={isLiked ? 'red' : '#333'} />
         </button>
-        {/* This now works correctly */}
         <button className="cart-float-btn" onClick={() => addToCart(product)}>
           <ShoppingCart size={18} /> Add to Cart
         </button>
@@ -218,17 +226,26 @@ const ProductCard = ({ product, addToCart }) => {
   );
 };
 
-const TrendingProducts = ({ products, addToCart }) => {
+// 3. TrendingProducts is updated to pass the new props to ProductCard
+const TrendingProducts = ({ products, addToCart, addToWishlist, removeFromWishlist, isWishlisted }) => {
   return (
     <section>
       <div className="product-list">
         {products.map((product, index) => (
-          <ProductCard key={index} product={product} addToCart={addToCart} />
+          <ProductCard
+            key={index}
+            product={product}
+            addToCart={addToCart}
+            addToWishlist={addToWishlist}
+            removeFromWishlist={removeFromWishlist}
+            isWishlisted={isWishlisted}
+          />
         ))}
       </div>
     </section>
   );
 };
+
 
 const Pagination = ({ productsPerPage, totalProducts, paginate, currentPage }) => {
   const pageNumbers = [];
@@ -255,7 +272,6 @@ const Pagination = ({ productsPerPage, totalProducts, paginate, currentPage }) =
       >
         Previous
       </button>
-
       {pageNumbers.map((number) => (
         <button
           key={number}
@@ -265,7 +281,6 @@ const Pagination = ({ productsPerPage, totalProducts, paginate, currentPage }) =
           {number}
         </button>
       ))}
-
       <button
         className="page-btn"
         onClick={handleNext}
@@ -277,6 +292,7 @@ const Pagination = ({ productsPerPage, totalProducts, paginate, currentPage }) =
   );
 };
 
+
 function FilterSidebar({
   selectedCategories,
   setSelectedCategories,
@@ -284,7 +300,7 @@ function FilterSidebar({
   setSelectedRating,
   priceRange,
   setPriceRange,
-  onClose, // Prop to close the sidebar on mobile
+  onClose,
 }) {
   const categories = [
     'Pottery & Ceramics', 'Jewelry', 'Textiles', 'Woodworking',
@@ -308,7 +324,6 @@ function FilterSidebar({
           <X size={20} />
         </button>
       </div>
-
       <div className="filter-section">
         <label className="sec-title">Price Range</label>
         <input
@@ -323,7 +338,6 @@ function FilterSidebar({
           <span>₹{priceRange}</span>
         </div>
       </div>
-
       <div className="filter-section">
         <label className="sec-title">Categories</label>
         {categories.map((category) => (
@@ -337,7 +351,6 @@ function FilterSidebar({
           </label>
         ))}
       </div>
-
       <div className="filter-section">
         <label className="sec-title">Rating</label>
         {ratings.map((r) => (
@@ -367,9 +380,12 @@ function FilterSidebar({
   );
 }
 
+
 const Shop = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const { addToCart } = useCart(); // Get the function from the context
+  const { addToCart } = useCart();
+  // 4. Get wishlist functions from the context
+  const { addToWishlist, removeFromWishlist, isWishlisted } = useWishlist();
   const productsPerPage = 8;
 
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -377,13 +393,12 @@ const Shop = () => {
   const [priceRange, setPriceRange] = useState(10000);
   const [Category, setCategory] = useState("All");
   
-  // State to manage mobile filter visibility
   const [isFilterVisible, setIsFilterVisible] = useState(false);
 
   const filteredProducts = products.filter((p) => {
     const matchCategoryLine = Category === 'All' || p.category.includes(Category);
     const matchSidebarCategory = selectedCategories.length === 0 || selectedCategories.includes(p.category);
-    const matchRating = !selectedRating || parseInt(p.rating) >= selectedRating;
+    const matchRating = !selectedRating || parseFloat(p.rating) >= selectedRating;
     const matchPrice = parseInt(p.price) <= priceRange;
     return matchCategoryLine && matchSidebarCategory && matchRating && matchPrice;
   });
@@ -445,7 +460,7 @@ const Shop = () => {
 
       <div className="shop-main-content">
         <div className={`filter-container ${isFilterVisible ? 'visible' : ''}`} onClick={() => setIsFilterVisible(false)}>
-            <div onClick={(e) => e.stopPropagation()}> {/* Prevents closing when clicking inside the sidebar */}
+            <div onClick={(e) => e.stopPropagation()}>
               <FilterSidebar
                 selectedCategories={selectedCategories}
                 setSelectedCategories={setSelectedCategories}
@@ -459,8 +474,14 @@ const Shop = () => {
         </div>
 
         <div style={{ flex: 1 }}>
-          {/* FIX: Pass 'addToCart' down to the component that renders the cards */}
-          <TrendingProducts products={currentProducts} addToCart={addToCart} />
+          {/* 5. Pass all required functions down to the product grid */}
+          <TrendingProducts
+            products={currentProducts}
+            addToCart={addToCart}
+            addToWishlist={addToWishlist}
+            removeFromWishlist={removeFromWishlist}
+            isWishlisted={isWishlisted}
+          />
           <Pagination
             productsPerPage={productsPerPage}
             totalProducts={filteredProducts.length}

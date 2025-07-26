@@ -10,107 +10,116 @@ import {
   MapPin,
   Search,
   Filter,
+  
   LineChart,
   Users as UsersIcon
 } from 'lucide-react';
 
 const artisans = [
   {
-    name: 'Elena Rodriguez',
+    name: 'Jaspreet Sharma',
     craft: 'Ceramic Pottery',
-    location: 'Santa Fe, New Mexico, USA',
+    location: 'Jalandhar, Punjab',
     years: 15,
     rating: 4.9,
     products: 127,
     followers: 2300,
     awards: 7,
     verified: false,
+    img: "https://i.pinimg.com/736x/6b/b6/d0/6bb6d094147301f3ccce198b6d6179bc.jpg",
     featured: true
   },
   {
     name: 'Raju Shrivastav',
-    craft: 'Ceramic Pottery',
-    location: 'Patna, Bihar',
+    craft: 'Textile',
+    location: 'Jaipur, Rajasthan',
     years: 3,
     rating: 3.5,
     products: 79,
     followers: 230,
     awards: 2,
     verified: true,
-    featured: false
+    img: 'https://i.pinimg.com/736x/a6/90/6f/a6906fde96ec3328c4078150233279da.jpg',
+    featured: true
   },
   {
-    name: 'Marcus Chen',
-    craft: 'Hand-woven Textiles',
-    location: 'Portland, Oregon, USA',
+    name: 'Arjun Mehra',
+    craft: 'Pottery',
+    location: 'Varanasi, Uttar Pradesh',
     years: 12,
     rating: 4.8,
     products: 89,
     followers: 1800,
     awards: 5,
     verified: true,
+    img: 'https://i.pinimg.com/736x/be/c0/a1/bec0a1697ccfdcd745e33368645756a8.jpg',
     featured: true
   },
   {
-    name: 'Priya Sharma',
+    name: 'Priya Chauhan',
     craft: 'Silver Jewelry Design',
-    location: 'Jaipur, Rajasthan, India',
+    location: 'Udaipur, Rajasthan',
     years: 18,
     rating: 5.0,
     products: 156,
     followers: 3100,
     awards: 4,
-    verified: true,
-    featured: false
-  },
-  {
-    name: 'Elena Rodriguez',
-    craft: 'Ceramic Pottery',
-    location: 'Santa Fe, New Mexico, USA',
-    years: 15,
-    rating: 4.9,
-    products: 127,
-    followers: 2300,
-    awards: 7,
     verified: false,
-    featured: true
-  },
-  {
-    name: 'Elena Rodriguez',
-    craft: 'Ceramic Pottery',
-    location: 'Santa Fe, New Mexico, USA',
-    years: 15,
-    rating: 4.9,
-    products: 127,
-    followers: 2300,
-    awards: 7,
-    verified: true,
+    img: 'https://i.pinimg.com/736x/4b/f6/63/4bf6633b4e8a98201805dddb78de559b.jpg',
     featured: false
   },
   {
-    name: 'Elena Rodriguez',
-    craft: 'Ceramic Pottery',
-    location: 'Santa Fe, New Mexico, USA',
+    name: 'Meera Krishnan',
+    craft: 'Terracotta Sculpting',
+    location: 'Kanchipuram, Tamil Nadu',
     years: 15,
     rating: 4.9,
     products: 127,
     followers: 2300,
     awards: 7,
     verified: true,
+    img: 'https://i.pinimg.com/1200x/d8/cd/7a/d8cd7afee0b6fb4fd492f6686f59da33.jpg',
+    featured: false
+  },
+  {
+    name: 'Sameer Ali',
+    craft: 'Chikankari Embroidery',
+    location: 'Lucknow, Uttar Pradesh',
+    years: 20,
+    rating: 4.7,
+    products: 95,
+    followers: 1500,
+    awards: 6,
+    verified: true,
+    img: 'https://i.pinimg.com/736x/6a/5a/ad/6a5aadd9194686d1a1553c7f336ef0fd.jpg',
+    featured: false
+  },
+  {
+    name: 'Kavita Das',
+    craft: 'Kantha Stitching',
+    location: 'Kolkata, West Bengal',
+    years: 22,
+    rating: 4.9,
+    products: 110,
+    followers: 2100,
+    awards: 7, // Corrected from 'toards'
+    verified: true,
+    img: 'https://i.pinimg.com/736x/ae/dd/53/aedd537c80e54e3f2dbc482ed43cc5f1.jpg',
     featured: true
   },
   {
-    name: 'Elena Rodriguez',
-    craft: 'Ceramic Pottery',
-    location: 'Santa Fe, New Mexico, USA',
-    years: 15,
-    rating: 4.9,
-    products: 127,
-    followers: 2300,
-    awards: 7,
+    name: 'Rohan Desai',
+    craft: 'Block Printing',
+    location: 'Ahmedabad, Gujarat',
+    years: 10,
+    rating: 4.8,
+    products: 150,
+    followers: 2800,
+    awards: 9,
     verified: true,
+    img: 'https://i.pinimg.com/736x/bf/9b/6c/bf9b6ca3f1ff282886d1eb5de535b32d.jpg',
     featured: true
-  }
+  },
 ];
 
 const Artisians = () => {
@@ -118,7 +127,6 @@ const Artisians = () => {
   const [showAll, setShowAll] = useState(false);
 
   const filters = ["All", "Featured", "Verified", "Newest", "Top Rated", "Most Products"];
-
   const getFilteredArtisans = () => {
     let filtered = [...artisans];
     switch (activeTab) {
@@ -143,7 +151,6 @@ const Artisians = () => {
     }
     return showAll ? filtered : filtered.slice(0, 4);
   };
-
   const visibleArtisans = getFilteredArtisans();
 
   const handleViewProfile = (artisan) => {
@@ -152,7 +159,7 @@ const Artisians = () => {
 
   return (
     <div className='artisians'>
-      <div className='intro-section'>
+      <div className="intro-section">
         <div className='top-button'>
           ✨ <span>Meet Our Artisans</span>
         </div>
@@ -169,10 +176,26 @@ const Artisians = () => {
       </div>
 
       <div className='stats-section'>
-        <div className='stat-box'><div className="icon-box"><Users color="#ea572a" size={24} /></div><h2>1,200+</h2><p>Active Artisans</p></div>
-        <div className='stat-box'><div className='icon-box'><Globe color="#ea572a" size={24} /></div><h2>45+</h2><p>Countries</p></div>
-        <div className='stat-box'><div className='icon-box'><Award color="#ea572a" size={24} /></div><h2>50+</h2><p>Craft Categories</p></div>
-        <div className='stat-box'><div className='icon-box'><TrendingUp color="#ea572a" size={24} /></div><h2>25,000+</h2><p>Products Created</p></div>
+        <div className='stat-box'>
+          <div className="icon-box"><Users color="#ea572a" size={24} /></div>
+          <h2>1,200+</h2>
+          <p>Active Artisans</p>
+        </div>
+        <div className='stat-box'>
+          <div className='icon-box'><Globe color="#ea572a" size={24} /></div>
+          <h2>45+</h2>
+          <p>Countries</p>
+        </div>
+        <div className='stat-box'>
+          <div className='icon-box'><Award color="#ea572a" size={24} /></div>
+          <h2>50+</h2>
+          <p>Craft Categories</p>
+        </div>
+        <div className='stat-box'>
+          <div className='icon-box'><TrendingUp color="#ea572a" size={24} /></div>
+          <h2>25,000+</h2>
+          <p>Products Created</p>
+        </div>
       </div>
 
       <div className='search-filter'>
@@ -208,10 +231,7 @@ const Artisians = () => {
           <button
             key={item}
             className={activeTab === item ? "filter-tab active" : "filter-tab"}
-            onClick={() => {
-              setActiveTab(item);
-              setShowAll(false);
-            }}
+            onClick={() => setActiveTab(item)}
           >
             {item}
           </button>
@@ -226,14 +246,13 @@ const Artisians = () => {
             <h4>Featured Artisans</h4>
             <p>Discover exceptional craftspeople who represent the best of their traditions</p>
           </div>
-          <button className='filter-btn'><Filter size={18} /> More Filters</button>
         </div>
 
         <div className='cards'>
           {visibleArtisans.map((a, i) => (
             <div className='artisan-card' key={i}>
               <div className='image-placeholder'>
-                <span>No Image</span>
+              <img className='ar-image' src={a.img} alt={a.name} />
                 {a.verified && <span className="badge green">✔ Verified</span>}
                 {a.featured && <span className="badge purple">★ Featured</span>}
               </div>
@@ -241,6 +260,7 @@ const Artisians = () => {
                 <h5>{a.name}</h5>
                 <p className='craft'>{a.craft}</p>
                 <p className='location'><MapPin size={14} /> {a.location}</p>
+                
                 <div className='stats'>
                   <span><Star size={14} color="#E26132" /> {a.rating} ({a.products} products)</span>
                   <span>{a.followers.toLocaleString()} followers</span>
@@ -254,11 +274,11 @@ const Artisians = () => {
             </div>
           ))}
         </div>
-
         <div className="artisan-buttons-container">
           {!showAll && (
             <button className="view-more-btn" onClick={() => setShowAll(true)}>View More Artisans</button>
           )}
+          {/* CORRECTED: This links to your ArtisanDirectory page */}
           <Link to="/artisandirectory">
             <button className="view-more-btn">All Artisans</button>
           </Link>

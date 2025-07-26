@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCart } from './CartContext'; // 1. Import the GLOBAL useCart hook
+import { useCart } from './CartContext';
 import './Checkout.css';
 
 const Checkout = () => {
-  // 2. Get the actual cart data from the global context
   const { cartItems, subtotal, handleClearCart } = useCart();
   const navigate = useNavigate();
 
+  // 1. Add new fields to the initial state for payment details
   const [formData, setFormData] = useState({
     name: '',
     address: '',
     phone: '',
-    paymentMethod: ''
+    paymentMethod: '',
+    upiId: '',          // For UPI
+    cardNumber: '',     // For Card
+    expiryDate: '',     // For Card
+    cvv: ''             // For Card
   });
 
-  // 3. Calculate total amount including tax, just like in the cart
   const tax = subtotal * 0.08; // 8% GST
   const totalAmount = subtotal + tax;
 
@@ -28,22 +31,92 @@ const Checkout = () => {
 
     if (cartItems.length === 0) {
       alert('Your cart is empty. Please add items before placing an order.');
-      navigate('/shop'); // Redirect to shop if cart is empty
+      navigate('/shop');
       return;
     }
 
-    // Log the final order data
-    console.log('Order Placed:', {
-      customerDetails: formData,
+    // Filter out empty payment details before logging/sending
+    const { name, address, phone, paymentMethod, ...paymentDetails } = formData;
+    const orderData = {
+      customerDetails: { name, address, phone },
+      paymentMethod,
       orderedItems: cartItems,
       totalAmount: totalAmount.toFixed(2)
-    });
+    };
 
+    // Add specific payment details only if they are relevant
+    if (paymentMethod === 'upi') {
+      orderData.paymentDetails = { upiId: paymentDetails.upiId };
+    } else if (paymentMethod === 'card') {
+      orderData.paymentDetails = { 
+        cardNumber: paymentDetails.cardNumber,
+        expiryDate: paymentDetails.expiryDate,
+        // Don't log or send CVV for security reasons
+      };
+    }
+    
+    console.log('Order Placed:', orderData);
     alert('Thank you! Your order has been placed successfully!');
     
-    // Clear the cart and redirect to home or an order confirmation page
     handleClearCart();
     navigate('/'); 
+  };
+
+  // 2. Create a component or a render function for payment details
+  const renderPaymentDetails = () => {
+    switch (formData.paymentMethod) {
+      case 'upi':
+        return (
+          <div className="payment-details">
+            <input
+              type="text"
+              name="upiId"
+              placeholder="Enter UPI ID (e.g., yourname@okhdfcbank)"
+              value={formData.upiId}
+              onChange={handleChange}
+              required
+            />
+          </div>
+        );
+      case 'card':
+        return (
+          <div className="payment-details">
+            <input
+              type="text"
+              name="cardNumber"
+              placeholder="Card Number"
+              value={formData.cardNumber}
+              onChange={handleChange}
+              pattern="\d{16}"
+              title="Card number must be 16 digits"
+              required
+            />
+            <input
+              type="text"
+              name="expiryDate"
+              placeholder="MM/YY"
+              value={formData.expiryDate}
+              onChange={handleChange}
+              pattern="(0[1-9]|1[0-2])\/\d{2}"
+              title="Enter date in MM/YY format"
+              required
+            />
+            <input
+              type="password"
+              name="cvv"
+              placeholder="CVV"
+              value={formData.cvv}
+              onChange={handleChange}
+              pattern="\d{3}"
+              title="CVV must be 3 digits"
+              maxLength="3"
+              required
+            />
+          </div>
+        );
+      default:
+        return null; // Don't render anything for "Cash on Delivery" or default
+    }
   };
 
   return (
@@ -51,7 +124,7 @@ const Checkout = () => {
       <h2 className="checkout-title">Checkout</h2>
 
       <div className="checkout-container">
-        {/* Left: Cart Summary */}
+        {/* Left: Cart Summary (No changes here) */}
         <div className="checkout-left">
           <h3>Order Summary</h3>
           {cartItems.length === 0 ? (
@@ -59,7 +132,6 @@ const Checkout = () => {
           ) : (
             <>
               {cartItems.map((item, i) => (
-                // 4. Use the correct property names: 'img' and 'name'
                 <div className="checkout-item" key={i}>
                   <img src={item.img} alt={item.name} />
                   <div>
@@ -122,6 +194,10 @@ const Checkout = () => {
               <option value="upi">UPI</option>
               <option value="card">Credit/Debit Card</option>
             </select>
+
+            {/* 3. Render the conditional payment form here */}
+            {renderPaymentDetails()}
+
             <button type="submit" className="place-order-btn">
               Place Order
             </button>

@@ -63,15 +63,13 @@ const HeroSection = () => {
                                 </li>
                             </ul>
                         </div>
-                        <div className="image-placeholder">
-                            <div className="placeholder-icon"></div>
-                        </div>
+                        <img className="image-placeholder" src='https://i.pinimg.com/736x/19/6a/8e/196a8ea01edb208a92df97faa648908d.jpg' alt=""/>
+                            
+                        
                     </section>
 
                     <section className="section-block vision-section">
-                        <div className="image-placeholder">
-                            <div className="placeholder-icon"></div>
-                        </div>
+                    <img className="image-placeholder" src='https://i.pinimg.com/1200x/ca/27/7f/ca277f619ab4abf788c5df49cf0bf819.jpg' alt=""/>
                         <div className="text-content">
                             <p className="section-label">Our Vision</p>
                             <h2 className="section-title">A World Where Handmade Matters</h2>
@@ -151,9 +149,7 @@ const HeroSection = () => {
                                     <p className="member-title">
                                         <span className="title-highlight">Founder & CEO</span>
                                     </p>
-                                    <p className="member-bio">
-                                        Former art curator with 0 years of experience in promoting traditional crafts.
-                                    </p>
+                                    
                                 </div>
 
                                 <div className="team-member-card">
@@ -164,9 +160,7 @@ const HeroSection = () => {
                                     <p className="member-title">
                                         <span className="title-highlight">Head of Artisan Relations</span>
                                     </p>
-                                    <p className="member-bio">
-                                        Worked directly with craft communities across 20+ countries.
-                                    </p>
+                                   
                                 </div>
 
                                 <div className="team-member-card">
@@ -176,9 +170,7 @@ const HeroSection = () => {
                                     <p className="member-title">
                                         <span className="title-highlight">Head of Design</span>
                                     </p>
-                                    <p className="member-bio">
-                                        Award-winning designer passionate about preserving traditional art forms.
-                                    </p>
+                                    
                                 </div>
                             </div>
                         </div>

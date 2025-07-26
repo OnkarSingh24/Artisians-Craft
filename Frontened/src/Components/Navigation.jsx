@@ -27,6 +27,7 @@ const Navigation = () => {
     closeSidebar();
   };
 
+
   const handleDashboardClick = () => {
     navigate('/dashboard');
     closeSidebar();
@@ -48,7 +49,7 @@ const Navigation = () => {
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/shop" className="nav-link">Shop</Link> 
           <Link to="/artisans" className="nav-link">Artisans</Link>
-          <Link to="/about" >About</Link>
+          <Link to="/about" className="nav-link">About</Link>
         </div>
 
         <div className="search-container desktop-only">
@@ -59,7 +60,7 @@ const Navigation = () => {
         </div>
 
         <div className="actions">
-          <button className="icon-btn"><Heart size={20} /></button>
+          <Link to="/wishlist" className="icon-btn"><Heart size={20} /></Link>
           <button className="icon-btn cart-icon-wrapper" onClick={handleCartClick}>
             <ShoppingCart size={20} />
             {itemCount > 0 && (

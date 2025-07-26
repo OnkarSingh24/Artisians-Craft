@@ -303,26 +303,35 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
+/*
+  The container div. It defines the size, shape, and background/placeholder.
+  The 'overflow: hidden' is added to ensure the image's corners are clipped
+  by the parent's border-radius.
+*/
 .image-placeholder {
   width: 100%;
   height: 200px;
-  background: linear-gradient(135deg, #eee, #ddd);
+  background: #f0f0f0; /* A simple placeholder color */
   border-radius: 12px;
   margin-bottom: 1rem;
-  object-fit: fill;
-  background-position: center;
   position: relative;
+  overflow: hidden; /* Important for child's border-radius */
 }
+
+/*
+  The actual <img> tag. It's styled to fill the container
+  perfectly without being stretched or squished.
+*/
 .ar-image {
   width: 100%;
-  height: 200px;
-  background: linear-gradient(135deg, #eee, #ddd);
-  border-radius: 12px;
-  margin-bottom: 1rem;
-  object-fit: fill;
-  background-position: center;
-  position: relative;
+  height: 100%;
+  /* This is the key property: */
+  /* It scales the image to fill the container while maintaining aspect ratio, cropping any excess. */
+  object-fit: cover; 
 }
+
+/* Your badge styling is correct, it doesn't need changes.
+*/
 .badge {
   position: absolute;
   top: 12px;
@@ -334,7 +343,6 @@
   border-radius: 8px;
   font-weight: 600;
 }
-
 .artisan-info h5 {
   font-size: 1.25rem;
   color: #333;

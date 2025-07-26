@@ -44,7 +44,7 @@ const ImageCarousel = () => {
       </div>
       <div className="carousel-slide">
         <img
-          src="https://blog.artsper.com/wp-content/uploads/2018/11/GettyImages-943748376-644x429.jpg"
+          src="https://i.pinimg.com/1200x/ab/30/df/ab30dfb9831541c335d65c5f787f0335.jpg"
           alt="Art 2"
         />
         <span className="badge award">
