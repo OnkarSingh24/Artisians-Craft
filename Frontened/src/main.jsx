@@ -6,20 +6,21 @@ import './index.css'
 import App from './App.jsx'
 import { ContextProvider } from '../context.jsx'
 import { CartProvider } from './Components/CartContext.jsx';
+import { WishlistProvider } from './Components/WishlistContext.jsx';
 
 createRoot(document.getElementById('root')).render(
-  
+
   <BrowserRouter>
     <CartProvider>
-    <WishlistProvider>
+      <WishlistProvider>
         <ContextProvider>
           <App />
         </ContextProvider>
       </WishlistProvider>
 
     </CartProvider>
-    </BrowserRouter>
-    
- 
-  
-  )
+  </BrowserRouter>
+
+
+
+)
