@@ -1,12 +1,12 @@
 import React from 'react';
 import { useWishlist } from './WishlistContext';
 import { useCart } from './CartContext';
-// 1. CORRECTED: Added missing icon imports
+
 import { Heart, Star, IndianRupee, ShoppingCart } from 'lucide-react'; 
 
 import './Wishlist.css';
 
-// This component is a copy of the one in Shop.jsx
+
 const ProductCard = ({ product, addToCart, addToWishlist, removeFromWishlist, isWishlisted }) => {
   const isLiked = isWishlisted(product.name);
 

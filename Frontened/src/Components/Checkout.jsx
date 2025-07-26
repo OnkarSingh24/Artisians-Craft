@@ -7,16 +7,15 @@ const Checkout = () => {
   const { cartItems, subtotal, handleClearCart } = useCart();
   const navigate = useNavigate();
 
-  // 1. Add new fields to the initial state for payment details
   const [formData, setFormData] = useState({
     name: '',
     address: '',
     phone: '',
     paymentMethod: '',
-    upiId: '',          // For UPI
-    cardNumber: '',     // For Card
-    expiryDate: '',     // For Card
-    cvv: ''             // For Card
+    upiId: '',          
+    cardNumber: '',    
+    expiryDate: '',    
+    cvv: ''            
   });
 
   const tax = subtotal * 0.08; // 8% GST
@@ -35,7 +34,6 @@ const Checkout = () => {
       return;
     }
 
-    // Filter out empty payment details before logging/sending
     const { name, address, phone, paymentMethod, ...paymentDetails } = formData;
     const orderData = {
       customerDetails: { name, address, phone },
@@ -44,14 +42,13 @@ const Checkout = () => {
       totalAmount: totalAmount.toFixed(2)
     };
 
-    // Add specific payment details only if they are relevant
     if (paymentMethod === 'upi') {
       orderData.paymentDetails = { upiId: paymentDetails.upiId };
     } else if (paymentMethod === 'card') {
       orderData.paymentDetails = { 
         cardNumber: paymentDetails.cardNumber,
         expiryDate: paymentDetails.expiryDate,
-        // Don't log or send CVV for security reasons
+       
       };
     }
     
@@ -62,7 +59,7 @@ const Checkout = () => {
     navigate('/'); 
   };
 
-  // 2. Create a component or a render function for payment details
+
   const renderPaymentDetails = () => {
     switch (formData.paymentMethod) {
       case 'upi':
@@ -115,7 +112,7 @@ const Checkout = () => {
           </div>
         );
       default:
-        return null; // Don't render anything for "Cash on Delivery" or default
+        return null; 
     }
   };
 
@@ -124,7 +121,7 @@ const Checkout = () => {
       <h2 className="checkout-title">Checkout</h2>
 
       <div className="checkout-container">
-        {/* Left: Cart Summary (No changes here) */}
+       
         <div className="checkout-left">
           <h3>Order Summary</h3>
           {cartItems.length === 0 ? (
@@ -155,7 +152,7 @@ const Checkout = () => {
           )}
         </div>
 
-        {/* Right: Address & Payment */}
+      
         <div className="checkout-right">
           <h3>Shipping & Payment</h3>
           <form onSubmit={handlePlaceOrder}>
@@ -195,7 +192,7 @@ const Checkout = () => {
               <option value="card">Credit/Debit Card</option>
             </select>
 
-            {/* 3. Render the conditional payment form here */}
+            
             {renderPaymentDetails()}
 
             <button type="submit" className="place-order-btn">

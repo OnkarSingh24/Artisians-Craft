@@ -12,7 +12,7 @@ const Dashboard = () => {
 
   // Fetch user details from backend
   useEffect(() => {
-    axios.get('/api/user') // Replace with your actual endpoint
+    axios.get('/api/user')
       .then(res => {
         const data = res.data || {};
         setUser({

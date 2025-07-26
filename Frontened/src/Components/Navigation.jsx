@@ -73,7 +73,7 @@ const Navigation = () => {
               <User size={20} />
             </button>
           ) : (
-            // Changed this button to a Link
+            
             <Link to="/signin" className="sign-in-btn desktop-only">
               <User size={18} /><span>Sign In</span>
             </Link>
@@ -96,7 +96,7 @@ const Navigation = () => {
             <User size={18} /><span>Dashboard</span>
           </button>
         ) : (
-          // Changed this button to a Link
+          
           <Link to="/signin" className="sign-in-btn mobile-only" onClick={closeSidebar}>
             <User size={18} /><span>Sign In</span>
           </Link>

@@ -247,7 +247,7 @@ body {
   min-width: 18px;   /* Ensures it's a circle even with a single digit */
   height: 18px;
   box-sizing: border-box;
-  border: 1px solid white; /* Optional: adds a nice separation */
+  border: 1px solid white; 
 }
 .sign-in-btn {
   text-decoration: none;

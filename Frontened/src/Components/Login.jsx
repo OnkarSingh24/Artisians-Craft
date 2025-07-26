@@ -9,7 +9,7 @@ import { NavContext, NavProvider } from './NavContext';
 const Login = () => {
   const navigate = useNavigate();
   const { backendurl, setisloggedin ,setuserdata , setSellerData} = useContext(content);
-  const { setUser } = useContext(NavContext); // 👈 Get setUser from NavContext
+  const { setUser } = useContext(NavContext); 
 
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
@@ -27,7 +27,7 @@ const Login = () => {
         setisloggedin(true);
         setuserdata(data.user);
         setSellerData(data.user);
-        setUser({ email: Email, role: data.role }); // 👈 Update NavContext
+        setUser({ email: Email, role: data.role }); 
 
         
 
@@ -37,7 +37,7 @@ const Login = () => {
             navigate('/admindashboard');
             break;
           case 'seller' :
-            navigate('/artisanDashboard')//artisans dasboard
+            navigate('/artisanDashboard')
             break;
           default:
             navigate('/');
