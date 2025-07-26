@@ -4,6 +4,7 @@ import './navigation.css';
 import { useCart } from './CartContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { NavContext, NavProvider } from './NavContext';
+
 const Navigation = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
@@ -27,7 +28,6 @@ const Navigation = () => {
     closeSidebar();
   };
 
-
   const handleDashboardClick = () => {
     navigate('/dashboard');
     closeSidebar();
@@ -47,7 +47,7 @@ const Navigation = () => {
 
         <div className="nav-links desktop-only">
           <Link to="/" className="nav-link">Home</Link>
-          <Link to="/shop" className="nav-link">Shop</Link> 
+          <Link to="/shop" className="nav-link">Shop</Link>
           <Link to="/artisans" className="nav-link">Artisans</Link>
           <Link to="/about" className="nav-link">About</Link>
         </div>
@@ -69,13 +69,14 @@ const Navigation = () => {
           </button>
 
           {user ? (
-             <button className="icon-btn" /* ... */ >
-               <User size={20} />
-             </button>
+            <button className="icon-btn" /* ... */ >
+              <User size={20} />
+            </button>
           ) : (
-             <button className="sign-in-btn desktop-only" /* ... */ >
-               <User size={18} /><span>Sign In</span>
-             </button>
+            // Changed this button to a Link
+            <Link to="/signin" className="sign-in-btn desktop-only">
+              <User size={18} /><span>Sign In</span>
+            </Link>
           )}
 
           <button className="seller-btn desktop-only" onClick={handleBecomeSeller}>Become a Seller</button>
@@ -95,9 +96,10 @@ const Navigation = () => {
             <User size={18} /><span>Dashboard</span>
           </button>
         ) : (
-          <button className="sign-in-btn mobile-only" onClick={handleSignIn}>
+          // Changed this button to a Link
+          <Link to="/signin" className="sign-in-btn mobile-only" onClick={closeSidebar}>
             <User size={18} /><span>Sign In</span>
-          </button>
+          </Link>
         )}
 
         <button className="seller-btn mobile-only" onClick={handleBecomeSeller}>Become a Seller</button>

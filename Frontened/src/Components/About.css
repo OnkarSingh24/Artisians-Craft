@@ -1,6 +1,6 @@
 .hero-section {
   background: linear-gradient(to bottom, #fff5f3, #ffffff);
-  margin-top: 64px;
+  margin-top: 60px;
   width: 100%;
   text-align: center;
 }
@@ -24,8 +24,8 @@
 }
 
 .hero-title {
-  font-size: 3rem;
-  font-weight: 800;
+  font-size: 2.9rem;
+  font-weight: 700;
   color: #1f1a17;
   margin-bottom: 0.5rem;
   line-height: 1.2;
@@ -646,4 +646,10 @@
     flex-direction: column;
     align-items: center;
   }
+}
+.secondary-btn {
+  text-decoration: none;
+}
+.secondary-btn-alt {
+  text-decoration: none;
 }

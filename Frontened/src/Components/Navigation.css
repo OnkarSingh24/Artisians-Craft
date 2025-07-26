@@ -249,3 +249,6 @@ body {
   box-sizing: border-box;
   border: 1px solid white; /* Optional: adds a nice separation */
 }
+.sign-in-btn {
+  text-decoration: none;
+}

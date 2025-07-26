@@ -28,7 +28,9 @@ const HeroSection = () => {
 
                 <div className="hero-buttons">
                     <button className="primary-btn">Join Our Community →</button>
-                    <button className="secondary-btn">Explore Artisan Works</button>
+                    <Link to="/shop" className="secondary-btn">
+                        Explore Artisan Works
+                    </Link>
                 </div>
 
                 <div className="stats-container">
@@ -64,12 +66,10 @@ const HeroSection = () => {
                             </ul>
                         </div>
                         <img className="image-placeholder" src='https://i.pinimg.com/736x/19/6a/8e/196a8ea01edb208a92df97faa648908d.jpg' alt=""/>
-                            
-                        
                     </section>
 
                     <section className="section-block vision-section">
-                    <img className="image-placeholder" src='https://i.pinimg.com/1200x/ca/27/7f/ca277f619ab4abf788c5df49cf0bf819.jpg' alt=""/>
+                        <img className="image-placeholder" src='https://i.pinimg.com/1200x/ca/27/7f/ca277f619ab4abf788c5df49cf0bf819.jpg' alt=""/>
                         <div className="text-content">
                             <p className="section-label">Our Vision</p>
                             <h2 className="section-title">A World Where Handmade Matters</h2>
@@ -79,9 +79,9 @@ const HeroSection = () => {
                                 choosing handmade is choosing to support communities, preserve traditions, and
                                 celebrate human creativity.
                             </p>
-                            <button className="meet-artisans-button">
+                            <Link to="/artisandirectory" className="meet-artisans-button">
                                 Meet Our Artisans <span className="arrow-icon">→</span>
-                            </button>
+                            </Link>
                         </div>
                     </section>
 
@@ -154,13 +154,13 @@ const HeroSection = () => {
 
                                 <div className="team-member-card">
                                     <div className="team-image-placeholder">
-                                        { }
+                                         
                                     </div>
                                     <h3 className="member-name">Dishant Sarangal</h3>
                                     <p className="member-title">
                                         
                                     </p>
-                                   
+                                    
                                 </div>
 
                                 <div className="team-member-card">
@@ -168,7 +168,7 @@ const HeroSection = () => {
                                     </div>
                                     <h3 className="member-name">Onkar Singh</h3>
                                     <p className="member-title">
-                                       
+                                        
                                     </p>
                                     
                                 </div>
@@ -185,12 +185,12 @@ const HeroSection = () => {
                                     building a more connected world.
                                 </p>
                                 <div className="join-story-buttons">
-                                    <button className="join-story-btn secondary-btn-alt">
+                                    <Link to="/registerasseller" className="join-story-btn secondary-btn-alt">
                                         Become an Artisan <span className="arrow-icon">→</span>
-                                    </button>
-                                    <button className="join-story-btn primary-btn-alt">
+                                    </Link>
+                                    <Link to="/shop" className="join-story-btn primary-btn-alt">
                                         Start Shopping
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

@@ -194,9 +194,12 @@ const Artisians = () => {
           Connect with skilled craftspeople who pour their passion into every piece. Each artisan brings
           unique techniques, cultural heritage, and years of dedication to their craft.
         </p>
-        <button className='cta-btn'>
-          Become an Artisan →
-        </button>
+        
+        <Link to="/registerasseller" className='cta-btn-link'>
+          <button className='cta-btn'>
+            Become an Artisan →
+          </button>
+        </Link>
       </div>
 
       <div className='stats-section'>
@@ -357,9 +360,10 @@ const Artisians = () => {
             <p>Connect with fellow artisans and share knowledge</p>
           </div>
         </div>
-        <button className="cta-btn start-journey-btn">
-          Start Your Journey →
-        </button>
+
+        <Link to="/registerasseller" className="cta-btn-link start-journey-btn">
+
+        </Link>
       </div>
     </div>
   );

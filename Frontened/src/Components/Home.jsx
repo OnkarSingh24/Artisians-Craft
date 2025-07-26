@@ -449,7 +449,7 @@ const Home = () => {
         </div>
 
         <div className="footer-legal">
-          <p>© 2024 CraftiArts. All rights reserved.</p>
+          <p>© 2025 CraftiArts. All rights reserved.</p>
           <div>
             <a href="#">Privacy Policy</a>
             <a href="#">Terms of Service</a>
