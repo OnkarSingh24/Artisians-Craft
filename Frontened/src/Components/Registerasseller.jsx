@@ -40,7 +40,7 @@ const RegisterAsSeller = () => {
     setError('');
 
     if (currentStep === 1) {
-      if (!formData.Name || !formData.Email || !formData.phone || !formData.Password || !formData.ConfirmPassword) {
+      if (!formData.Name || !formData.Email || !formData.Phone || !formData.Password || !formData.ConfirmPassword) {
         setError('Please fill all fields in Personal Information.');
         return;
       }
@@ -210,8 +210,8 @@ const RegisterAsSeller = () => {
                   <Phone className="icon" />
                   <input
                     type="tel"
-                    id="phone"
-                    value={formData.phone}
+                    id="Phone"
+                    value={formData.Phone}
                     onChange={handleChange}
                     placeholder="Your Phone number"
                     required
