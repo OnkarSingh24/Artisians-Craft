@@ -1,8 +1,9 @@
 **Artisan E-Commerce Platform**
 A React-based marketplace connecting users with local artisans offering handmade and home-crafted products. Supports seller onboarding, admin approvals, user dashboards, and a seamless shopping experience.
-**Key Features**
 
-**User Side**
+
+**Key Features
+User Side**
 
 Browse and shop artisan products
 
