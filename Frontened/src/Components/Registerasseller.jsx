@@ -13,7 +13,7 @@ const RegisterAsSeller = () => {
   const [formData, setFormData] = useState({
     Name: '',
     Email: '',
-    phone: '',
+    Phone: '',
     Password: '',
     ConfirmPassword: '',
     Buissness: '',
