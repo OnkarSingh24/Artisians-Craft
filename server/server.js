@@ -35,6 +35,11 @@ app.use('/api/admin', adminroutes );
 app.use('api/status' , statusroutes);
 app.use('/api/cart' , orderroutes);
 
+app.use(express.static(path.join(process.cwd(), 'build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'build', 'index.html'));
+});
 
 
 app.listen(port, ()=> {
