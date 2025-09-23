@@ -3,7 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import Navigation from './Components/Navigation';
 import Home from './Components/Home';
 import Artisians from './Components/Artisians';
-import SignIn from './Components/Login';
+import SignIn from './Components/SignIn';
 import RegisterAsSeller from './Components/Registerasseller';
 import ResetPassword from './Components/Resetpassword';
 import ArtisanDirectory from './Components/ArtisanDirectory';
