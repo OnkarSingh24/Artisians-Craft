@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Search, Heart, ShoppingCart, User, Menu, X } from 'lucide-react';
-import './navigation.css';
+import './Navigation.css';
 import { useCart } from './CartContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { NavContext, NavProvider } from './NavContext';
