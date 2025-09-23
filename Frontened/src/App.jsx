@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import Navigation from './Components/navigation';
+import Navigation from './Components/Navigation';
 import Home from './Components/Home';
-import Artisians from './Components/artisians';
+import Artisians from './Components/Artisians';
 import SignIn from './Components/Login';
 import RegisterAsSeller from './Components/Registerasseller';
-import ResetPassword from './Components/resetpassword';
+import ResetPassword from './Components/Resetpassword';
 import ArtisanDirectory from './Components/ArtisanDirectory';
 import Register from './Components/Register';
 import Shop from './Components/Shop';
