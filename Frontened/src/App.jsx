@@ -6,7 +6,7 @@ import Artisians from './Components/Artisians';
 import SignIn from './Components/SignIn';
 import RegisterAsSeller from './Components/Registerasseller';
 import ResetPassword from './Components/Resetpassword';
-import ArtisanDirectory from './Components/ArtisanDirectory';
+import ArtisanDirectory from './Components/Artisandirectory';
 import Register from './Components/Register';
 import Shop from './Components/Shop';
 import Cart from './Components/Cart';

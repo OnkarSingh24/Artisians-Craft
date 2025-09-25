@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './ArtisanDirectory.css';
+import './Artisandirectory.css';
 
 const ArtisanDirectory = () => {
   const artisans = [
