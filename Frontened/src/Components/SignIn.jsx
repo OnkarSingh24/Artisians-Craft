@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock } from 'lucide-react';
-import './Signin.css';
+import './SignIn.css';
 import axios from 'axios';
 import { content } from '../../context';
 import { NavContext, NavProvider } from './NavContext';
