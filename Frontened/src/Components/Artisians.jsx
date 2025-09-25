@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './artisians.css';
+import './Artisians.css';
 import { Link } from 'react-router-dom';
 import {
   Users,
