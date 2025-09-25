@@ -8,8 +8,7 @@ import authroutes from './routes/authroutes.js'
 import productroutes from './routes/productroutes.js';
 import userrouter from "./routes/userroutes.js";
 import adminroutes from "./routes/adminroutes.js";
-import orderroutes from "./routes/orderroutes.js";
-import statusrouter from "./routes/statusroutes.js";
+import cartrouter from "./routes/orderroutes.js";
 import connectDB from './config/mongodb.js';
 import statusroutes from "./routes/statusroutes.js";
 
@@ -38,8 +37,8 @@ app.use ('/api/auth', authroutes);
 app.use ('/api/user', userrouter);
 app.use('/api/crud', productroutes);
 app.use('/api/admin', adminroutes );
-app.use('api/status' , statusroutes);
-app.use('/api/cart' , orderroutes);
+app.use('/api/status' , statusroutes);
+app.use('/api/cart' , cartrouter);
 
 app.use(express.static(path.join(__dirname, "../dist")));
 
