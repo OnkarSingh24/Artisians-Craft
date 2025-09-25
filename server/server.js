@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import 'dotenv/config';
+import path from "path";
+import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
 import authroutes from './routes/authroutes.js'
 import productroutes from './routes/productroutes.js';
@@ -10,6 +12,10 @@ import orderroutes from "./routes/orderroutes.js";
 import statusrouter from "./routes/statusroutes.js";
 import connectDB from './config/mongodb.js';
 import statusroutes from "./routes/statusroutes.js";
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const port =process.env.PORT|| 4000 ;
@@ -35,10 +41,10 @@ app.use('/api/admin', adminroutes );
 app.use('api/status' , statusroutes);
 app.use('/api/cart' , orderroutes);
 
-app.use(express.static(path.join(process.cwd(), 'build')));
+app.use(express.static(path.join(__dirname, "../dist")));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'build', 'index.html'));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../dist", "index.html"));
 });
 
 
