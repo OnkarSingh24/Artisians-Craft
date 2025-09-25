@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import './ResetPassword.css';
+import './Resetpassword.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { content } from '../../context';
