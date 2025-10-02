@@ -40,10 +40,10 @@ app.use('/api/admin', adminroutes );
 app.use('/api/status' , statusroutes);
 app.use('/api/cart' , cartrouter);
 
-app.use(express.static(path.join(__dirname, "../dist")));
+app.use(express.static(path.join(__dirname, "../Frontened/dist")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../dist", "index.html"));
+  res.sendFile(path.join(__dirname, "../Frontened/dist", "index.html"));
 });
 
 
